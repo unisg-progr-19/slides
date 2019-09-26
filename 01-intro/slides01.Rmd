@@ -19,6 +19,11 @@ header-includes:
   - \usepackage{parskip}
 ---
 
+```{r setup, include = FALSE}
+library(tidyverse)
+```
+
+
 
 class: middle, inverse
 # Introduction
@@ -352,12 +357,21 @@ ggplot(data, aes(x = ..., ...)) +
 ```
 ---
 
-# {ggplot2}: Pattern using layers and facets
+# {ggplot2}: Example
+
+```{r fig.width = 9, fig.height = 5}
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point()
+```
+---
+
+# {ggplot2}: Layers and facets
 
 ```{r eval = FALSE}
-ggplot(data, aes(x = ..., ...)) +
-  geom_...(...) +
-  geom_...(...) +
+ggplot(data, aes(...)) +
+  geom_...(aes(...), ...) +
+  geom_...(aes(...), ...) +
   ... +
   facet_...(...)
+```
 ```
