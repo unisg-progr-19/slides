@@ -337,6 +337,23 @@ class: middle, inverse
 1. Assignment
 
 ---
+# Material
+
+## Git
+
+https://happygitwithr.com/
+
+## Text + scripts
+
+https://krlmlr.github.io/vistransrep/book/
+
+https://github.com/krlmlr/vistransrep-proj/tree/master/script
+
+## Exercises
+
+https://krlmlr.github.io/vistransrep/2019-09-unisg/
+
+---
 # Data science workflow
 
 <br>
