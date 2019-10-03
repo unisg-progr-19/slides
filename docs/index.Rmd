@@ -1,0 +1,31 @@
+---
+title: "7784 Skills: Programming in R"
+author: 'Kirill Müller, Christoph Sax'
+date: 'University of St. Gallen, HS 2019'
+output:
+  cynkradown::cynkra_slides:
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    seal: false
+    selfcontained: true
+fontsize: 10pt
+lang: english                # ngerman, english, italian, french
+font: frutiger
+wide: false
+colorlinks: false
+---
+
+
+# 7784 Skills Programming in R
+
+Intro (Sept. 19): [Slides](01-intro.html)
+
+Visualization and Reporting (Sept. 26): [Slides](02-visualization.html)
+
+
+
+
+
+
