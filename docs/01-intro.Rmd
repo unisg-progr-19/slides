@@ -347,7 +347,7 @@ https://happygitwithr.com/
 
 https://krlmlr.github.io/vistransrep/book/
 
-https://github.com/krlmlr/vistransrep-proj/tree/master/script
+https://github.com/krlmlr/vistransrep-proj
 
 ## Exercises
 
