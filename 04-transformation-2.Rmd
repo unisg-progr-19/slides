@@ -22,6 +22,8 @@ header-includes:
 ```{r setup, include = FALSE}
 library(tidyverse)
 set.seed(20191010)
+
+ggplot <- function(...) ggplot2::ggplot(...) + theme_bw(16)
 ```
 
 class: middle, inverse
@@ -37,9 +39,9 @@ class: middle, inverse
 
 1. Recap data tranformation with {dplyr}
 
-1. Statistical transformations in {ggplot2}: bar chars, box plots, ...
-
 1. Grouped operations in {dplyr}
+
+1. Statistical transformations in {ggplot2}: bar chars, box plots, ...
 
 ---
 
@@ -157,4 +159,74 @@ saveRDS(
 result <- readRDS(
   here("results/file.rds")
 )
+```
+
+---
+class: inverse, middle, center
+
+# Transformation
+
+---
+
+# {ggplot2}: histogram
+
+```{r fig.width = 9, fig.height = 4}
+mpg %>% 
+  ggplot(aes(x = displ)) +
+  geom_histogram(bins = 10)
+```
+
+---
+
+# {ggplot2}: smoothing lines
+
+```{r fig.width = 9, fig.height = 4}
+mpg %>% 
+  ggplot(aes(x = displ, y = hwy)) +
+  geom_jitter() +
+  geom_smooth(method = "lm", formula = y ~ x)
+```
+
+---
+
+# {ggplot2}: box plots
+
+```{r fig.width = 9, fig.height = 4}
+mpg %>% 
+  ggplot(aes(x = manufacturer, y = displ)) +
+  geom_boxplot() +
+  ggpubr::rotate_x_text()
+```
+
+---
+
+# {ggplot2}: statistical tranformations
+
+```r
+data %>% 
+  ggplot(aes(...)) +
+  geom_...(aes(...), stat = ..., ...)
+```
+
+---
+
+
+# {ggplot2}: bar charts
+
+```{r fig.width = 9, fig.height = 4}
+mpg %>% 
+  # use original data  
+  ggplot(aes(x = class)) +
+  geom_bar()
+```
+
+---
+
+# {ggplot2}: bar charts
+
+```{r fig.width = 9, fig.height = 4}
+mpg %>% 
+  count(class) %>% #<<
+  ggplot(aes(x = class, y = n)) +
+  geom_col()
 ```
