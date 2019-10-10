@@ -21,6 +21,7 @@ header-includes:
 
 ```{r setup, include = FALSE}
 library(tidyverse)
+set.seed(20191010)
 ```
 
 class: middle, inverse
