@@ -97,3 +97,55 @@ class: middle, inverse
 - 19.12.: Workflow review II [Due: report]
 
 ---
+# Assignments
+
+- Hand-in: `*.R` and `*.Rmd` files 
+
+- `README.md` should guide at the files to review
+
+- GitHub Pages not required, but still a good exercise
+
+    - See `index.Rmd` and `_site.yml` in https://github.com/unisg-progr-19/hw1-krlmlr
+      for example of main entry point and automated copying to `docs/`
+
+- **Reproducible scripts**: Run in a clean R session, load all required packages and data
+
+    - Ctrl + Shift + F10 to restart R
+
+---
+# Separating scripts and rmarkdown
+
+.pull-left[
+## Script
+
+- perform computation, can be long-running
+]
+
+.pull-right[
+## Report
+
+- display results, should run fast
+]
+
+---
+
+# 
+
+# Separating scripts and rmarkdown
+
+## Save results to a file in `*.R`
+
+```r
+saveRDS(
+  result,
+  here("results/file.rds")
+)
+```
+
+## Load results from file in `*.Rmd`
+
+```r
+result <- readRDS(
+  here("results/file.rds")
+)
+```
