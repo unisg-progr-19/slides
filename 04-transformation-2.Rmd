@@ -210,6 +210,10 @@ class: inverse, middle, center
 
 ---
 
+class: middle
+
+# Demo: [`27-summarize.R`](https://github.com/krlmlr/vistransrep-proj/blob/master/script/27-summarize.R)
+
 ---
 
 class: inverse, middle, center
