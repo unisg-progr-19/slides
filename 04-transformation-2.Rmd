@@ -27,3 +27,73 @@ set.seed(20191010)
 class: middle, inverse
 
 # 10.10.: Transformation 2
+
+---
+# Topics for today
+
+1. Admin: Final report, assignment, update syllabus
+
+1. Review of assignment
+
+1. Recap data tranformation with {dplyr}
+
+1. Statistical transformations in {ggplot2}: bar chars, box plots, ...
+
+1. Grouped operations in {dplyr}
+
+---
+
+# Admin
+
+## Final report
+
+- Groups now frozen, team leader assigned randomly
+
+- We will create a repository that is private to your team
+
+- Topics for final report due **Oct 17** ("exercise" in `lesson04.R`)
+
+---
+
+# Course Syllabus
+
+- Part 1: Data Transformation ✓
+
+- Part 2: Modeling
+
+- Part 3: Advanced Topics
+
+---
+
+# Part 1: Data Transformation (Kirill)
+
+- 26.9.: Visualization and reporting ✓
+
+- 3.10.: Transforming data I ✓
+
+- **10.10.: Transforming data II** [Due: groups and report topic]
+
+---
+
+# Part 2: Modeling (Christoph)
+
+- 17.10.: R Base [Due: assignment 1]
+
+- 24.10.: Statistical models
+
+- 14.11.: Communicating models
+
+---
+# Part 3: Advanced Topics (preliminary)
+
+- **21.11.: Transforming data III** [Due: assignment 2]
+
+- 28.11.: Data Sources
+
+- 5.12.: Workflow Review
+
+- **12.12.: Statistical models II** [Due: assignment 3]
+
+- 19.12.: Workflow review II [Due: report]
+
+---
