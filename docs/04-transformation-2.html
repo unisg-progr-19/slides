@@ -333,16 +333,27 @@ class: middle, inverse
 
 - Hand-in: `*.R` and `*.Rmd` files 
 
-- `README.md` should guide at the files to review
+- `README.md` should explain which files to run
 
 - GitHub Pages not required, but still a good exercise
 
     - See `index.Rmd` and `_site.yml` in https://github.com/unisg-progr-19/hw1-krlmlr
-      for example of main entry point and automated copying to `docs/`
+      for automation example
 
-- **Reproducible scripts**: Run in a clean R session, load all required packages and data
+---
+# Ensure repeatability
 
-    - Ctrl + Shift + F10 to restart R
+All code should be **self-contained** and **reproducible**
+
+## Run in a clean R session
+
+- Ctrl + Shift + F10 to restart R
+
+- Ctrl + Shift + K to &quot;knit&quot; document
+
+## Always produce the same results
+
+- Set random seed with `set.seed()`
 
 ---
 # Separating scripts and rmarkdown
@@ -361,14 +372,11 @@ class: middle, inverse
 
 ---
 
-# 
-
 # Separating scripts and rmarkdown
 
 ## Save results to a file in `*.R`
 
 ```r
-
 saveRDS(
   result,
   here(&quot;results/file.rds&quot;)
