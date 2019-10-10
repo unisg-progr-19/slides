@@ -279,7 +279,7 @@ class: middle, inverse
 
 ## Final report
 
-- Groups now frozen, team leader assigned randomly
+- Groups freeze today 9:00 PM CEST, team leader assigned randomly
 
 - We will create a repository that is private to your team
 
@@ -340,6 +340,8 @@ class: middle, inverse
     - See `index.Rmd` and `_site.yml` in https://github.com/unisg-progr-19/hw1-krlmlr
       for automation example
 
+- Please **archive** all unneeded repositories
+
 ---
 # Ensure repeatability
 
@@ -348,7 +350,6 @@ All code should be **self-contained** and **reproducible**
 ## Run in a clean R session
 
 - Ctrl + Shift + F10 to restart R
-
 - Ctrl + Shift + K to &quot;knit&quot; document
 
 ## Always produce the same results
@@ -404,11 +405,17 @@ class: inverse, middle, center
 ## Compute one value per row
 
 - `+`, `-`, `*`, `/`, ... -- see `?&quot;+&quot;`
+
 - `sin()`, `cos()`, ...
+
 - `lead()` and `lag()` -- look at next or previous row
+
 - `cumsum()`, `cumprod()`, ... -- look at all previous rows
+
 - `if_else()`, `recode()` -- recoding
+
 - `==`, `is.na()` -- compute a `TRUE` or `FALSE` value
+
 - `x / sum(x)` -- look at all rows
 
 ---
@@ -417,14 +424,16 @@ class: inverse, middle, center
 
 ## Compute one overall result
 
-- `sum()`, `prod()`, `mean()`, `median()`
-    - consider `na.rm = TRUE`
+- `sum(na.rm = ...)`, `prod()`, `mean()`, `median()`
+
 - `sd()`, `IQR()`, `mad()`
-    - consider `na.rm = TRUE`
+
 - `min()`, `quantile(0.75)`, `max()`
-    - consider `na.rm = TRUE`
+
 - `n()`
+
 - `sum()` and `mean()` for predicates -- counts and shares
+
 - `first()`, `last()`, `nth()` -- selection by position
 
 ---
