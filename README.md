@@ -8,6 +8,8 @@ https://unisg-progr-19.github.io/slides
 
 To update:
 
-- Each slide deck is an `.Rmd` file in `docs`. Render manually.
+- Each slide deck is an `.Rmd` file in the main directory. Render manually.
+
+- Render everything at once with `rmarkdown::render_site()`
 
 - If you add a new slide deck, update and render `docs/index.Rmd`.
