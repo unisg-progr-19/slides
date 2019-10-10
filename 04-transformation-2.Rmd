@@ -172,6 +172,22 @@ class: inverse, middle, center
 
 ---
 
+# Filtering functions
+
+## Compute one predicate (`TRUE` or `FALSE`) per row
+
+- `==`, `!=`, `<`, `>`, `<=`, `>=`, ... -- see `?"=="`
+
+- `=` is not a comparison operator!
+
+- `near()`
+
+- `between()`, `%in%`
+
+- `is.na()` -- missing values
+
+---
+
 # Mutating functions
 
 ## Compute one value per row
@@ -293,3 +309,9 @@ mpg %>%
   ggplot(aes(x = class, y = n)) +
   geom_col()
 ```
+
+---
+
+# Extensions
+
+http://www.ggplot2-exts.org/gallery/
