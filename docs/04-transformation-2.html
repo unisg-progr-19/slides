@@ -322,9 +322,9 @@ class: middle, inverse
 
 - 28.11.: Data Sources
 
-- 5.12.: Workflow Review
+- **5.12.: Statistical models II**
 
-- **12.12.: Statistical models II** [Due: assignment 3]
+- 12.12.: Workflow Review  [Due: assignment 3]
 
 - 19.12.: Workflow review II [Due: report]
 
@@ -392,9 +392,48 @@ result &lt;- readRDS(
 ```
 
 ---
+
 class: inverse, middle, center
 
 # Transformation
+
+---
+
+# Mutating functions
+
+## Compute one value per row
+
+- `+`, `-`, `*`, `/`, ... -- see `?&quot;+&quot;`
+- `sin()`, `cos()`, ...
+- `lead()` and `lag()` -- look at next or previous row
+- `cumsum()`, `cumprod()`, ... -- look at all previous rows
+- `if_else()`, `recode()` -- recoding
+- `==`, `is.na()` -- compute a `TRUE` or `FALSE` value
+- `x / sum(x)` -- look at all rows
+
+---
+
+# Summary functions
+
+## Compute one overall result
+
+- `sum()`, `prod()`, `mean()`, `median()`
+    - consider `na.rm = TRUE`
+- `sd()`, `IQR()`, `mad()`
+    - consider `na.rm = TRUE`
+- `min()`, `quantile(0.75)`, `max()`
+    - consider `na.rm = TRUE`
+- `n()`
+- `sum()` and `mean()` for predicates -- counts and shares
+- `first()`, `last()`, `nth()` -- selection by position
+
+---
+
+---
+
+class: inverse, middle, center
+
+# Summary plots
 
 ---
 
@@ -442,9 +481,18 @@ mpg %&gt;%
 # {ggplot2}: statistical tranformations
 
 ```r
+# When plotting
 data %&gt;% 
   ggplot(aes(...)) +
   geom_...(aes(...), stat = ..., ...)
+
+# Manually
+data %&gt;% 
+  group_by(...) %&gt;% 
+  summarize(...) %&gt;% 
+  ungroup() %&gt;% 
+  ggplot(aes(...)) +
+  geom_...(aes(...), ...)
 ```
 
 ---
