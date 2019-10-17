@@ -20,6 +20,9 @@ Intro (Sept. 19): [Slides](01-intro.html)
 
 [Canvas Page](https://learning.unisg.ch/courses/4447)
 
+[GitHub Organization](https://github.com/unisg-progr-19/)
+
+
 
 # Visualization and Reporting
 
