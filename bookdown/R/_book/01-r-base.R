@@ -1,0 +1,620 @@
+#' # Basics of R base
+#'
+#' We have spent the first lessons of this course with dplyr and ggplot2, two of
+#' the great innovations in R universe of the last few years. If you were
+#' learning R 10 years ago, R would have looked quite differently. In this
+#' lesson, we cover the basics of R base - *R (mostly) as it is before you load
+#' any packages*.
+#'
+#' ## The Main Data Structures
+#'
+#' R has four main data structures. In dplyr, we always work on **data frames**,
+#' or **tibbles**, the equivalent to an Excel sheet - a tabular collection of
+#' data. When performing operations, e.g., by using `filter()`, or `mutate()` we
+#' are performing operations on the columns of a data frame. These columns are
+#' **vectors**, and they are the heart of R. Related to them, **matrices** are
+#' basically two dimensional vectors that are useful in some mathematical or
+#' statistical applications. Finally, **lists** are the most versatile data
+#' type, and they are used in many circumstances. We will cover these data
+#' structures in the following order: vectors, matrices, lists and data frames,
+#' or tibbles (which we already know well).
+#'
+#'
+#' ### Vectors, the R Workhorse
+#'
+#' The vector type is the most basic data structure in R. It's hard to imagine R
+#' code that doesn't involve vectors. If you use `mutate` to change columns of
+#' your data frame, you are effectively operating on vectors. The elements of a
+#' vector must all have the same class, or data type. You can have a vector
+#' consisting of three character strings (of class character) or three integer
+#' elements (of class integer), but not a vector with one integer element and
+#' two character string elements.
+#'
+#'
+#' #### Vector Classes
+#'
+#' In many programming languages, vector variables are considered different from
+#' scalars, which are single-number variables. However, in R, numbers are
+#' actually considered one-element vectors, and there is really no such thing as
+#' a scalar.
+#'
+#' As we have seen previously, all elements of an R vector (or data frame
+#' column) must have the same class, which can be integer, numeric (also called
+#' double), character (string), logical (boolean).  Here are some examples:
+
+x_log <- c(TRUE, FALSE)     # same as c(T, F)
+x_int <- c(1L, 2L, 3L)      # use 1L to enforce integer, rather than numeric
+x_num <- c(1, 2, 6.3)       # also called 'double'
+x_chr <- c("Hello World")
+
+#' If you need to check the class of a variable `x`, you can use, e.g.:
+
+class(x_log)
+
+#' There is a certain order in the list above: `logical` is the least flexible
+#' class, while `character` is the most flexible. If you combine vectors of
+#' different classes, the more flexible class will win:
+
+class(c(x_log, x_num))
+class(c(x_int, x_chr))
+
+#' You can change the class of a vector with the following coercion functions.
+
+as.logical(c(1, 0))
+as.integer(c(1, 0))
+as.numeric(c("1", "2"))
+as.character(c(TRUE, FALSE))
+
+#' These functions will always work if you coerce towards greater flexibility.
+#' If you want to go the other way, it may give you `NA`s and some warnings:
+
+as.numeric(c("hi", "number", "1"))
+
+
+#' #### Recycling
+#'
+#' When applying an operation to two vectors that requires them to be the same
+#' length, R automatically recycles, or repeats, the shorter one, until it is
+#' long enough to match the longer one. Here is an example:
+
+c(1, 2) + c(6, 0, 9, 20, 22, 11)
+
+#' The shorter vector was recycled, so the operation was taken to be as follows:
+
+c(1, 2, 1, 2, 1, 2) + c(6, 0, 9, 20, 22, 11)
+
+#' The most common recycling operation involves a vector of length 1:
+
+c(6, 0, 9, 20, 22, 11) + 3
+
+
+#' In dplyr, only a vector of length 1 is allowed to recycle, the other cases
+#' will result in an error.
+
+# tibble(a = c(1, 2), b = c(6, 0, 9, 20, 22, 11))
+
+#' #### Arithmetic Operators
+#'
+#' In R, every operator, including `+` in the following example, is actually a
+#' function.
+
+2 + 3
+
+#' The `+` here is a function with two arguments. A more functional way of
+#' writing it is the following:
+
+"+"(2, 3)
+
+#' Remember that scalars are actually one-element vectors. So, we can add
+#' vectors, and the `+` operation will be applied element-wise.
+
+x <- c(1, 2, 4)
+x + c(5, 0, -1)
+
+#' The same is true, e.g., for multiplication, which is done element by element
+#' as well. (We will have a look at matrix multiplication in the next section.)
+
+x * c(5, 0, -1)
+
+
+#' #### Comparison Operators
+
+#' Similar to arithmetic operators, comparison operators are applied element
+#' wise. The following expression will return a single `TRUE`, as we are
+#' comparing two vectors of length 1:
+
+2 > 1
+
+#' The comparison operator for 'is equal to' is `==`, not `=`:
+
+1 + 1 == 2
+
+#' Here is how they work on longer vectors:
+
+x <- c(1, 2, 4, 2)
+y <- c(2, 2, 4, 5)
+x == y
+
+#' The usual recycling rules apply as well:
+
+x == 2
+
+#' Here are the other comparison operators:
+#'
+#'   - `x < y`: less than
+#'   - `x <= y`: less or equal than
+#'   - `x >= y`: greater or equal than
+#'   - `x != y`: not equal
+
+#' Logical vectors can be combined by `&` (AND) or `|` (OR):
+
+a <- x >= 2
+b <- x < 4
+a & b
+
+x >= 4 | x < 2
+
+
+#' #### Indexing
+#'
+#' One of the most frequently used operations in R base is that of indexing
+#' vectors, in which we form a subvector by picking elements. You can use both
+#' integer values or logical  vectors for indexing.
+#'
+#' ##### Indexing Using Integers
+#'
+#' We can extract values from a vector, using an integer index:
+
+y <- c(1.2, 3.9, 0.4, 0.12)
+y[c(1, 3)]
+y[2:3]
+v <- 3:4
+y[v]
+
+#' Note that duplicates are allowed:
+
+y[c(1, 1, 3)]
+
+#' Negative subscripts mean that we want to exclude the elements:
+
+z <- c(5, 12, 13)
+z[-1]
+z[-1:-2]
+
+
+#' ##### Logical Indexing
+#'
+#' Logical indexing is perhaps even more important. Building on the example from
+#' above, we could also select element 1 and 3 in the following way:
+
+y <- c(1.2, 3.9, 0.4, 0.12)
+y[c(FALSE, TRUE, FALSE, TRUE)]
+
+#' Logical indexing picks the `TRUE`s but not the `FALSE`s. This is the main
+#' building block for filtering. Suppose you have:
+
+y[y > 1]
+
+#' This will return all elements that are bigger than 1. How is this done?
+#' First, R had evaluated the comparison, `y > 1`, which led to logical vector:
+
+y > 1
+
+#' Second, using logical indexing, this vector was then used to pick those
+#' elements that evaluated to `TRUE`. So `y[y > 1]` is actually the same as:
+
+y[c(TRUE, TRUE, FALSE, TRUE)]
+
+#' We have already seen that you can assign to individual elements of a vector,
+#' using integer indices:
+
+y[c(2, 4)] <- 5
+
+#' Of course, you can do the same with logical indices:
+
+y[c(FALSE, TRUE, FALSE, TRUE)] <- 5
+
+#' This is a very powerful tool. For example, if you want to truncate all
+#' negative numbers in a vector to 0, you can use:
+
+z <- c(-3, 1.2, 2, -22)
+z[z < 0] <- 0
+
+#' Or use it with the `%in%` operator you encountered before:
+
+z[z %in% y]
+
+
+#' #### Exercises
+#'
+#' 1. Create a vector called `v1` containing the numbers 2, 5, 8, 12 and 16.
+#'
+#' 2. Extract the values at positions 2 and 5 from `v1`.
+#'
+#' 3. Use `x:y` notation to make a second vector called `v2` containing the
+#' numbers 5 to 9.
+#'
+#' 4. Subtract `v2` from `v1` and look at the result.
+#'
+#' 5. Generate a vector with 1000 standard-normally distributed random numbers
+#' (use `rnorm()`). Store the result as `v3`. Extract the numbers that are
+#' bigger than 2.
+#'
+#'
+#' ### Matrices
+#'
+#' An R matrix corresponds to the mathematical concept of the same name: a
+#' rectangular array of numbers (most of the time), or some other type.
+#' Here is some sample matrix code:
+
+m <- matrix(c(1, 4, 2, 2), nrow = 2, ncol = 2)
+m
+
+#' The main use of matrices is for matrix algebra. You can do all kind of matrix
+#' algebra operations, right out of R base:
+
+m %*% m         # matrix multiplication
+m * m           # elementwise multiplication
+
+m %*% solve(m)  # inverse of a matrix
+m / m           # elementwise division
+
+m + m
+m - m
+
+t(m)            # matrix transpose
+qr(m)           # QR decomposition
+det(m)          # determinant
+eigen(m)        # eigenvalues/eigenvectors
+diag(m)         # diagonal
+
+#' Matrices are indexed by double subscripting:
+
+m[1, 2]
+m[2, 2]
+
+#' You can extract submatrices from a matrix, much as you extract subvectors
+#' from vectors:
+
+m[1, ]   # row 1
+m[1, , drop = FALSE]  # keeps being a matrix
+
+m[, 2]  # column 2
+
+
+#' #### Exercises
+#'
+#' 1. Create a 10 x 10 matrix that contains a sequence of numbers (use the `:`
+#' notation).
+#'
+#' 2. Use the transpose function on the matrix
+#'
+#' 3. Extract the 2. column of the matrix
+#'
+#' 4. Extract the 5. row of the matrix
+#'
+#' 5. Extract the 5. and the 6. row of the matrix
+#'
+#' 6. Compare the classes of the results in 3. and 4. to each other
+#'
+#' 7. Modify 3., so that it returns the same class as 4.
+#'
+#'
+#' ### Lists
+#'
+#' Like an R vector, an R list is a container for values, but its contents can
+#' be items of different data types, or different length. Here's an example:
+
+x <- list(u = c(2, 3, 4), v = "abc")
+x
+
+x$u
+
+#' The expression `x$u` refers to the `u` component in the list `x`.
+
+x[['u']]
+x[[1]]
+
+#' We can also refer to list components by their numerical indices. However,
+#' note that in this case, we use double brackets instead of single ones.
+#'
+#' We can also use single brackets rather than double brackets to get a subset
+#' of the list.
+
+x['u']
+x[1]
+x[1:2]
+
+#' Note that `x[[1]]` returns the component (a numeric vector), while `x[1]`
+#' returns a subset of the list (a list of length 1):
+
+class(x[1])
+class(x[[1]])
+
+#' Hadley Wickham's visualization helps a lot here:
+#'
+#' https://twitter.com/hadleywickham/status/643381054758363136
+
+#' Lists are not restricted to containing vectors. In fact, they can contain
+#' anything, for example, a data frames:
+
+ll <- list(mtcars = mtcars, u = c(2, 3, 4))
+
+
+#' #### Exercises
+#'
+#' 1. Generate two random vectors of length 10, `a`, and `b`. Combine them in a
+#' list, call it `l1`.
+#'
+#' 2. Compare the classes of `l1[2]` and `l1[[2]]`. Can you explain the
+#' difference?
+#'
+#'
+
+#' ### Data Frames
+#'
+#' As we saw in many places, a typical data set contains data of different
+#' classes.  Instead of a matrix, we use a data frame, or tibble. Technically, a
+#' data frame in R is a list, with each component of the list being a vector
+#' corresponding to a column in our data. You can create a data frame using
+#' `tibble` from tidyverse:
+
+library(tidyverse)
+d <- tibble(kids = c("Jack", "Jill"), ages = c(12, 10))
+d
+
+#' Here, I am using the `tibble()` function from tidyverse, rather than the R
+#' base equivalent, `data.frame()`. The reason for this is that `data.frame()`
+#' has some undesirable features, such as converting character vectors into
+#' factors.  Because data frames are technically a list, we can access its
+#' vectors the same way as we access components of a list.
+
+d$ages
+d[['ages']]
+d[[2]]  # usually not recommended
+
+#' Typically, though, data frames are created by reading in a data set from a
+#' file or a database, as we saw in the previous days of the workshop.
+#'
+#' Contrary to lists, data frames require their columns to be of the same
+#' length. If they are not, values will be recycled. That is why the following
+#' works:
+
+tibble(kids = c("Jack", "Jill"), ages = c(12, 10), type = "kid")
+
+
+#' ## Introduction to Functions
+#'
+#' As in most programming languages, the heart of R programming consists of
+#' writing functions. A function is a group of instructions that takes inputs,
+#' uses them to compute other values, and returns a result.
+#'
+#' Let's write a function that divides all elements of a vector by 2:
+
+half <- function(x) {
+  x / 2
+}
+
+#' This is a function named `half`, whose purpose is to divides every element of
+#' a vector by 2. It's a pretty pointless function, as the operation itself is
+#' so simple. Arguments to a function are enclosed by parentheses (`()`); the
+#' body of the function is enclosed by braces (`{}`).
+#'
+#' Let's see how it works:
+
+half(c(3, 2, 1))
+half(AirPassengers)
+
+#' here we are saving the output in a variable inside the function:
+
+half <- function(x) {
+  z <- x / 2
+  z
+}
+
+#' An R functions will return the last value computed if there is no explicit
+#' `return()` call. We could have been more explicit, but it is usually not
+#' necessary:
+
+half <- function(x) {
+  z <- x / 2
+  return(z)
+}
+
+#' Let's make it a bit more complex, by adding an additional argument:
+
+fraction <- function(x, denominator){
+  x / denominator
+}
+
+fraction(c(2, 3, 4), 4)
+
+#' if you have more than one argument, it is a good practice to name the
+#' arguments
+
+fraction(x = c(2, 3, 4), denominator = 4)
+
+#' that way, they become independent of the order, which is a very useful if the
+#' number of argument becomes large.
+
+fraction(denominator = 4, x = c(2, 3, 4))
+
+
+#' ### Variable Scope
+
+#' A variable that is visible only within a function body is said to be local to
+#' that function. In `square()`, `x` is a local  variable. In `fraction()`, `x`
+#' and `p` are local variables. They disappear after the function returns:
+
+fraction(x = c(2, 3, 4), denominator = 4)
+
+# denominator
+# Error: object 'denominator' not found
+
+x
+
+#' Note that the `x` is not the `x` we used in the `fraction` function, but
+#' rather the `x` defined earlier. `x` here is called a global variable, while
+#' the `x` in the function is a local variable. Global variables are shown in
+#' RStudio in the environment pane.  A global variable can be written to from
+#' within a function by using R's superassignment operator, `<<-`, but this is
+#' rarely recommended.
+#'
+#'
+#' ### Default Arguments
+#'
+#' A nice feature of R functions is that you can set defaults to arguments.
+#' Let's modify the `fraction` function from above:
+
+fraction <- function(x, denominator = 2) {
+  x / denominator
+}
+
+#' Here `denominator` will be initialized to 2 if the user does not
+#' specify `p` in the
+#' call. So we can use `fraction()` the same way as `half()`:
+
+fraction(c(2, 2))
+half(c(2, 2))
+
+#' or use its extended capabilities:
+
+fraction(c(2, 2), 3)
+
+
+#' ### Exercises
+#'
+#' 1. Write a function `add_constant` that adds a constant to a vector, and set
+#' the default value of the constant to 10.
+#'
+#' 2. Apply it to the `AirPassengers` series.
+#'
+#' 3. You can use your function within dplyr. Using the `mpg` dataset, use
+#' `add_constant` within `mutate` to add a constant value (`100`) to the number
+#' of `cyl`.
+#'
+#' 4. (evil) We saw that `"+"` is actually a function. In R, it is easily
+#' possible to change the working of such a fundamental function (this is, in
+#' fact, what ggplot does). In order to do so, let's write a new function with
+#' the same name, `"+"`, and two arguments, `a`, and `b`. But instead of summing
+#' the values, let's subtract them (or figure out something more evil).
+#' Verify the result of 1 + 1. Cool, isn't it? (`rm("+")` will restore sanity.)
+#'
+#'
+#' ## Higher-Order Functions
+#'
+#' Because functions in R are objects like any other objects, it is easy to
+#' write functions that return functions or take functions as arguments. We saw
+#' some examples above. The most prominent of these functions are *higher-order
+#' functions*, which are very central to R. They are called `apply` or `lapply`,
+#' or similar, and there are many of them. To avoid too much confusion, we will
+#' restrict ourself to `map`, the tidyverse equivalent of `lapply`,
+#'
+#'
+#' ### `map`
+#'
+#' The `map` function 'maps' a function to each component of a list.
+#' Because lists are such a useful container for objects in R, very often, you
+#' want to map a function to each component of a list. Here is an example:
+
+ll <- list(a = c(2, 3, 4), b = c(1, 2, 3), c = c(5, 2, 1))
+
+#' This is a list with three vectors, of which we want to calculate the means.
+#' Here's an expression that does what we want (we will cover loops later on):
+
+z <- NULL
+for (vi in ll){
+  z <- c(z, mean(vi))
+}
+
+#' We loop through each component of the list, calculate the mean and add it to
+#' an output vector, `z`. With the `map` function, this can be written much
+#' more concise:
+
+library(tidyverse)
+map(ll, mean)
+
+#' So `map` returns a list of the same length as the first argument (a list),
+#' each element of which is the result of applying the second argument (a
+#' function) to the corresponding component of the list argument. If the input
+#' list is named (as in the example), so will be the output.
+#'
+#' Additional arguments to the `mean()` function can be included as well:
+
+map(ll, mean, na.rm = TRUE)
+
+#' If you want to convert the list to a vector (as in the loop example), use
+#' `unlist` on the result:
+
+unlist(map(ll, mean))
+
+
+#' Of course, you can use `map` with your own functions. Here we want to pick
+#' the second element of each vector in the list:
+
+pick_second <- function(x){
+  x[2]
+}
+
+map(ll, pick_second)
+
+#' In cases like this, we may want to use the possibility of having *anonymous
+#' functions*, i.e. functions without a name. So we just substitute `pick_second`
+#' by its definition:
+
+map(ll, function(x) x[2])
+
+#' For simple one line functions like this, it may be justified to omit the
+#' curly braces.
+
+
+#' ### Exercises
+#'
+#' 1. Use `map` to calculate the mean of each variable in the `swiss`
+#' dataset. Convert the resulting list to a vector.
+#'
+#' 2. Use `map` to coerce the variables in the `swiss` dataset to character.
+#'
+#' 3. Using `map`, generate a list containing 10 random vectors of random
+#' length between 1 and 10.
+#'
+#' 4. Use the help to see what the `colSums()` function does. Using `apply`, try
+#' writing your own version, `colSums2()`.
+#'
+#'
+#' ### Loops
+#'
+#' In many programming languages, one of first things you learn are loops. There
+#' is a reason that we didn't cover them until now, and also only for
+#' completeness. Loops in R are slow, and they are -- most of the time --
+#' unnecessary. This is because many operations in R are vectorized anyway, so
+#' there is no need to loop over each element. Also the `group_by()` operation
+#' in dplyr offers a much more elegant way of applying a function repeatedly to
+#' a group of data. Third, there are higher order functions like `map` (or
+#' the tidyverse equivalent: `purrr::map`) that save you from loops most of the
+#' time.
+#'
+#' Anyway, here is the loop:
+
+for (i in 1:10) {
+  print(i)
+}
+
+#' There will be one iteration of the loop for each component of the vector
+#' `1:10`, with  `i` taking on the values of those components -- in the first
+#' iteration, `i = (1:10)[1]`; in the second  iteration, `i = (1:10)[2]`; and so
+#' on.
+#'
+#' And we are not restricted to integer vectors, but can loop over any vector,
+#' even over lists:
+
+z <- NULL
+for (i in list(swiss, mtcars)) {
+  z <- c(z, colnames(i))
+}
+z
+
+#' But we saw a much clearer way of doing this above:
+
+unlist(map(list(swiss, mtcars), colnames))
+

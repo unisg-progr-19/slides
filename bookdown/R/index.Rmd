@@ -1,0 +1,35 @@
+---
+title: "7784 Skills: Programming in R"
+author: 'Kirill Müller, Christoph Sax'
+date: 'University of St. Gallen, HS 2019'
+site: "bookdown::bookdown_site"
+output:
+  bookdown::gitbook:
+    lib_dir: "book_assets"
+    config:
+      sharing: null
+  bookdown::pdf_book:
+    keep_tex: yes
+---
+
+
+
+# Introduction
+
+Intro (Sept. 19): [Slides](01-intro.html)
+
+
+# Visualization and Reporting
+
+Visualization and Reporting (Sept. 26): [Slides](02-visualization.html)
+
+
+# Data Tranformation I
+
+Data Tranformation I (Oct. 3): [Slides](03-transformation-1.html)
+
+# Data Tranformation II
+
+Data Tranformation II (Oct. 10): [Slides](04-transformation-2.html)
+
+

@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Basics of R base | 7784 Skills: Programming in R</title>
+  <meta name="description" content="5 Basics of R base | 7784 Skills: Programming in R" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Basics of R base | 7784 Skills: Programming in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Basics of R base | 7784 Skills: Programming in R" />
+  
+  
+  
+
+<meta name="author" content="Kirill Müller, Christoph Sax" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-tranformation-ii.html">
+
+<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="visualization-and-reporting.html"><a href="visualization-and-reporting.html"><i class="fa fa-check"></i><b>2</b> Visualization and Reporting</a></li>
+<li class="chapter" data-level="3" data-path="data-tranformation-i.html"><a href="data-tranformation-i.html"><i class="fa fa-check"></i><b>3</b> Data Tranformation I</a></li>
+<li class="chapter" data-level="4" data-path="data-tranformation-ii.html"><a href="data-tranformation-ii.html"><i class="fa fa-check"></i><b>4</b> Data Tranformation II</a></li>
+<li class="chapter" data-level="5" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html"><i class="fa fa-check"></i><b>5</b> Basics of R base</a><ul>
+<li class="chapter" data-level="5.1" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#the-main-data-structures"><i class="fa fa-check"></i><b>5.1</b> The Main Data Structures</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#vectors-the-r-workhorse"><i class="fa fa-check"></i><b>5.1.1</b> Vectors, the R Workhorse</a></li>
+<li class="chapter" data-level="5.1.2" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#matrices"><i class="fa fa-check"></i><b>5.1.2</b> Matrices</a></li>
+<li class="chapter" data-level="5.1.3" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#lists"><i class="fa fa-check"></i><b>5.1.3</b> Lists</a></li>
+<li class="chapter" data-level="5.1.4" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#data-frames"><i class="fa fa-check"></i><b>5.1.4</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#introduction-to-functions"><i class="fa fa-check"></i><b>5.2</b> Introduction to Functions</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#variable-scope"><i class="fa fa-check"></i><b>5.2.1</b> Variable Scope</a></li>
+<li class="chapter" data-level="5.2.2" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#default-arguments"><i class="fa fa-check"></i><b>5.2.2</b> Default Arguments</a></li>
+<li class="chapter" data-level="5.2.3" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#exercises-3"><i class="fa fa-check"></i><b>5.2.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#higher-order-functions"><i class="fa fa-check"></i><b>5.3</b> Higher-Order Functions</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#map"><i class="fa fa-check"></i><b>5.3.1</b> <code>map</code></a></li>
+<li class="chapter" data-level="5.3.2" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#loops"><i class="fa fa-check"></i><b>5.3.2</b> Loops</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">7784 Skills: Programming in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="basics-of-r-base" class="section level1">
+<h1><span class="header-section-number">5</span> Basics of R base</h1>
+<p><a href="01-r-base.R">Download as R script</a></p>
+<p>We have spent the first lessons of this course with dplyr and ggplot2, two of
+the great innovations in R universe of the last few years. If you were
+learning R 10 years ago, R would have looked quite differently. In this
+lesson, we cover the basics of R base - <em>R (mostly) as it is before you load
+any packages</em>.</p>
+<div id="the-main-data-structures" class="section level2">
+<h2><span class="header-section-number">5.1</span> The Main Data Structures</h2>
+<p>R has four main data structures. In dplyr, we always work on <strong>data frames</strong>,
+or <strong>tibbles</strong>, the equivalent to an Excel sheet - a tabular collection of
+data. When performing operations, e.g., by using <code>filter()</code>, or <code>mutate()</code> we
+are performing operations on the columns of a data frame. These columns are
+<strong>vectors</strong>, and they are the heart of R. Related to them, <strong>matrices</strong> are
+basically two dimensional vectors that are useful in some mathematical or
+statistical applications. Finally, <strong>lists</strong> are the most versatile data
+type, and they are used in many circumstances. We will cover these data
+structures in the following order: vectors, matrices, lists and data frames,
+or tibbles (which we already know well).</p>
+<div id="vectors-the-r-workhorse" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Vectors, the R Workhorse</h3>
+<p>The vector type is the most basic data structure in R. It’s hard to imagine R
+code that doesn’t involve vectors. If you use <code>mutate</code> to change columns of
+your data frame, you are effectively operating on vectors. The elements of a
+vector must all have the same class, or data type. You can have a vector
+consisting of three character strings (of class character) or three integer
+elements (of class integer), but not a vector with one integer element and
+two character string elements.</p>
+<div id="vector-classes" class="section level4">
+<h4><span class="header-section-number">5.1.1.1</span> Vector Classes</h4>
+<p>In many programming languages, vector variables are considered different from
+scalars, which are single-number variables. However, in R, numbers are
+actually considered one-element vectors, and there is really no such thing as
+a scalar.</p>
+<p>As we have seen previously, all elements of an R vector (or data frame
+column) must have the same class, which can be integer, numeric (also called
+double), character (string), logical (boolean). Here are some examples:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">x_log &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)     <span class="co"># same as c(T, F)</span></a>
+<a class="sourceLine" id="cb1-2" title="2">x_int &lt;-<span class="st"> </span><span class="kw">c</span>(1L, 2L, 3L)      <span class="co"># use 1L to enforce integer, rather than numeric</span></a>
+<a class="sourceLine" id="cb1-3" title="3">x_num &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="fl">6.3</span>)       <span class="co"># also called &#39;double&#39;</span></a>
+<a class="sourceLine" id="cb1-4" title="4">x_chr &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Hello World&quot;</span>)</a></code></pre></div>
+<p>If you need to check the class of a variable <code>x</code>, you can use, e.g.:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">class</span>(x_log)</a></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<p>There is a certain order in the list above: <code>logical</code> is the least flexible
+class, while <code>character</code> is the most flexible. If you combine vectors of
+different classes, the more flexible class will win:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">class</span>(<span class="kw">c</span>(x_log, x_num))</a></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">class</span>(<span class="kw">c</span>(x_int, x_chr))</a></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>You can change the class of a vector with the following coercion functions.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">as.logical</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>))</a></code></pre></div>
+<pre><code>## [1]  TRUE FALSE</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">as.integer</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>))</a></code></pre></div>
+<pre><code>## [1] 1 0</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">as.numeric</span>(<span class="kw">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>))</a></code></pre></div>
+<pre><code>## [1] 1 2</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">as.character</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>))</a></code></pre></div>
+<pre><code>## [1] &quot;TRUE&quot;  &quot;FALSE&quot;</code></pre>
+<p>These functions will always work if you coerce towards greater flexibility.
+If you want to go the other way, it may give you <code>NA</code>s and some warnings:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">as.numeric</span>(<span class="kw">c</span>(<span class="st">&quot;hi&quot;</span>, <span class="st">&quot;number&quot;</span>, <span class="st">&quot;1&quot;</span>))</a></code></pre></div>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1] NA NA  1</code></pre>
+</div>
+<div id="recycling" class="section level4">
+<h4><span class="header-section-number">5.1.1.2</span> Recycling</h4>
+<p>When applying an operation to two vectors that requires them to be the same
+length, R automatically recycles, or repeats, the shorter one, until it is
+long enough to match the longer one. Here is an example:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">11</span>)</a></code></pre></div>
+<pre><code>## [1]  7  2 10 22 23 13</code></pre>
+<p>The shorter vector was recycled, so the operation was taken to be as follows:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">11</span>)</a></code></pre></div>
+<pre><code>## [1]  7  2 10 22 23 13</code></pre>
+<p>The most common recycling operation involves a vector of length 1:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">11</span>) <span class="op">+</span><span class="st"> </span><span class="dv">3</span></a></code></pre></div>
+<pre><code>## [1]  9  3 12 23 25 14</code></pre>
+<p>In dplyr, only a vector of length 1 is allowed to recycle, the other cases
+will result in an error.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co"># tibble(a = c(1, 2), b = c(6, 0, 9, 20, 22, 11))</span></a></code></pre></div>
+</div>
+<div id="arithmetic-operators" class="section level4">
+<h4><span class="header-section-number">5.1.1.3</span> Arithmetic Operators</h4>
+<p>In R, every operator, including <code>+</code> in the following example, is actually a
+function.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></a></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>The <code>+</code> here is a function with two arguments. A more functional way of
+writing it is the following:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="st">&quot;+&quot;</span>(<span class="dv">2</span>, <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>Remember that scalars are actually one-element vectors. So, we can add
+vectors, and the <code>+</code> operation will be applied element-wise.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb30-2" title="2">x <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">-1</span>)</a></code></pre></div>
+<pre><code>## [1] 6 2 3</code></pre>
+<p>The same is true, e.g., for multiplication, which is done element by element
+as well. (We will have a look at matrix multiplication in the next section.)</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">x <span class="op">*</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">-1</span>)</a></code></pre></div>
+<pre><code>## [1]  5  0 -4</code></pre>
+</div>
+<div id="comparison-operators" class="section level4">
+<h4><span class="header-section-number">5.1.1.4</span> Comparison Operators</h4>
+<p>Similar to arithmetic operators, comparison operators are applied element
+wise. The following expression will return a single <code>TRUE</code>, as we are
+comparing two vectors of length 1:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>The comparison operator for ‘is equal to’ is <code>==</code>, not <code>=</code>:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>Here is how they work on longer vectors:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb38-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb38-3" title="3">x <span class="op">==</span><span class="st"> </span>y</a></code></pre></div>
+<pre><code>## [1] FALSE  TRUE  TRUE FALSE</code></pre>
+<p>The usual recycling rules apply as well:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">x <span class="op">==</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE  TRUE</code></pre>
+<p>Here are the other comparison operators:</p>
+<ul>
+<li><code>x &lt; y</code>: less than</li>
+<li><code>x &lt;= y</code>: less or equal than</li>
+<li><code>x &gt;= y</code>: greater or equal than</li>
+<li><code>x != y</code>: not equal
+Logical vectors can be combined by <code>&amp;</code> (AND) or <code>|</code> (OR):</li>
+</ul>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">a &lt;-<span class="st"> </span>x <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb42-2" title="2">b &lt;-<span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb42-3" title="3">a <span class="op">&amp;</span><span class="st"> </span>b</a></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE  TRUE</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">x <span class="op">&gt;=</span><span class="st"> </span><span class="dv">4</span> <span class="op">|</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1]  TRUE FALSE  TRUE FALSE</code></pre>
+</div>
+<div id="indexing" class="section level4">
+<h4><span class="header-section-number">5.1.1.5</span> Indexing</h4>
+<p>One of the most frequently used operations in R base is that of indexing
+vectors, in which we form a subvector by picking elements. You can use both
+integer values or logical vectors for indexing.</p>
+<div id="indexing-using-integers" class="section level5">
+<h5><span class="header-section-number">5.1.1.5.1</span> Indexing Using Integers</h5>
+<p>We can extract values from a vector, using an integer index:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.2</span>, <span class="fl">3.9</span>, <span class="fl">0.4</span>, <span class="fl">0.12</span>)</a>
+<a class="sourceLine" id="cb46-2" title="2">y[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]</a></code></pre></div>
+<pre><code>## [1] 1.2 0.4</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">y[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
+<pre><code>## [1] 3.9 0.4</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">v &lt;-<span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb50-2" title="2">y[v]</a></code></pre></div>
+<pre><code>## [1] 0.40 0.12</code></pre>
+<p>Note that duplicates are allowed:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">y[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>)]</a></code></pre></div>
+<pre><code>## [1] 1.2 1.2 0.4</code></pre>
+<p>Negative subscripts mean that we want to exclude the elements:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">13</span>)</a>
+<a class="sourceLine" id="cb54-2" title="2">z[<span class="op">-</span><span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] 12 13</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">z[<span class="op">-</span><span class="dv">1</span><span class="op">:-</span><span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## [1] 13</code></pre>
+</div>
+<div id="logical-indexing" class="section level5">
+<h5><span class="header-section-number">5.1.1.5.2</span> Logical Indexing</h5>
+<p>Logical indexing is perhaps even more important. Building on the example from
+above, we could also select element 1 and 3 in the following way:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.2</span>, <span class="fl">3.9</span>, <span class="fl">0.4</span>, <span class="fl">0.12</span>)</a>
+<a class="sourceLine" id="cb58-2" title="2">y[<span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)]</a></code></pre></div>
+<pre><code>## [1] 3.90 0.12</code></pre>
+<p>Logical indexing picks the <code>TRUE</code>s but not the <code>FALSE</code>s. This is the main
+building block for filtering. Suppose you have:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">y[y <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] 1.2 3.9</code></pre>
+<p>This will return all elements that are bigger than 1. How is this done?
+First, R had evaluated the comparison, <code>y &gt; 1</code>, which led to logical vector:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">y <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<pre><code>## [1]  TRUE  TRUE FALSE FALSE</code></pre>
+<p>Second, using logical indexing, this vector was then used to pick those
+elements that evaluated to <code>TRUE</code>. So <code>y[y &gt; 1]</code> is actually the same as:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">y[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)]</a></code></pre></div>
+<pre><code>## [1] 1.20 3.90 0.12</code></pre>
+<p>We have already seen that you can assign to individual elements of a vector,
+using integer indices:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">y[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)] &lt;-<span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<p>Of course, you can do the same with logical indices:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">y[<span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)] &lt;-<span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<p>This is a very powerful tool. For example, if you want to truncate all
+negative numbers in a vector to 0, you can use:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1">z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>, <span class="fl">1.2</span>, <span class="dv">2</span>, <span class="dv">-22</span>)</a>
+<a class="sourceLine" id="cb68-2" title="2">z[z <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">0</span></a></code></pre></div>
+<p>Or use it with the <code>%in%</code> operator you encountered before:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1">z[z <span class="op">%in%</span><span class="st"> </span>y]</a></code></pre></div>
+<pre><code>## [1] 1.2</code></pre>
+</div>
+</div>
+<div id="exercises" class="section level4">
+<h4><span class="header-section-number">5.1.1.6</span> Exercises</h4>
+<ol style="list-style-type: decimal">
+<li><p>Create a vector called <code>v1</code> containing the numbers 2, 5, 8, 12 and 16.</p></li>
+<li><p>Extract the values at positions 2 and 5 from <code>v1</code>.</p></li>
+<li><p>Use <code>x:y</code> notation to make a second vector called <code>v2</code> containing the
+numbers 5 to 9.</p></li>
+<li><p>Subtract <code>v2</code> from <code>v1</code> and look at the result.</p></li>
+<li><p>Generate a vector with 1000 standard-normally distributed random numbers
+(use <code>rnorm()</code>). Store the result as <code>v3</code>. Extract the numbers that are
+bigger than 2.</p></li>
+</ol>
+</div>
+</div>
+<div id="matrices" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Matrices</h3>
+<p>An R matrix corresponds to the mathematical concept of the same name: a
+rectangular array of numbers (most of the time), or some other type.
+Here is some sample matrix code:</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb71-2" title="2">m</a></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    2
+## [2,]    4    2</code></pre>
+<p>The main use of matrices is for matrix algebra. You can do all kind of matrix
+algebra operations, right out of R base:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1">m <span class="op">%*%</span><span class="st"> </span>m         <span class="co"># matrix multiplication</span></a></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    9    6
+## [2,]   12   12</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1">m <span class="op">*</span><span class="st"> </span>m           <span class="co"># elementwise multiplication</span></a></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    4
+## [2,]   16    4</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1">m <span class="op">%*%</span><span class="st"> </span><span class="kw">solve</span>(m)  <span class="co"># inverse of a matrix</span></a></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    0
+## [2,]    0    1</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1">m <span class="op">/</span><span class="st"> </span>m           <span class="co"># elementwise division</span></a></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    1
+## [2,]    1    1</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1">m <span class="op">+</span><span class="st"> </span>m</a></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    2    4
+## [2,]    8    4</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1">m <span class="op">-</span><span class="st"> </span>m</a></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    0    0
+## [2,]    0    0</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="kw">t</span>(m)            <span class="co"># matrix transpose</span></a></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    2</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1"><span class="kw">qr</span>(m)           <span class="co"># QR decomposition</span></a></code></pre></div>
+<pre><code>## $qr
+##            [,1]      [,2]
+## [1,] -4.1231056 -2.425356
+## [2,]  0.9701425 -1.455214
+## 
+## $rank
+## [1] 2
+## 
+## $qraux
+## [1] 1.242536 1.455214
+## 
+## $pivot
+## [1] 1 2
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;qr&quot;</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="kw">det</span>(m)          <span class="co"># determinant</span></a></code></pre></div>
+<pre><code>## [1] -6</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="kw">eigen</span>(m)        <span class="co"># eigenvalues/eigenvectors</span></a></code></pre></div>
+<pre><code>## eigen() decomposition
+## $values
+## [1]  4.372281 -1.372281
+## 
+## $vectors
+##            [,1]       [,2]
+## [1,] -0.5101065 -0.6445673
+## [2,] -0.8601113  0.7645475</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="kw">diag</span>(m)         <span class="co"># diagonal</span></a></code></pre></div>
+<pre><code>## [1] 1 2</code></pre>
+<p>Matrices are indexed by double subscripting:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1">m[<span class="dv">1</span>, <span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1">m[<span class="dv">2</span>, <span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>You can extract submatrices from a matrix, much as you extract subvectors
+from vectors:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1">m[<span class="dv">1</span>, ]   <span class="co"># row 1</span></a></code></pre></div>
+<pre><code>## [1] 1 2</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" title="1">m[<span class="dv">1</span>, , drop =<span class="st"> </span><span class="ot">FALSE</span>]  <span class="co"># keeps being a matrix</span></a></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    2</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1">m[, <span class="dv">2</span>]  <span class="co"># column 2</span></a></code></pre></div>
+<pre><code>## [1] 2 2</code></pre>
+<div id="exercises-1" class="section level4">
+<h4><span class="header-section-number">5.1.2.1</span> Exercises</h4>
+<ol style="list-style-type: decimal">
+<li><p>Create a 10 x 10 matrix that contains a sequence of numbers (use the <code>:</code>
+notation).</p></li>
+<li><p>Use the transpose function on the matrix</p></li>
+<li><p>Extract the 2. column of the matrix</p></li>
+<li><p>Extract the 5. row of the matrix</p></li>
+<li><p>Extract the 5. and the 6. row of the matrix</p></li>
+<li><p>Compare the classes of the results in 3. and 4. to each other</p></li>
+<li><p>Modify 3., so that it returns the same class as 4.</p></li>
+</ol>
+</div>
+</div>
+<div id="lists" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> Lists</h3>
+<p>Like an R vector, an R list is a container for values, but its contents can
+be items of different data types, or different length. Here’s an example:</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">u =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">v =</span> <span class="st">&quot;abc&quot;</span>)</a>
+<a class="sourceLine" id="cb105-2" title="2">x</a></code></pre></div>
+<pre><code>## $u
+## [1] 2 3 4
+## 
+## $v
+## [1] &quot;abc&quot;</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1">x<span class="op">$</span>u</a></code></pre></div>
+<pre><code>## [1] 2 3 4</code></pre>
+<p>The expression <code>x$u</code> refers to the <code>u</code> component in the list <code>x</code>.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1">x[[<span class="st">&#39;u&#39;</span>]]</a></code></pre></div>
+<pre><code>## [1] 2 3 4</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1">x[[<span class="dv">1</span>]]</a></code></pre></div>
+<pre><code>## [1] 2 3 4</code></pre>
+<p>We can also refer to list components by their numerical indices. However,
+note that in this case, we use double brackets instead of single ones.</p>
+<p>We can also use single brackets rather than double brackets to get a subset
+of the list.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1">x[<span class="st">&#39;u&#39;</span>]</a></code></pre></div>
+<pre><code>## $u
+## [1] 2 3 4</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1">x[<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## $u
+## [1] 2 3 4</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1">x[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## $u
+## [1] 2 3 4
+## 
+## $v
+## [1] &quot;abc&quot;</code></pre>
+<p>Note that <code>x[[1]]</code> returns the component (a numeric vector), while <code>x[1]</code>
+returns a subset of the list (a list of length 1):</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1"><span class="kw">class</span>(x[<span class="dv">1</span>])</a></code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1"><span class="kw">class</span>(x[[<span class="dv">1</span>]])</a></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p>Hadley Wickham’s visualization helps a lot here:</p>
+<p><a href="https://twitter.com/hadleywickham/status/643381054758363136" class="uri">https://twitter.com/hadleywickham/status/643381054758363136</a>
+Lists are not restricted to containing vectors. In fact, they can contain
+anything, for example, a data frames:</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1">ll &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">mtcars =</span> mtcars, <span class="dt">u =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))</a></code></pre></div>
+<div id="exercises-2" class="section level4">
+<h4><span class="header-section-number">5.1.3.1</span> Exercises</h4>
+<ol style="list-style-type: decimal">
+<li><p>Generate two random vectors of length 10, <code>a</code>, and <code>b</code>. Combine them in a
+list, call it <code>l1</code>.</p></li>
+<li><p>Compare the classes of <code>l1[2]</code> and <code>l1[[2]]</code>. Can you explain the
+difference?</p></li>
+</ol>
+</div>
+</div>
+<div id="data-frames" class="section level3">
+<h3><span class="header-section-number">5.1.4</span> Data Frames</h3>
+<p>As we saw in many places, a typical data set contains data of different
+classes. Instead of a matrix, we use a data frame, or tibble. Technically, a
+data frame in R is a list, with each component of the list being a vector
+corresponding to a column in our data. You can create a data frame using
+<code>tibble</code> from tidyverse:</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<pre><code>## ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.2.1          ✔ purrr   0.3.2     
+## ✔ tibble  2.1.3          ✔ dplyr   0.8.3     
+## ✔ tidyr   1.0.0          ✔ stringr 1.4.0     
+## ✔ readr   1.3.1.9000     ✔ forcats 0.4.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1">d &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">kids =</span> <span class="kw">c</span>(<span class="st">&quot;Jack&quot;</span>, <span class="st">&quot;Jill&quot;</span>), <span class="dt">ages =</span> <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb128-2" title="2">d</a></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   kids   ages
+##   &lt;chr&gt; &lt;dbl&gt;
+## 1 Jack     12
+## 2 Jill     10</code></pre>
+<p>Here, I am using the <code>tibble()</code> function from tidyverse, rather than the R
+base equivalent, <code>data.frame()</code>. The reason for this is that <code>data.frame()</code>
+has some undesirable features, such as converting character vectors into
+factors. Because data frames are technically a list, we can access its
+vectors the same way as we access components of a list.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1">d<span class="op">$</span>ages</a></code></pre></div>
+<pre><code>## [1] 12 10</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1">d[[<span class="st">&#39;ages&#39;</span>]]</a></code></pre></div>
+<pre><code>## [1] 12 10</code></pre>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1">d[[<span class="dv">2</span>]]  <span class="co"># usually not recommended</span></a></code></pre></div>
+<pre><code>## [1] 12 10</code></pre>
+<p>Typically, though, data frames are created by reading in a data set from a
+file or a database, as we saw in the previous days of the workshop.</p>
+<p>Contrary to lists, data frames require their columns to be of the same
+length. If they are not, values will be recycled. That is why the following
+works:</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1"><span class="kw">tibble</span>(<span class="dt">kids =</span> <span class="kw">c</span>(<span class="st">&quot;Jack&quot;</span>, <span class="st">&quot;Jill&quot;</span>), <span class="dt">ages =</span> <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">10</span>), <span class="dt">type =</span> <span class="st">&quot;kid&quot;</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   kids   ages type 
+##   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;
+## 1 Jack     12 kid  
+## 2 Jill     10 kid</code></pre>
+</div>
+</div>
+<div id="introduction-to-functions" class="section level2">
+<h2><span class="header-section-number">5.2</span> Introduction to Functions</h2>
+<p>As in most programming languages, the heart of R programming consists of
+writing functions. A function is a group of instructions that takes inputs,
+uses them to compute other values, and returns a result.</p>
+<p>Let’s write a function that divides all elements of a vector by 2:</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1">half &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb138-2" title="2">  x <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb138-3" title="3">}</a></code></pre></div>
+<p>This is a function named <code>half</code>, whose purpose is to divides every element of
+a vector by 2. It’s a pretty pointless function, as the operation itself is
+so simple. Arguments to a function are enclosed by parentheses (<code>()</code>); the
+body of the function is enclosed by braces (<code>{}</code>).</p>
+<p>Let’s see how it works:</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1"><span class="kw">half</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>))</a></code></pre></div>
+<pre><code>## [1] 1.5 1.0 0.5</code></pre>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1"><span class="kw">half</span>(AirPassengers)</a></code></pre></div>
+<pre><code>##        Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov
+## 1949  56.0  59.0  66.0  64.5  60.5  67.5  74.0  74.0  68.0  59.5  52.0
+## 1950  57.5  63.0  70.5  67.5  62.5  74.5  85.0  85.0  79.0  66.5  57.0
+## 1951  72.5  75.0  89.0  81.5  86.0  89.0  99.5  99.5  92.0  81.0  73.0
+## 1952  85.5  90.0  96.5  90.5  91.5 109.0 115.0 121.0 104.5  95.5  86.0
+## 1953  98.0  98.0 118.0 117.5 114.5 121.5 132.0 136.0 118.5 105.5  90.0
+## 1954 102.0  94.0 117.5 113.5 117.0 132.0 151.0 146.5 129.5 114.5 101.5
+## 1955 121.0 116.5 133.5 134.5 135.0 157.5 182.0 173.5 156.0 137.0 118.5
+## 1956 142.0 138.5 158.5 156.5 159.0 187.0 206.5 202.5 177.5 153.0 135.5
+## 1957 157.5 150.5 178.0 174.0 177.5 211.0 232.5 233.5 202.0 173.5 152.5
+## 1958 170.0 159.0 181.0 174.0 181.5 217.5 245.5 252.5 202.0 179.5 155.0
+## 1959 180.0 171.0 203.0 198.0 210.0 236.0 274.0 279.5 231.5 203.5 181.0
+## 1960 208.5 195.5 209.5 230.5 236.0 267.5 311.0 303.0 254.0 230.5 195.0
+##        Dec
+## 1949  59.0
+## 1950  70.0
+## 1951  83.0
+## 1952  97.0
+## 1953 100.5
+## 1954 114.5
+## 1955 139.0
+## 1956 153.0
+## 1957 168.0
+## 1958 168.5
+## 1959 202.5
+## 1960 216.0</code></pre>
+<p>here we are saving the output in a variable inside the function:</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1">half &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb143-2" title="2">  z &lt;-<span class="st"> </span>x <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb143-3" title="3">  z</a>
+<a class="sourceLine" id="cb143-4" title="4">}</a></code></pre></div>
+<p>An R functions will return the last value computed if there is no explicit
+<code>return()</code> call. We could have been more explicit, but it is usually not
+necessary:</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1">half &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb144-2" title="2">  z &lt;-<span class="st"> </span>x <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb144-3" title="3">  <span class="kw">return</span>(z)</a>
+<a class="sourceLine" id="cb144-4" title="4">}</a></code></pre></div>
+<p>Let’s make it a bit more complex, by adding an additional argument:</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1">fraction &lt;-<span class="st"> </span><span class="cf">function</span>(x, denominator){</a>
+<a class="sourceLine" id="cb145-2" title="2">  x <span class="op">/</span><span class="st"> </span>denominator</a>
+<a class="sourceLine" id="cb145-3" title="3">}</a>
+<a class="sourceLine" id="cb145-4" title="4"></a>
+<a class="sourceLine" id="cb145-5" title="5"><span class="kw">fraction</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dv">4</span>)</a></code></pre></div>
+<pre><code>## [1] 0.50 0.75 1.00</code></pre>
+<p>if you have more than one argument, it is a good practice to name the
+arguments</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"><span class="kw">fraction</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">denominator =</span> <span class="dv">4</span>)</a></code></pre></div>
+<pre><code>## [1] 0.50 0.75 1.00</code></pre>
+<p>that way, they become independent of the order, which is a very useful if the
+number of argument becomes large.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1"><span class="kw">fraction</span>(<span class="dt">denominator =</span> <span class="dv">4</span>, <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))</a></code></pre></div>
+<pre><code>## [1] 0.50 0.75 1.00</code></pre>
+<div id="variable-scope" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Variable Scope</h3>
+<p>A variable that is visible only within a function body is said to be local to
+that function. In <code>square()</code>, <code>x</code> is a local variable. In <code>fraction()</code>, <code>x</code>
+and <code>p</code> are local variables. They disappear after the function returns:</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1"><span class="kw">fraction</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">denominator =</span> <span class="dv">4</span>)</a></code></pre></div>
+<pre><code>## [1] 0.50 0.75 1.00</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1"><span class="co"># denominator</span></a>
+<a class="sourceLine" id="cb153-2" title="2"><span class="co"># Error: object &#39;denominator&#39; not found</span></a>
+<a class="sourceLine" id="cb153-3" title="3"></a>
+<a class="sourceLine" id="cb153-4" title="4">x</a></code></pre></div>
+<pre><code>## $u
+## [1] 2 3 4
+## 
+## $v
+## [1] &quot;abc&quot;</code></pre>
+<p>Note that the <code>x</code> is not the <code>x</code> we used in the <code>fraction</code> function, but
+rather the <code>x</code> defined earlier. <code>x</code> here is called a global variable, while
+the <code>x</code> in the function is a local variable. Global variables are shown in
+RStudio in the environment pane. A global variable can be written to from
+within a function by using R’s superassignment operator, <code>&lt;&lt;-</code>, but this is
+rarely recommended.</p>
+</div>
+<div id="default-arguments" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Default Arguments</h3>
+<p>A nice feature of R functions is that you can set defaults to arguments.
+Let’s modify the <code>fraction</code> function from above:</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1">fraction &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">denominator =</span> <span class="dv">2</span>) {</a>
+<a class="sourceLine" id="cb155-2" title="2">  x <span class="op">/</span><span class="st"> </span>denominator</a>
+<a class="sourceLine" id="cb155-3" title="3">}</a></code></pre></div>
+<p>Here <code>denominator</code> will be initialized to 2 if the user does not
+specify <code>p</code> in the
+call. So we can use <code>fraction()</code> the same way as <code>half()</code>:</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1"><span class="kw">fraction</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a></code></pre></div>
+<pre><code>## [1] 1 1</code></pre>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" title="1"><span class="kw">half</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a></code></pre></div>
+<pre><code>## [1] 1 1</code></pre>
+<p>or use its extended capabilities:</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" title="1"><span class="kw">fraction</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## [1] 0.6666667 0.6666667</code></pre>
+</div>
+<div id="exercises-3" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>Write a function <code>add_constant</code> that adds a constant to a vector, and set
+the default value of the constant to 10.</p></li>
+<li><p>Apply it to the <code>AirPassengers</code> series.</p></li>
+<li><p>You can use your function within dplyr. Using the <code>mpg</code> dataset, use
+<code>add_constant</code> within <code>mutate</code> to add a constant value (<code>100</code>) to the number
+of <code>cyl</code>.</p></li>
+<li><p>(evil) We saw that <code>"+"</code> is actually a function. In R, it is easily
+possible to change the working of such a fundamental function (this is, in
+fact, what ggplot does). In order to do so, let’s write a new function with
+the same name, <code>"+"</code>, and two arguments, <code>a</code>, and <code>b</code>. But instead of summing
+the values, let’s subtract them (or figure out something more evil).
+Verify the result of 1 + 1. Cool, isn’t it? (<code>rm("+")</code> will restore sanity.)</p></li>
+</ol>
+</div>
+</div>
+<div id="higher-order-functions" class="section level2">
+<h2><span class="header-section-number">5.3</span> Higher-Order Functions</h2>
+<p>Because functions in R are objects like any other objects, it is easy to
+write functions that return functions or take functions as arguments. We saw
+some examples above. The most prominent of these functions are <em>higher-order
+functions</em>, which are very central to R. They are called <code>apply</code> or <code>lapply</code>,
+or similar, and there are many of them. To avoid too much confusion, we will
+restrict ourself to <code>map</code>, the tidyverse equivalent of <code>lapply</code>,</p>
+<div id="map" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> <code>map</code></h3>
+<p>The <code>map</code> function ‘maps’ a function to each component of a list.
+Because lists are such a useful container for objects in R, very often, you
+want to map a function to each component of a list. Here is an example:</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1">ll &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">b =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="dt">c =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">1</span>))</a></code></pre></div>
+<p>This is a list with three vectors, of which we want to calculate the means.
+Here’s an expression that does what we want (we will cover loops later on):</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" title="1">z &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb163-2" title="2"><span class="cf">for</span> (vi <span class="cf">in</span> ll){</a>
+<a class="sourceLine" id="cb163-3" title="3">  z &lt;-<span class="st"> </span><span class="kw">c</span>(z, <span class="kw">mean</span>(vi))</a>
+<a class="sourceLine" id="cb163-4" title="4">}</a></code></pre></div>
+<p>We loop through each component of the list, calculate the mean and add it to
+an output vector, <code>z</code>. With the <code>map</code> function, this can be written much
+more concise:</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb164-2" title="2"><span class="kw">map</span>(ll, mean)</a></code></pre></div>
+<pre><code>## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 2.666667</code></pre>
+<p>So <code>map</code> returns a list of the same length as the first argument (a list),
+each element of which is the result of applying the second argument (a
+function) to the corresponding component of the list argument. If the input
+list is named (as in the example), so will be the output.</p>
+<p>Additional arguments to the <code>mean()</code> function can be included as well:</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1"><span class="kw">map</span>(ll, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 2.666667</code></pre>
+<p>If you want to convert the list to a vector (as in the loop example), use
+<code>unlist</code> on the result:</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="kw">unlist</span>(<span class="kw">map</span>(ll, mean))</a></code></pre></div>
+<pre><code>##        a        b        c 
+## 3.000000 2.000000 2.666667</code></pre>
+<p>Of course, you can use <code>map</code> with your own functions. Here we want to pick
+the second element of each vector in the list:</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1">pick_second &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb170-2" title="2">  x[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb170-3" title="3">}</a>
+<a class="sourceLine" id="cb170-4" title="4"></a>
+<a class="sourceLine" id="cb170-5" title="5"><span class="kw">map</span>(ll, pick_second)</a></code></pre></div>
+<pre><code>## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 2</code></pre>
+<p>In cases like this, we may want to use the possibility of having <em>anonymous
+functions</em>, i.e. functions without a name. So we just substitute <code>pick_second</code>
+by its definition:</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1"><span class="kw">map</span>(ll, <span class="cf">function</span>(x) x[<span class="dv">2</span>])</a></code></pre></div>
+<pre><code>## $a
+## [1] 3
+## 
+## $b
+## [1] 2
+## 
+## $c
+## [1] 2</code></pre>
+<p>For simple one line functions like this, it may be justified to omit the
+curly braces.
+### Exercises</p>
+<ol style="list-style-type: decimal">
+<li><p>Use <code>map</code> to calculate the mean of each variable in the <code>swiss</code>
+dataset. Convert the resulting list to a vector.</p></li>
+<li><p>Use <code>map</code> to coerce the variables in the <code>swiss</code> dataset to character.</p></li>
+<li><p>Using <code>map</code>, generate a list containing 10 random vectors of random
+length between 1 and 10.</p></li>
+<li><p>Use the help to see what the <code>colSums()</code> function does. Using <code>apply</code>, try
+writing your own version, <code>colSums2()</code>.</p></li>
+</ol>
+</div>
+<div id="loops" class="section level3">
+<h3><span class="header-section-number">5.3.2</span> Loops</h3>
+<p>In many programming languages, one of first things you learn are loops. There
+is a reason that we didn’t cover them until now, and also only for
+completeness. Loops in R are slow, and they are – most of the time –
+unnecessary. This is because many operations in R are vectorized anyway, so
+there is no need to loop over each element. Also the <code>group_by()</code> operation
+in dplyr offers a much more elegant way of applying a function repeatedly to
+a group of data. Third, there are higher order functions like <code>map</code> (or
+the tidyverse equivalent: <code>purrr::map</code>) that save you from loops most of the
+time.</p>
+<p>Anyway, here is the loop:</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {</a>
+<a class="sourceLine" id="cb174-2" title="2">  <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb174-3" title="3">}</a></code></pre></div>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10</code></pre>
+<p>There will be one iteration of the loop for each component of the vector
+<code>1:10</code>, with <code>i</code> taking on the values of those components – in the first
+iteration, <code>i = (1:10)[1]</code>; in the second iteration, <code>i = (1:10)[2]</code>; and so
+on.</p>
+<p>And we are not restricted to integer vectors, but can loop over any vector,
+even over lists:</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" title="1">z &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb176-2" title="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">list</span>(swiss, mtcars)) {</a>
+<a class="sourceLine" id="cb176-3" title="3">  z &lt;-<span class="st"> </span><span class="kw">c</span>(z, <span class="kw">colnames</span>(i))</a>
+<a class="sourceLine" id="cb176-4" title="4">}</a>
+<a class="sourceLine" id="cb176-5" title="5">z</a></code></pre></div>
+<pre><code>##  [1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;     
+##  [4] &quot;Education&quot;        &quot;Catholic&quot;         &quot;Infant.Mortality&quot;
+##  [7] &quot;mpg&quot;              &quot;cyl&quot;              &quot;disp&quot;            
+## [10] &quot;hp&quot;               &quot;drat&quot;             &quot;wt&quot;              
+## [13] &quot;qsec&quot;             &quot;vs&quot;               &quot;am&quot;              
+## [16] &quot;gear&quot;             &quot;carb&quot;</code></pre>
+<p>But we saw a much clearer way of doing this above:</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1"><span class="kw">unlist</span>(<span class="kw">map</span>(<span class="kw">list</span>(swiss, mtcars), colnames))</a></code></pre></div>
+<pre><code>##  [1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;     
+##  [4] &quot;Education&quot;        &quot;Catholic&quot;         &quot;Infant.Mortality&quot;
+##  [7] &quot;mpg&quot;              &quot;cyl&quot;              &quot;disp&quot;            
+## [10] &quot;hp&quot;               &quot;drat&quot;             &quot;wt&quot;              
+## [13] &quot;qsec&quot;             &quot;vs&quot;               &quot;am&quot;              
+## [16] &quot;gear&quot;             &quot;carb&quot;</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-tranformation-ii.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
