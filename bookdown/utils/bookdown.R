@@ -1,8 +1,9 @@
 
 
 # convert all .R to .Rmd, also add link to R script
-path <- here::here("bookdown/R")
-path <- normalizePath(path)
+path <- normalizePath(here::here("bookdown/R"))
+path_output <- normalizePath(here::here("docs"))
+
 r.files <- list.files(path, pattern = "\\.[rR]$", full.names = TRUE)
 
 spin_with_link <- function(r.file) {
@@ -20,12 +21,13 @@ lapply(r.files, spin_with_link)
 
 owd <- getwd()
 setwd(path)
-bookdown::render_book("index.Rmd")
+bookdown::render_book("index.Rmd", output_dir = path_output)
 setwd(owd)
 
 
+
 # clean up
-file.remove(gsub("\\.[rR]$", ".Rmd", r.files))
+# file.remove(gsub("\\.[rR]$", ".Rmd", r.files))
 
 
 # copy to server
