@@ -127,6 +127,20 @@ class: middle, inverse
 
 
 ---
+# Schedule
+
+unassigned |  Date       | First Slot | Second Slot
+-----------|-------------|------------|------------
+team04     |  10/24/2019 |            | team10
+team12     |  11/14/2019 | team09     | team03
+           |  11/21/2019 | team12     | team01
+           |  11/28/2019 | team07     | team05
+           |  12/05/2019 | team06     | team11
+           |  12/12/2019 | team08     |
+           |  12/19/2019 |            |
+
+
+---
 
 # HW1
 
@@ -136,7 +150,7 @@ class: middle, inverse
 
 - Will [FIXME not?] include the number of points.
 
-- Expect review by next Thursday
+- We try to review asap (until next Thursday?)
 
 
 
