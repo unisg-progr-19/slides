@@ -48,21 +48,19 @@ class: middle, inverse
 ---
 # Schedule
 
-unassigned |  Date       | First Slot | Second Slot
------------|-------------|------------|------------
-           |  10/24/2019 | team04     | team10
-           |  11/14/2019 | team09     | team03
-           |  11/21/2019 | team12     | team01
-           |  11/28/2019 | team07     | team05
-           |  12/05/2019 | team06     | team11
-           |  12/12/2019 | team08     |
-           |  12/19/2019 |            |
+  Date       | First Slot | Second Slot
+-------------|------------|------------
+  10/24/2019 | team04     | team10
+  11/14/2019 | team09     | team03
+  11/21/2019 | team12     | team01
+  11/28/2019 | team07     | team05
+  12/05/2019 | team06     | team11
+  12/12/2019 | team08     |
+  12/19/2019 |            |
 
 ---
 
 # HW1: Organization
-
-Organizational:
 
 1. Try to write answers to `lesson0x.R`, this will make life for us easier.
 
@@ -73,7 +71,7 @@ Organizational:
 
 # HW1: R Usage I
 
-1. Some confusion on the pipe `%>%` does.
+1. Some confusion on what the pipe `%>%` does.
 
 2. Common problem was to solve the bonus exercise of `lesson02.R` (reading the data that uses `"null"` for missing values).
 
@@ -94,4 +92,6 @@ Organizational:
 5. Order of geoms in ggplot dictates which one will be drawn on top.
 
 6. Don't leave `install.packages(...)` in your code. Comment out!
+
+7. Files with `_underscore_at_the_beginning` in `docs` are not deployed to the website.
 
