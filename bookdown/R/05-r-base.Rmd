@@ -1,6 +1,6 @@
 # Basics of R base
 
-[Download as R script](01-r-base.R)
+[Download as R script](05-r-base.R)
 
 
 [Intro Slides](05-r-base.html)

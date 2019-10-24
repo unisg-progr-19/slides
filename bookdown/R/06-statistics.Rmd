@@ -1,6 +1,6 @@
 # Math and Statistics
 
-[Download as R script](02-statistics.R)
+[Download as R script](06-statistics.R)
 
 
 R calls itself a *software environment for statistical computing*. Math and

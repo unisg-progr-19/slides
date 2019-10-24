@@ -179,7 +179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="math-and-statistics" class="section level1">
 <h1><span class="header-section-number">6</span> Math and Statistics</h1>
-<p><a href="02-statistics.R">Download as R script</a></p>
+<p><a href="06-statistics.R">Download as R script</a></p>
 <p>R calls itself a <em>software environment for statistical computing</em>. Math and
 statistics are at the heart of R. This Lesson provides an overview of the
 many build-in functions for math and statistics. We will also discuss some
@@ -625,7 +625,7 @@ order.</p>
 the mutated data is a random sample of the original data. An estimation on a
 mutated dataset can be generated as such:</p>
 <div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" title="1"><span class="kw">boot.fn</span>(swiss, <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(swiss), <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
-<pre><code>## [1] -0.9032741</code></pre>
+<pre><code>## [1] -0.6248675</code></pre>
 <p>The <code>replace = TRUE</code> argument ensures that we are not ending up with the
 original dataset. If <code>replace</code> is <code>TRUE</code>, some rows will appear multiple
 times in the mutated dataset.</p>
@@ -638,19 +638,19 @@ the bootstrap is now to this many times, and analyze the results:</p>
 <p>Happily, both the mean and the standard deviation is very close to what we
 got from our the analytic result:</p>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1"><span class="kw">mean</span>(res)</a></code></pre></div>
-<pre><code>## [1] -0.8650753</code></pre>
+<pre><code>## [1] -0.8583992</code></pre>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" title="1"><span class="kw">sd</span>(res)</a></code></pre></div>
-<pre><code>## [1] 0.1427071</code></pre>
+<pre><code>## [1] 0.1514087</code></pre>
 <p>The <code>boot</code> function from the boot package gives some more powerful tools to
 perform bootstrap analysis. For example, it can run simulations on
 several cores, which may speed up the simulation.</p>
 <div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" title="1"><span class="kw">library</span>(boot)</a>
 <a class="sourceLine" id="cb248-2" title="2"><span class="kw">system.time</span>(<span class="kw">boot</span>(swiss, boot.fn, <span class="dt">R =</span> <span class="dv">1000</span>, <span class="dt">parallel =</span> <span class="st">&quot;multicore&quot;</span>, <span class="dt">ncpus =</span> <span class="dv">4</span>))</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   1.200   0.440   0.598</code></pre>
+##   0.006   0.005   0.329</code></pre>
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" title="1"><span class="kw">system.time</span>(<span class="kw">boot</span>(swiss, boot.fn, <span class="dt">R =</span> <span class="dv">1000</span>))</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.980   0.013   0.998</code></pre>
+##   0.895   0.010   0.909</code></pre>
 </div>
 <div id="factors-in-regression-models" class="section level3">
 <h3><span class="header-section-number">6.2.2</span> Factors in regression models</h3>
