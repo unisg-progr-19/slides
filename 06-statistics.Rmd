@@ -1,0 +1,97 @@
+---
+title: "7784 Skills: Programming in R"
+author: 'Kirill Müller, Christoph Sax'
+date: 'University of St. Gallen, 24.10.2019'        # 1\. to avoid itemizing
+output:
+  cynkradown::cynkra_slides:
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    selfcontained: true
+fontsize: 10pt
+lang: english                # ngerman, english, italian, french
+font: frutiger
+wide: false
+colorlinks: false
+logo: false
+header-includes:
+  - \usepackage{parskip}
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+set.seed(20191010)
+
+ggplot <- function(...) ggplot2::ggplot(...) + theme_bw(16)
+```
+
+class: middle, inverse
+
+# 24.10.: Statistics (and R-Base)
+
+
+---
+# Topics for today
+
+- HW1
+
+- Two presentations
+
+- Introduction to functions
+
+- Higher order functions
+
+- Linear regression
+
+
+---
+# Schedule
+
+unassigned |  Date       | First Slot | Second Slot
+-----------|-------------|------------|------------
+           |  10/24/2019 | team04     | team10
+           |  11/14/2019 | team09     | team03
+           |  11/21/2019 | team12     | team01
+           |  11/28/2019 | team07     | team05
+           |  12/05/2019 | team06     | team11
+           |  12/12/2019 | team08     |
+           |  12/19/2019 |            |
+
+---
+
+# HW1: Organization
+
+Organizational:
+
+1. Try to write answers to `lesson0x.R`, this will make life for us easier.
+
+2. Try not to have duplicates of your files.
+
+
+---
+
+# HW1: R Usage I
+
+1. Some confusion on the pipe `%>%` does.
+
+2. Common problem was to solve the bonus exercise of `lesson02.R` (reading the data that uses `"null"` for missing values).
+
+    library(readr)
+    data3 <- read_csv("data/example3.csv", na = "null")
+    data3
+
+3. `/scripts/prepare.R` vs `/reports/final.Rmd`. Where does a plot belong to?
+
+
+---
+
+
+# HW1: R Usage II
+
+4. **Never, ever, ever use relative paths to your computer**. Always refer to the root of your project!
+
+5. Order of geoms in ggplot dictates which one will be drawn on top.
+
+6. Don't leave `install.packages(...)` in your code. Comment out!
+

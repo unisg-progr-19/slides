@@ -21,7 +21,7 @@ lapply(r.files, spin_with_link)
 
 owd <- getwd()
 setwd(path)
-bookdown::render_book(".", output_dir = path_output)
+bookdown::render_book(list.files(pattern = ".Rmd$"), output_dir = path_output)
 setwd(owd)
 
 

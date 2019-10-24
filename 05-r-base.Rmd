@@ -28,7 +28,7 @@ ggplot <- function(...) ggplot2::ggplot(...) + theme_bw(16)
 
 class: middle, inverse
 
-# 10.17.: R-Base
+# 17.10.: R-Base
 
 
 ---
