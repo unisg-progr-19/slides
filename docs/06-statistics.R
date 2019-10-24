@@ -1,5 +1,7 @@
 #' # Math and Statistics
 #'
+#' [Intro Slides](06-statistics.html)
+#'
 #' R calls itself a *software environment for statistical computing*. Math and
 #' statistics are at the heart of R. This Lesson provides an overview of the
 #' many build-in functions for math and statistics. We will also discuss some

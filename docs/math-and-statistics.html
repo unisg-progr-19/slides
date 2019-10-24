@@ -180,6 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="math-and-statistics" class="section level1">
 <h1><span class="header-section-number">6</span> Math and Statistics</h1>
 <p><a href="06-statistics.R">Download as R script</a></p>
+<p><a href="06-statistics.html">Intro Slides</a></p>
 <p>R calls itself a <em>software environment for statistical computing</em>. Math and
 statistics are at the heart of R. This Lesson provides an overview of the
 many build-in functions for math and statistics. We will also discuss some
@@ -208,10 +209,10 @@ closest integer below, and to the closest integer above</li>
 </ul>
 <p>Most of these functions are self explaining. Some remarks:</p>
 <p>The functions <code>cumsum()</code> and <code>cumprod()</code> return cumulative sums and products.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">5</span>, <span class="dv">13</span>)</a>
-<a class="sourceLine" id="cb180-2" title="2"><span class="kw">cumsum</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">5</span>, <span class="dv">13</span>)</a>
+<a class="sourceLine" id="cb176-2" title="2"><span class="kw">cumsum</span>(x)</a></code></pre></div>
 <pre><code>## [1] 12 17 30</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1"><span class="kw">cumprod</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1"><span class="kw">cumprod</span>(x)</a></code></pre></div>
 <pre><code>## [1]  12  60 780</code></pre>
 <p>In <code>x</code>, the sum of the first element is 12, the sum of the first two elements
 is 17, and the sum of the first three elements is 30.</p>
@@ -222,12 +223,12 @@ chapter. The former simply combines all its arguments into one long vector
 and returns the minimum value in that vector. In contrast, if <code>pmin()</code> is
 applied to two or more vectors, it returns a vector of the pair-wise minima,
 hence the name <code>pmin</code>. Here’s an example:</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb184-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb184-3" title="3"></a>
-<a class="sourceLine" id="cb184-4" title="4"><span class="kw">min</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb180-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb180-3" title="3"></a>
+<a class="sourceLine" id="cb180-4" title="4"><span class="kw">min</span>(x)</a></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1"><span class="kw">pmin</span>(x, y)</a></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1"><span class="kw">pmin</span>(x, y)</a></code></pre></div>
 <pre><code>## [1] 1 5 2 2 2 1</code></pre>
 <p>In the first case, <code>min()</code> computed the smallest value in <code>c(1, 5, 6, 2, 3, 1)</code>. But the call to <code>pmin()</code> computed the smaller of 1 and 3, yielding 1;
 then the smaller of 5 and 5, which is 5; then the minimum of 6 and 2, giving
@@ -237,15 +238,15 @@ then the smaller of 5 and 5, which is 5; then the minimum of 6 and 2, giving
 <h3><span class="header-section-number">6.1.2</span> Linear Algebra Operations on Vectors and Matrices <em>(optional)</em></h3>
 <p>Multiplying a vector by a scalar works directly, as you saw earlier. Here’s
 another example:</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb188-2" title="2"><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>y</a></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb184-2" title="2"><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>y</a></code></pre></div>
 <pre><code>## [1]  2  6  8 20</code></pre>
 <p>For matrix multiplication in the mathematical sense, the operator to use is
 <code>%*%</code>, not <code>*</code> . For instance, here we compute the matrix product:</p>
 <p>Here’s the code:</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1">a &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb190-2" title="2">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">-1</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb190-3" title="3">b &lt;-<span class="st"> </span>a <span class="op">%*%</span><span class="st"> </span>x; b</a></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1">a &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb186-2" title="2">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">-1</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb186-3" title="3">b &lt;-<span class="st"> </span>a <span class="op">%*%</span><span class="st"> </span>x; b</a></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    1    1
 ## [2,]    3    1</code></pre>
@@ -253,12 +254,12 @@ another example:</p>
 matrix inverses. For example, to solve this equation for <code>x</code>:</p>
 <p>a %*% x = b</p>
 <p>Here’s the code:</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="kw">solve</span>(a, b)</a></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1"><span class="kw">solve</span>(a, b)</a></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    1   -1
 ## [2,]    0    1</code></pre>
 <p>And for the inverse:</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1"><span class="kw">solve</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1"><span class="kw">solve</span>(a)</a></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,] -2.0  1.0
 ## [2,]  1.5 -0.5</code></pre>
@@ -291,10 +292,10 @@ which describes an experiment where each value on a continuous scale is
 equally likely.</p>
 <p>The <code>runif(n)</code> function returns a vector of <code>n</code> uniformly distributed random
 numbers. We will visualize the outcome, using ggplot:</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" title="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb196-2" title="2"><span class="kw">tibble</span>(<span class="dt">uniform =</span> <span class="kw">runif</span>(<span class="dv">100000</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb196-3" title="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> uniform)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb196-4" title="4"><span class="st">  </span><span class="kw">geom_histogram</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb192-2" title="2"><span class="kw">tibble</span>(<span class="dt">uniform =</span> <span class="kw">runif</span>(<span class="dv">100000</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb192-3" title="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> uniform)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb192-4" title="4"><span class="st">  </span><span class="kw">geom_histogram</span>()</a></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
 <p>These functions also have arguments specific to the given distribution. The
@@ -303,26 +304,26 @@ control the range on the random numbers.</p>
 <p>The density function of a uniform distribution looks as follows. Values below
 0 and above 1 have 0 probability, while all values between 0 and 1 are
 equally likely:</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" title="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="fl">0.1</span>)  <span class="co"># evaluation from -1 to 2</span></a>
-<a class="sourceLine" id="cb198-2" title="2"><span class="kw">tibble</span>(x, <span class="dt">density_at_x =</span> <span class="kw">dunif</span>(x)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb198-3" title="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> density_at_x)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb198-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="fl">0.1</span>)  <span class="co"># evaluation from -1 to 2</span></a>
+<a class="sourceLine" id="cb194-2" title="2"><span class="kw">tibble</span>(x, <span class="dt">density_at_x =</span> <span class="kw">dunif</span>(x)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb194-3" title="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> density_at_x)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb194-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
 <p>The <strong>cumulative distribution function</strong> describes the probability that a
 realization occurs below a certain value. As before, the probability of a
 realization below 0 is 0. The cumulative distribution function then increases
 linearly up to one; the probability is 1 (it is certain) that a realization
 is smaller than or equal to 1:</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1"><span class="kw">tibble</span>(x, <span class="dt">cumulative_distribution_at_x =</span> <span class="kw">punif</span>(x)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb199-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> cumulative_distribution_at_x)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb199-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1"><span class="kw">tibble</span>(x, <span class="dt">cumulative_distribution_at_x =</span> <span class="kw">punif</span>(x)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb195-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> cumulative_distribution_at_x)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb195-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
 <p>The <strong>quantile function</strong> is the inverse function of the cumulative
 distribution function. It returns the value at which the probability of a
 realization is equal to the one specified in the argument. It is useful to
 calculate critical values. For the uniform distribution, this is quite
 boring:</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1"><span class="kw">qunif</span>(<span class="fl">0.025</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" title="1"><span class="kw">qunif</span>(<span class="fl">0.025</span>)</a></code></pre></div>
 <pre><code>## [1] 0.025</code></pre>
 <p>Performing the same calculations for the <strong>normal distribution</strong> is left as
 an exercise.</p>
@@ -339,25 +340,25 @@ elements of <code>x</code> that are not in <code>y</code></li>
 <li><code>c %in% y</code>: Membership, testing whether <code>c</code> is an element of the set <code>y</code></li>
 </ul>
 <p>Here are some examples of using these functions:</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb202-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb202-3" title="3"></a>
-<a class="sourceLine" id="cb202-4" title="4"><span class="kw">union</span>(x, y)</a></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb198-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">9</span>)</a>
+<a class="sourceLine" id="cb198-3" title="3"></a>
+<a class="sourceLine" id="cb198-4" title="4"><span class="kw">union</span>(x, y)</a></code></pre></div>
 <pre><code>## [1] 1 2 5 8 9</code></pre>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1"><span class="kw">intersect</span>(x, y)</a></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1"><span class="kw">intersect</span>(x, y)</a></code></pre></div>
 <pre><code>## [1] 1 5</code></pre>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1"><span class="kw">setdiff</span>(x, y)</a></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1"><span class="kw">setdiff</span>(x, y)</a></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1"><span class="kw">setdiff</span>(y, x)</a></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1"><span class="kw">setdiff</span>(y, x)</a></code></pre></div>
 <pre><code>## [1] 8 9</code></pre>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1"><span class="dv">2</span> <span class="op">%in%</span><span class="st"> </span>x</a></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1"><span class="dv">2</span> <span class="op">%in%</span><span class="st"> </span>x</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1"><span class="dv">2</span> <span class="op">%in%</span><span class="st"> </span>y</a></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1"><span class="dv">2</span> <span class="op">%in%</span><span class="st"> </span>y</a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1">x <span class="op">%in%</span><span class="st"> </span>y</a></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1">x <span class="op">%in%</span><span class="st"> </span>y</a></code></pre></div>
 <pre><code>## [1]  TRUE FALSE  TRUE</code></pre>
 <p>The set operators are frequently used with character vectors, for example:</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1"><span class="kw">intersect</span>(<span class="kw">c</span>(<span class="st">&quot;Sara&quot;</span>, <span class="st">&quot;Leo&quot;</span>, <span class="st">&quot;Max&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;Mia&quot;</span>, <span class="st">&quot;Leo&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1"><span class="kw">intersect</span>(<span class="kw">c</span>(<span class="st">&quot;Sara&quot;</span>, <span class="st">&quot;Leo&quot;</span>, <span class="st">&quot;Max&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;Mia&quot;</span>, <span class="st">&quot;Leo&quot;</span>))</a></code></pre></div>
 <pre><code>## [1] &quot;Leo&quot;</code></pre>
 </div>
 <div id="exercises-4" class="section level3">
@@ -383,7 +384,7 @@ but not in the first vector? Which elements are in both vectors?</p></li>
 <h2><span class="header-section-number">6.2</span> Linear Regression</h2>
 <p>Let’s perform a simple linerar regression, using two vector in the <code>anscombe</code>
 data set:</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" title="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y1 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x1)</a></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y1 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x1)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = anscombe$y1 ~ anscombe$x1)
@@ -393,7 +394,7 @@ data set:</p>
 ##      3.0001       0.5001</code></pre>
 <p>If a <code>data</code> argument is provided, the formula is evaluated within the data
 frame, similar to the working of <code>mutate()</code>.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" title="1"><span class="kw">lm</span>(y1 <span class="op">~</span><span class="st"> </span>x1, <span class="dt">data =</span> anscombe)</a></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1"><span class="kw">lm</span>(y1 <span class="op">~</span><span class="st"> </span>x1, <span class="dt">data =</span> anscombe)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y1 ~ x1, data = anscombe)
@@ -403,7 +404,7 @@ frame, similar to the working of <code>mutate()</code>.</p>
 ##      3.0001       0.5001</code></pre>
 <p>As we have seen, the <code>summary()</code> function gives a more detailed overview of a
 regression, so we will usually wrap the function around:</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1"><span class="kw">summary</span>(<span class="kw">lm</span>(y1 <span class="op">~</span><span class="st"> </span>x1, <span class="dt">data =</span> anscombe))</a></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" title="1"><span class="kw">summary</span>(<span class="kw">lm</span>(y1 <span class="op">~</span><span class="st"> </span>x1, <span class="dt">data =</span> anscombe))</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y1 ~ x1, data = anscombe)
@@ -428,7 +429,7 @@ Let’s use it to perform linear regression.</p>
 <p>To start with, we may want to regress the <code>Fertility</code> variable on all other
 variables. The formula interface offers a convenient shortcut for this task,
 the <code>.</code>, which stands for ‘all variables in the data set’:</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1"><span class="kw">summary</span>(<span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> swiss))</a></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" title="1"><span class="kw">summary</span>(<span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> swiss))</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ ., data = swiss)
@@ -460,7 +461,7 @@ that the R2 is quite high (0.71), meaning the 5 variables are explaining 71%
 of the variation in <code>Fertility</code>.</p>
 <p>If we want to be more specific about which variable we want to include, we
 can use the <code>+</code> operator in the formula interface.</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" title="1"><span class="kw">summary</span>(<span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education <span class="op">+</span><span class="st"> </span>Catholic <span class="op">+</span><span class="st"> </span>Infant.Mortality, <span class="dt">data =</span> swiss))</a></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1"><span class="kw">summary</span>(<span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education <span class="op">+</span><span class="st"> </span>Catholic <span class="op">+</span><span class="st"> </span>Infant.Mortality, <span class="dt">data =</span> swiss))</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ Education + Catholic + Infant.Mortality, 
@@ -486,7 +487,7 @@ can use the <code>+</code> operator in the formula interface.</p>
 the usual way – to add elements of two vectors – you can use the <code>I()</code>
 function. The following will add <code>Eduction</code> and <code>Catholic</code> element-wise and
 use the sum as a single regressor variable.</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" title="1"><span class="kw">summary</span>(<span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span><span class="kw">I</span>(Education <span class="op">+</span><span class="st"> </span>Catholic), <span class="dt">data =</span> swiss))</a></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1"><span class="kw">summary</span>(<span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span><span class="kw">I</span>(Education <span class="op">+</span><span class="st"> </span>Catholic), <span class="dt">data =</span> swiss))</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ I(Education + Catholic), data = swiss)
@@ -507,7 +508,7 @@ use the sum as a single regressor variable.</p>
 ## F-statistic: 4.903 on 1 and 45 DF,  p-value: 0.03192</code></pre>
 <p>By default, the model contains an intercept. If you want to turn it off, you
 can add a <code>0</code> at the beginning:</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" title="1"><span class="kw">summary</span>(<span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span>Education <span class="op">+</span><span class="st"> </span>Catholic, <span class="dt">data =</span> swiss))</a></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" title="1"><span class="kw">summary</span>(<span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span>Education <span class="op">+</span><span class="st"> </span>Catholic, <span class="dt">data =</span> swiss))</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ 0 + Education + Catholic, data = swiss)
@@ -527,16 +528,16 @@ can add a <code>0</code> at the beginning:</p>
 ## Multiple R-squared:  0.6972, Adjusted R-squared:  0.6837 
 ## F-statistic:  51.8 on 2 and 45 DF,  p-value: 2.125e-12</code></pre>
 <p>There is a bunch of helper functions for linear models:</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" title="1">m &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</a>
-<a class="sourceLine" id="cb232-2" title="2"></a>
-<a class="sourceLine" id="cb232-3" title="3"><span class="kw">coef</span>(m)                       <span class="co"># the OLS coefficients</span></a></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" title="1">m &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</a>
+<a class="sourceLine" id="cb228-2" title="2"></a>
+<a class="sourceLine" id="cb228-3" title="3"><span class="kw">coef</span>(m)                       <span class="co"># the OLS coefficients</span></a></code></pre></div>
 <pre><code>## (Intercept)   Education 
 ##  79.6100585  -0.8623503</code></pre>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" title="1"><span class="kw">confint</span>(m, <span class="dt">level =</span> <span class="fl">0.95</span>)      <span class="co"># confidence intervals of the coefficients</span></a></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" title="1"><span class="kw">confint</span>(m, <span class="dt">level =</span> <span class="fl">0.95</span>)      <span class="co"># confidence intervals of the coefficients</span></a></code></pre></div>
 <pre><code>##                 2.5 %     97.5 %
 ## (Intercept) 75.372189 83.8479277
 ## Education   -1.154083 -0.5706181</code></pre>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1"><span class="kw">fitted</span>(m)                     <span class="co"># fitted values of the regression</span></a></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" title="1"><span class="kw">fitted</span>(m)                     <span class="co"># fitted values of the regression</span></a></code></pre></div>
 <pre><code>##   Courtelary     Delemont Franches-Mnt      Moutier   Neuveville 
 ##     69.26186     71.84891     75.29831     73.57361     66.67480 
 ##   Porrentruy        Broye        Glane      Gruyere       Sarine 
@@ -557,7 +558,7 @@ can add a <code>0</code> at the beginning:</p>
 ##     68.39950     52.01485     73.57361     73.57361     33.90549 
 ##  Rive Droite  Rive Gauche 
 ##     54.60190     54.60190</code></pre>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" title="1"><span class="kw">resid</span>(m)                      <span class="co"># residuals</span></a></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" title="1"><span class="kw">resid</span>(m)                      <span class="co"># residuals</span></a></code></pre></div>
 <pre><code>##   Courtelary     Delemont Franches-Mnt      Moutier   Neuveville 
 ##   10.9381450   11.2510941   17.2016929   12.2263935   10.2251959 
 ##   Porrentruy        Broye        Glane      Gruyere       Sarine 
@@ -587,8 +588,8 @@ not.</p>
 <p>Fortunately, we understand linear models, and the accuracy of the
 coefficients can be easily assessed by looking at the analytically derived
 standard errors:</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" title="1">m &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</a>
-<a class="sourceLine" id="cb240-2" title="2"><span class="kw">summary</span>(m)</a></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1">m &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</a>
+<a class="sourceLine" id="cb236-2" title="2"><span class="kw">summary</span>(m)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ Education, data = swiss)
@@ -614,55 +615,55 @@ have in our estimate of -0.8624? Let’s figuring out by using the bootstrap.</p
 set as an argument, plus and <code>index</code> argument, which is used to pick rows in
 the data. The function returns the coefficients of the model the linear
 regression model. To keep it simple, we just focus on the second coefficient:</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1">boot.fn &lt;-<span class="st"> </span><span class="cf">function</span>(data, index){</a>
-<a class="sourceLine" id="cb242-2" title="2">  <span class="kw">unname</span>(<span class="kw">coef</span>(<span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> data[index, ]))[<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb242-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" title="1">boot.fn &lt;-<span class="st"> </span><span class="cf">function</span>(data, index){</a>
+<a class="sourceLine" id="cb238-2" title="2">  <span class="kw">unname</span>(<span class="kw">coef</span>(<span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> data[index, ]))[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb238-3" title="3">}</a></code></pre></div>
 <p>To verify that it works we are running with the dataset in the original
 order.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" title="1"><span class="kw">boot.fn</span>(swiss, <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(swiss))</a></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" title="1"><span class="kw">boot.fn</span>(swiss, <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(swiss))</a></code></pre></div>
 <pre><code>## [1] -0.8623503</code></pre>
 <p>The idea of the bootstrap is to re-estimate our model with mutated data, were
 the mutated data is a random sample of the original data. An estimation on a
 mutated dataset can be generated as such:</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" title="1"><span class="kw">boot.fn</span>(swiss, <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(swiss), <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
-<pre><code>## [1] -0.1289605</code></pre>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" title="1"><span class="kw">boot.fn</span>(swiss, <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(swiss), <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<pre><code>## [1] -0.8953637</code></pre>
 <p>The <code>replace = TRUE</code> argument ensures that we are not ending up with the
 original dataset. If <code>replace</code> is <code>TRUE</code>, some rows will appear multiple
 times in the mutated dataset.</p>
 <p>Each time we run this function, we get a different result. The final step of
 the bootstrap is now to this many times, and analyze the results:</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" title="1">res &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">1000</span>)</a>
-<a class="sourceLine" id="cb247-2" title="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>){</a>
-<a class="sourceLine" id="cb247-3" title="3">  res[i] &lt;-<span class="st"> </span><span class="kw">boot.fn</span>(swiss, <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(swiss), <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb247-4" title="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" title="1">res &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb243-2" title="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>){</a>
+<a class="sourceLine" id="cb243-3" title="3">  res[i] &lt;-<span class="st"> </span><span class="kw">boot.fn</span>(swiss, <span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(swiss), <span class="dt">replace =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb243-4" title="4">}</a></code></pre></div>
 <p>Happily, both the mean and the standard deviation is very close to what we
 got from our the analytic result:</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" title="1"><span class="kw">mean</span>(res)</a></code></pre></div>
-<pre><code>## [1] -0.8613556</code></pre>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" title="1"><span class="kw">sd</span>(res)</a></code></pre></div>
-<pre><code>## [1] 0.1535952</code></pre>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1"><span class="kw">mean</span>(res)</a></code></pre></div>
+<pre><code>## [1] -0.8614879</code></pre>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" title="1"><span class="kw">sd</span>(res)</a></code></pre></div>
+<pre><code>## [1] 0.1436926</code></pre>
 <p>The <code>boot</code> function from the boot package gives some more powerful tools to
 perform bootstrap analysis. For example, it can run simulations on
 several cores, which may speed up the simulation.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1"><span class="kw">library</span>(boot)</a>
-<a class="sourceLine" id="cb252-2" title="2"><span class="kw">system.time</span>(<span class="kw">boot</span>(swiss, boot.fn, <span class="dt">R =</span> <span class="dv">1000</span>, <span class="dt">parallel =</span> <span class="st">&quot;multicore&quot;</span>, <span class="dt">ncpus =</span> <span class="dv">4</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" title="1"><span class="kw">library</span>(boot)</a>
+<a class="sourceLine" id="cb248-2" title="2"><span class="kw">system.time</span>(<span class="kw">boot</span>(swiss, boot.fn, <span class="dt">R =</span> <span class="dv">1000</span>, <span class="dt">parallel =</span> <span class="st">&quot;multicore&quot;</span>, <span class="dt">ncpus =</span> <span class="dv">4</span>))</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.013   0.010   0.320</code></pre>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" title="1"><span class="kw">system.time</span>(<span class="kw">boot</span>(swiss, boot.fn, <span class="dt">R =</span> <span class="dv">1000</span>))</a></code></pre></div>
+##   0.006   0.005   0.385</code></pre>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" title="1"><span class="kw">system.time</span>(<span class="kw">boot</span>(swiss, boot.fn, <span class="dt">R =</span> <span class="dv">1000</span>))</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.610   0.008   0.620</code></pre>
+##   1.707   0.037   1.791</code></pre>
 </div>
 <div id="factors-in-regression-models" class="section level3">
 <h3><span class="header-section-number">6.2.2</span> Factors in regression models</h3>
 <p>A factor is simply as an integer vector with a bit of extra information.
 That extra information consists of a record of the distinct values in that
 vector, called levels:</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>, <span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>)</a>
-<a class="sourceLine" id="cb256-2" title="2">xf &lt;-<span class="st"> </span><span class="kw">factor</span>(x)</a>
-<a class="sourceLine" id="cb256-3" title="3"><span class="kw">class</span>(xf)</a></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>, <span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>)</a>
+<a class="sourceLine" id="cb252-2" title="2">xf &lt;-<span class="st"> </span><span class="kw">factor</span>(x)</a>
+<a class="sourceLine" id="cb252-3" title="3"><span class="kw">class</span>(xf)</a></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
 <p>To see whats’s in <code>xf</code>, let’s ‘unclass’ it:</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" title="1"><span class="kw">unclass</span>(xf)</a></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" title="1"><span class="kw">unclass</span>(xf)</a></code></pre></div>
 <pre><code>## [1] 1 2 2 1
 ## attr(,&quot;levels&quot;)
 ## [1] &quot;female&quot; &quot;male&quot;</code></pre>
@@ -679,17 +680,17 @@ let’s add a new variable, <code>Conf</code>, to our dataset, which is <code>"p
 the share of Catholics is below 50, and <code>"catholic"</code> otherwise. We then
 transform it to a <code>factor</code>. (We can omit the last step, as R will convert all
 character variable to factors when used in a regression.)</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" title="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb260-2" title="2">swiss_plus &lt;-</a>
-<a class="sourceLine" id="cb260-3" title="3"><span class="st">  </span>swiss <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb260-4" title="4"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb260-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Conf =</span> <span class="kw">if_else</span>(Catholic <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>, <span class="st">&quot;catholic&quot;</span>, <span class="st">&quot;protestant&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb260-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Conf =</span> <span class="kw">as.factor</span>(Conf))</a></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb256-2" title="2">swiss_plus &lt;-</a>
+<a class="sourceLine" id="cb256-3" title="3"><span class="st">  </span>swiss <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb256-4" title="4"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb256-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Conf =</span> <span class="kw">if_else</span>(Catholic <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>, <span class="st">&quot;catholic&quot;</span>, <span class="st">&quot;protestant&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb256-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Conf =</span> <span class="kw">as.factor</span>(Conf))</a></code></pre></div>
 <p>We have now a categorical variable in our dataset. The usual way to deal with
 this variable would be to build a dummy variable, which contains 0 for
 catholic and 1 for protestant locations. Thanks to factors, R will do this
 automatically for you:</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" title="1"><span class="kw">summary</span>(<span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education <span class="op">+</span><span class="st"> </span>Conf, <span class="dt">data =</span> swiss_plus))</a></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" title="1"><span class="kw">summary</span>(<span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education <span class="op">+</span><span class="st"> </span>Conf, <span class="dt">data =</span> swiss_plus))</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ Education + Conf, data = swiss_plus)
@@ -732,14 +733,14 @@ syntax of <code>optim()</code> is different from the functions we met so far, in
 the second argument of the function is a function itself! Let’s see how it
 works:</p>
 <p>Let’s define a simple quadratic function as our <em>objective function</em>:</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" title="1">quadratic_function &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb263-2" title="2">  x<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb263-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" title="1">quadratic_function &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb259-2" title="2">  x<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb259-3" title="3">}</a></code></pre></div>
 <p>To see how it looks, let’s evaluate it for a sequence of numbers:</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" title="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">-5</span>, <span class="dt">to =</span> <span class="dv">5</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)</a>
-<a class="sourceLine" id="cb264-2" title="2"><span class="kw">tibble</span>(x, <span class="dt">quadratic_function_at_x =</span> <span class="kw">quadratic_function</span>(x)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb264-3" title="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> quadratic_function_at_x)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb264-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" title="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">-5</span>, <span class="dt">to =</span> <span class="dv">5</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb260-2" title="2"><span class="kw">tibble</span>(x, <span class="dt">quadratic_function_at_x =</span> <span class="kw">quadratic_function</span>(x)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb260-3" title="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> quadratic_function_at_x)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb260-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
 <p>Suppose you want to find the minimum value of this function. Visual
 inspection already told us that the minimum is at <code>x = 0</code>, where the function
@@ -750,7 +751,7 @@ instead.</p>
 <p>A simple way to perform numerical optimization is to evaluate the function
 over a relevant range of values, and simply pick the lowest. In our example,
 picking the minimum of <code>y</code> would have given you the correct result.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" title="1">x[<span class="kw">which.min</span>(y)]</a></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" title="1">x[<span class="kw">which.min</span>(y)]</a></code></pre></div>
 <pre><code>## [1] -4.9</code></pre>
 <p>This was <em>grid-search</em> minimization, which works fine for small problems like
 this. A problem with grid search is that is quite inefficient. If you know
@@ -761,31 +762,31 @@ more efficient way. Usually, for numerical optimization, you need to give the
 computer a hint where to start, by providing an initial value for each
 parameter. 0, would be an obvious starting point, but we don’t want to make
 it too boring, so let’s try something different.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" title="1">op &lt;-<span class="st"> </span><span class="kw">optim</span>(<span class="dv">4</span>, quadratic_function, <span class="dt">method =</span> <span class="st">&quot;Brent&quot;</span>, <span class="dt">lower =</span> <span class="dv">-100</span>, <span class="dt">upper =</span> <span class="dv">100</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" title="1">op &lt;-<span class="st"> </span><span class="kw">optim</span>(<span class="dv">4</span>, quadratic_function, <span class="dt">method =</span> <span class="st">&quot;Brent&quot;</span>, <span class="dt">lower =</span> <span class="dv">-100</span>, <span class="dt">upper =</span> <span class="dv">100</span>)</a></code></pre></div>
 <p>Here, we were using the “Brent” method, which is suited for the single
 parameter optimization that we have here. If you have more than one
 parameter, the default “Nelder-Mead” usually works fine.</p>
 <p>As we have seen before, complex functions in R often return a complex object.
 <code>optim</code> returns a list with 5 components, where the first, <code>par</code>, is the one
 we are mostly interested in:</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" title="1">op<span class="op">$</span>par</a></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" title="1">op<span class="op">$</span>par</a></code></pre></div>
 <pre><code>## [1] -3.552714e-15</code></pre>
 <p>For a more complex example, let’s find the solution to the linear regression
 problem <em>numerically</em>. This is the result we want to replicate:</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" title="1">m &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</a>
-<a class="sourceLine" id="cb270-2" title="2"><span class="kw">coef</span>(m)</a></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" title="1">m &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</a>
+<a class="sourceLine" id="cb266-2" title="2"><span class="kw">coef</span>(m)</a></code></pre></div>
 <pre><code>## (Intercept)   Education 
 ##  79.6100585  -0.8623503</code></pre>
 <p>The OLS estimator is minimizing the sum of squared residuals. Let us write
 down our <em>objective function</em>:</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" title="1">sum_of_squared_residuals &lt;-<span class="st"> </span><span class="cf">function</span>(b){</a>
-<a class="sourceLine" id="cb272-2" title="2">  b0 &lt;-<span class="st"> </span>b[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb272-3" title="3">  b1 &lt;-<span class="st"> </span>b[<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb272-4" title="4">  fitted.values &lt;-<span class="st"> </span>b0 <span class="op">+</span><span class="st"> </span>b1 <span class="op">*</span><span class="st"> </span>swiss<span class="op">$</span>Education</a>
-<a class="sourceLine" id="cb272-5" title="5">  residuals &lt;-<span class="st"> </span>swiss<span class="op">$</span>Fertility <span class="op">-</span><span class="st"> </span>fitted.values</a>
-<a class="sourceLine" id="cb272-6" title="6">  squared_residuals &lt;-<span class="st"> </span>residuals<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb272-7" title="7">  <span class="kw">sum</span>(squared_residuals)</a>
-<a class="sourceLine" id="cb272-8" title="8">}</a></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" title="1">sum_of_squared_residuals &lt;-<span class="st"> </span><span class="cf">function</span>(b){</a>
+<a class="sourceLine" id="cb268-2" title="2">  b0 &lt;-<span class="st"> </span>b[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb268-3" title="3">  b1 &lt;-<span class="st"> </span>b[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb268-4" title="4">  fitted.values &lt;-<span class="st"> </span>b0 <span class="op">+</span><span class="st"> </span>b1 <span class="op">*</span><span class="st"> </span>swiss<span class="op">$</span>Education</a>
+<a class="sourceLine" id="cb268-5" title="5">  residuals &lt;-<span class="st"> </span>swiss<span class="op">$</span>Fertility <span class="op">-</span><span class="st"> </span>fitted.values</a>
+<a class="sourceLine" id="cb268-6" title="6">  squared_residuals &lt;-<span class="st"> </span>residuals<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb268-7" title="7">  <span class="kw">sum</span>(squared_residuals)</a>
+<a class="sourceLine" id="cb268-8" title="8">}</a></code></pre></div>
 <p>The argument <code>b</code> is a vector of length 2, containing the coefficient for the
 intercept and for <code>Education</code>. Using the two coefficients and the data, we
 calculate <code>fitted.values</code>, the value predicted by our model. The difference
@@ -795,11 +796,11 @@ element- wise and sum up the elements, using the <code>sum()</code> function.</p
 <p>For every two coefficients, the function returns the sum of squared
 residuals. E.g., an intercept of 0 and a slope of 1 lead to a pretty high sum
 of squared residuals:</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" title="1"><span class="kw">sum_of_squared_residuals</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" title="1"><span class="kw">sum_of_squared_residuals</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</a></code></pre></div>
 <pre><code>## [1] 183282.9</code></pre>
 <p>Using the <code>optim</code> function, we can easily find the coefficients that minimize
 the function (the initial values are chosen arbitrarily):</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" title="1"><span class="kw">optim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), sum_of_squared_residuals)</a></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" title="1"><span class="kw">optim</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), sum_of_squared_residuals)</a></code></pre></div>
 <pre><code>## $par
 ## [1] 79.6077096 -0.8618092
 ## 
@@ -829,19 +830,19 @@ follows, using matrix algebra:</p>
 column vector containing the left-hand variable.</p>
 <p>Let’s consider our simple linear model from above:</p></li>
 </ol>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" title="1">   m &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</a>
-<a class="sourceLine" id="cb277-2" title="2">   <span class="kw">coef</span>(m)</a></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" title="1">   m &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</a>
+<a class="sourceLine" id="cb273-2" title="2">   <span class="kw">coef</span>(m)</a></code></pre></div>
 <pre><code>## (Intercept)   Education 
 ##  79.6100585  -0.8623503</code></pre>
 <p>Can you replicate the result of <code>coef(m)</code>, using pure matrix algebra?
 Hints: Construct <code>X</code> first, adding a vector of 1s as an intercept. Make
 sure X is of class “matrix”, not “data.frame”. It should look like this:</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" title="1"><span class="co">#      Intercept Education</span></a>
-<a class="sourceLine" id="cb279-2" title="2"><span class="co"># [1,]         1        12</span></a>
-<a class="sourceLine" id="cb279-3" title="3"><span class="co"># [2,]         1         9</span></a>
-<a class="sourceLine" id="cb279-4" title="4"><span class="co"># [3,]         1         5</span></a>
-<a class="sourceLine" id="cb279-5" title="5"><span class="co"># [4,]         1         7</span></a>
-<a class="sourceLine" id="cb279-6" title="6"><span class="co"># [5,]         1        15</span></a></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" title="1"><span class="co">#      Intercept Education</span></a>
+<a class="sourceLine" id="cb275-2" title="2"><span class="co"># [1,]         1        12</span></a>
+<a class="sourceLine" id="cb275-3" title="3"><span class="co"># [2,]         1         9</span></a>
+<a class="sourceLine" id="cb275-4" title="4"><span class="co"># [3,]         1         5</span></a>
+<a class="sourceLine" id="cb275-5" title="5"><span class="co"># [4,]         1         7</span></a>
+<a class="sourceLine" id="cb275-6" title="6"><span class="co"># [5,]         1        15</span></a></code></pre></div>
 <p>This is matrix algebra, so you will need to use matrix multiplication, not
 the usual element-wise multiplication. Also remember the inverse and the
 transpose function from above.</p>
