@@ -1,0 +1,536 @@
+#' # Math and Statistics
+#'
+#' R calls itself a *software environment for statistical computing*. Math and
+#' statistics are at the heart of R. This Lesson provides an overview of the
+#' many build-in functions for math and statistics. We will also discuss some
+#' basic statistical modeling techniques.
+#'
+#'
+#' ## Math
+#'
+#' ### Basic Math Functions
+#'
+#' R includes an extensive set of built-in math functions. Here is a partial
+#' list:
+#'
+#' - `log()`: Natural logarithm
+#' - `exp()`: Exponential function, base e
+#' - `sqrt()`: Square root
+#' - `abs()`: Absolute value
+#' - `sin()`, `cos()`, and so on: Trigonometric functions
+#' - `min()` and `max()`: Minimum value and maximum value within a vector
+#' - `which.min()` and `which.max()`: Index of the minimal element and maximal
+#'    element of a vector
+#' - `pmin()` and `pmax()`: Element-wise minima and maxima of several vectors
+#' - `sum()` and `prod()`: Sum and product of the elements of a vector
+#' - `cumsum()` and `cumprod()`: Cumulative sum and product of the elements of a
+#'    vector
+#' - `round()`, `floor()`, and `ceiling()`: Round to the closest integer, to the
+#'    closest integer below, and to the closest integer above
+#'
+#' Most of these functions are self explaining. Some remarks:
+#'
+#' The functions `cumsum()` and `cumprod()` return cumulative sums and products.
+
+x <- c(12, 5, 13)
+cumsum(x)
+cumprod(x)
+
+#' In `x`, the sum of the first element is 12, the sum of the first two elements
+#' is 17, and the sum of the first three elements is 30.
+#'
+#' The function `cumprod()` works the same way as `cumsum()`, but with the
+#' product instead of the sum.
+#'
+#' We briefly mentioned the difference between `min()` and `pmin()` in the last
+#' chapter. The former simply combines all its arguments into one long vector
+#' and returns the minimum value in that vector. In contrast, if `pmin()` is
+#' applied to two or more vectors, it returns a vector of the pair-wise minima,
+#' hence the name `pmin`. Here's an example:
+
+x <- c(1, 5, 6, 2, 3, 1)
+y <- c(3, 5, 2, 3, 2, 2)
+
+min(x)
+pmin(x, y)
+
+#' In the first case, `min()` computed the smallest value in `c(1, 5, 6, 2, 3,
+#' 1)`. But the call to `pmin()` computed  the smaller of 1 and 3, yielding 1;
+#' then the smaller of 5 and 5, which is 5; then the minimum  of 6 and 2, giving
+#' 2, and so on.
+#'
+#' ### Linear Algebra Operations on Vectors and Matrices *(optional)*
+#'
+#' Multiplying a vector by a scalar works directly, as you saw earlier. Here's
+#' another example:
+
+y <- c(1, 3, 4, 10)
+2 * y
+
+#' For matrix multiplication in the mathematical sense, the operator to use is
+#' `%*%`, not `*` . For instance, here we compute the matrix product:
+#'
+#' Here's the code:
+
+a <- matrix(c(1, 3, 2, 4), nrow = 2, ncol = 2)
+x <- matrix(c(1, 0, -1, 1), nrow = 2, ncol = 2)
+b <- a %*% x; b
+
+#' The function `solve()` will solve systems of linear equations and find
+#' matrix inverses. For example, to solve this equation for `x`:
+#'
+#' a %*% x = b
+#'
+#' Here's the code:
+
+solve(a, b)
+
+#' And for the inverse:
+
+solve(a)
+
+#' In that second call to `solve()`, the lack of a second argument signifies
+#' that we simply wish to compute the inverse of the matrix.
+#'
+#' Here are a few other linear algebra functions:
+#'
+#' - `t()`: Matrix transpose
+#' - `qr()`: QR decomposition
+#' - `chol()`: Cholesky decomposition
+#' - `det()`: Determinant
+#' - `eigen()`: Eigenvalues/eigenvectors
+#' - `diag()`: Extracts the diagonal of a square matrix (useful for obtaining
+#'   variances from a covariance matrix and for constructing a diagonal matrix).
+#'
+#'
+#' ### Statistical Distributions *(optional)*
+#'
+#' R has functions available for most of the standard statistical distributions.
+#' Prefix the name as follows:
+#'
+#' - `d` for the density function
+#' - `p` for the cumulative distribution function
+#' - `q` for quantile function
+#' - `r` for random number generation
+#'
+#' The rest of the name indicates the distribution.
+#'
+#' Let's start with a very simple distribution, the **uniform distribution**,
+#' which describes an experiment where each value on a continuous scale is
+#' equally likely.
+#'
+#' The `runif(n)` function returns a vector of `n` uniformly distributed random
+#' numbers. We will visualize the outcome, using ggplot:
+
+library(tidyverse)
+tibble(uniform = runif(100000)) %>%
+  ggplot(mapping = aes(x = uniform)) +
+  geom_histogram()
+
+#' These functions also have arguments specific to the given distribution. The
+#' uniform distribution has a `min` and `max` argument that allows you to
+#' control the range on the random numbers.
+#'
+#' The density function of a uniform distribution looks as follows. Values below
+#' 0 and above 1 have 0 probability, while all values between 0 and 1 are
+#' equally likely:
+
+x <- seq(-1, 2, 0.1)  # evaluation from -1 to 2
+tibble(x, density_at_x = dunif(x)) %>%
+  ggplot(mapping = aes(x = x, y = density_at_x)) +
+  geom_point()
+
+#' The **cumulative distribution function** describes the probability that a
+#' realization occurs below a certain value. As before, the probability of a
+#' realization below 0 is 0. The cumulative distribution function then increases
+#' linearly up to one; the probability is 1 (it is certain) that a realization
+#' is smaller than or equal to 1:
+
+tibble(x, cumulative_distribution_at_x = punif(x)) %>%
+  ggplot(mapping = aes(x = x, y = cumulative_distribution_at_x)) +
+  geom_point()
+
+#' The **quantile function** is the inverse function of the cumulative
+#' distribution function. It returns the value at which the probability of a
+#' realization is equal to the one specified in the argument. It is useful to
+#' calculate critical values. For the uniform distribution, this is quite
+#' boring:
+
+qunif(0.025)
+
+#' Performing the same calculations for the **normal distribution** is left as
+#' an exercise.
+#'
+#'
+#' ### Set Operations *(optional)*
+#'
+#' R includes some handy set operations, including these:
+#'
+#' - `union(x, y)`: Union of the sets `x` and `y`
+#' - `intersect(x, y)`: Intersection of the sets `x` and `y`
+#' - `setdiff(x, y)`: Set difference between `x` and `y`, consisting of all
+#'   elements of `x` that are not in `y`
+#' - `setequal(x, y)`: Test for equality between `x` and `y`
+#' - `c %in% y`: Membership, testing whether `c` is an element of the set `y`
+#'
+#' Here are some examples of using these functions:
+
+x <- c(1, 2, 5)
+y <- c(5, 1, 8, 9)
+
+union(x, y)
+intersect(x, y)
+setdiff(x, y)
+setdiff(y, x)
+2 %in% x
+2 %in% y
+x %in% y
+
+#' The set operators are frequently used with character vectors, for example:
+
+intersect(c("Sara", "Leo", "Max"), c("Mia", "Leo"))
+
+
+#' ### Exercises
+#'
+#' 1. Create a vector `v` containing 10 uniformly distributed random numbers.
+#'
+#' 2. Calculate `log(v)` and store it as `logv`
+#'
+#' 3. Calculate `exp(logv)` and compare it to `v`. What do you observe?
+#'
+#' 4. In the vector `c(1, 2, 5, -2, -1, NA)`, what is the minimum? Hint: You may
+#' have a look at the help, the relevant function has an argument that we
+#' discussed in the previous lesson.
+#'
+#' 5. Plot the density function and the cumulative distribution function for
+#' a normal distribution. Run an experiment with 10000 draws from a normal
+#' distribution and plot its histogram. Look up the critical value where the
+#' probability of a realization being lower than that value is 0.025.
+#'
+#' 6. Consider the vectors: `c(2, 5, 1)` and `c(2, 1, 7, 3)`. Which elements are
+#' in the first but not in the second vector? Which elements are in the second
+#' but not in the first vector? Which elements are in both vectors?
+#'
+#'
+#' ## Linear Regression
+#'
+#' Let's perform a simple linerar regression, using two vector in the `anscombe`
+#' data set:
+
+lm(anscombe$y1 ~ anscombe$x1)
+
+#' If a `data` argument is provided, the formula is evaluated within the data
+#' frame, similar to the working of `mutate()`.
+
+lm(y1 ~ x1, data = anscombe)
+
+#' As we have seen, the `summary()` function gives a more detailed overview of a
+#' regression, so we will usually wrap the function around:
+
+summary(lm(y1 ~ x1, data = anscombe))
+
+#' Let's try a more complex example, with more than a single independent
+#' variable. In the last lesson, we have investigated the `swiss` data set.
+#' Let's use it to perform linear regression.
+#'
+#' To start with, we may want to regress the `Fertility` variable on all other
+#' variables. The formula interface offers a convenient shortcut for this task,
+#' the `.`, which stands for 'all variables in the data set':
+
+summary(lm(Fertility ~ ., data = swiss))
+
+#' This is a standard Ordinary Least Square (OLS) regression summary, as it
+#' exists in many statistical software applications: According to the output,
+#' `Education` and `Agriculture` has a significant negative relationship on
+#' Fertility, while `Catholic` and `Infant.Mortality` has a positive impact. The
+#' coefficient on `Examination` is not significantly different from 0. Note also
+#' that the R2 is quite high (0.71), meaning the 5 variables are explaining 71%
+#' of the variation in `Fertility`.
+#'
+#' If we want to be more specific about which variable we want to include, we
+#' can use the `+` operator in the formula interface.
+
+summary(lm(Fertility ~ Education + Catholic + Infant.Mortality, data = swiss))
+
+#' The `+` here combines variables in the formula. If you want to use the `+` in
+#' the usual way -- to add elements of two vectors -- you can use the `I()`
+#' function. The following will add `Eduction` and `Catholic` element-wise and
+#' use the sum as a single regressor variable.
+
+summary(lm(Fertility ~ I(Education + Catholic), data = swiss))
+
+#' By default, the model contains an intercept. If you want to turn it off, you
+#' can add a `0` at the beginning:
+
+summary(lm(Fertility ~ 0 + Education + Catholic, data = swiss))
+
+#' There is a bunch of helper functions for linear models:
+
+m <- lm(Fertility ~ Education, data = swiss)
+
+coef(m)                       # the OLS coefficients
+confint(m, level = 0.95)      # confidence intervals of the coefficients
+fitted(m)                     # fitted values of the regression
+resid(m)                      # residuals
+
+#' ### Example: Bootstrapping standard errors *(optional)*
+#'
+#' We want to use our simple linear model to explore another, very powerful
+#' statistical technique: the bootstrap. The bootstrap can be used to assess the
+#' variability of almost any statistical estimation, whether we understand it or
+#' not.
+#'
+#' Fortunately, we understand linear models, and the accuracy of the
+#' coefficients can be easily assessed by looking at the analytically derived
+#' standard errors:
+
+m <- lm(Fertility ~ Education, data = swiss)
+summary(m)
+
+#' A standard error of 0.1448 tells us that there is a 68.3% (`pnorm(1) -
+#' pnorm(-1)`) probability that the true coefficient is between `-0.8624 -
+#' 0.1448` and `-0.8624 + 0.1448`.
+#'
+#' What if we wouldn't have these standard errors? How much confidence should we
+#' have in our estimate of -0.8624? Let's figuring out by using the bootstrap.
+#'
+#' First, we create a simple function, `boot.fn()`, that takes the `swiss` data
+#' set as an argument, plus and `index` argument, which is used to pick rows in
+#' the data. The function returns the coefficients of the model the linear
+#' regression model. To keep it simple, we just focus on the second coefficient:
+
+boot.fn <- function(data, index){
+  unname(coef(lm(Fertility ~ Education, data = data[index, ]))[2])
+}
+
+#' To verify that it works we are running with the dataset in the original
+#' order.
+
+boot.fn(swiss, 1:nrow(swiss))
+
+#' The idea of the bootstrap is to re-estimate our model with mutated data, were
+#' the mutated data is a random sample of the original data. An estimation on a
+#' mutated dataset can be generated as such:
+
+boot.fn(swiss, sample(1:nrow(swiss), replace = TRUE))
+
+#' The `replace = TRUE` argument ensures that we are not ending up with the
+#' original dataset. If `replace` is `TRUE`, some rows will appear multiple
+#' times in the mutated dataset.
+#'
+#' Each time we run this function, we get a different result. The final step of
+#' the bootstrap is now to this many times, and analyze the results:
+
+res <- numeric(1000)
+for (i in 1:1000){
+  res[i] <- boot.fn(swiss, sample(1:nrow(swiss), replace = TRUE))
+}
+
+#' Happily, both the mean and the standard deviation is very close to what we
+#' got from our the analytic result:
+
+mean(res)
+sd(res)
+
+#' The `boot` function from the boot package gives some more powerful tools to
+#' perform bootstrap analysis. For example, it can run simulations on
+#' several cores, which may speed up the simulation.
+
+library(boot)
+system.time(boot(swiss, boot.fn, R = 1000, parallel = "multicore", ncpus = 4))
+system.time(boot(swiss, boot.fn, R = 1000))
+
+
+#' ### Factors in regression models
+#'
+#' A factor is simply as an integer vector with a bit of extra information.
+#' That extra information consists of a record of the distinct values in that
+#' vector, called levels:
+
+x <- c("female", "male", "male", "female")
+xf <- factor(x)
+class(xf)
+
+#' To see whats's in `xf`, let's 'unclass' it:
+
+unclass(xf)
+
+#' The core of `xf` is not `c("female", "male", "male", "female")`, but an
+#' integer vector `c(1, 2, 2, 1)`. The level attribute maps the integer to their
+#' original meaning: `1` means `"female"` and `2` means `"male"`.
+#'
+#' From a memory perspective, this is appealing, since you just have to save an
+#' integer value, rather than the whole string. However, today, character
+#' vectors are cached in a hash table, and are already memory efficient. So, the
+#' two ways of storing data are equivalent from a memory perspective. That's why
+#' we want to get rid of factors whenever we can!
+#'
+#' In a linear regression, however, factors are cool. To see how they work,
+#' let's add a new variable, `Conf`, to our dataset, which is `"protestant"` if
+#' the share of Catholics is below 50, and `"catholic"` otherwise. We then
+#' transform it to a `factor`. (We can omit the last step, as R will convert all
+#' character variable to factors when used in a regression.)
+
+library(tidyverse)
+swiss_plus <-
+  swiss %>%
+  as_tibble() %>%
+  mutate(Conf = if_else(Catholic >= 50, "catholic", "protestant")) %>%
+  mutate(Conf = as.factor(Conf))
+
+
+#' We have now a categorical variable in our dataset. The usual way to deal with
+#' this variable would be to build a dummy variable, which contains 0 for
+#' catholic and 1 for protestant locations. Thanks to factors, R will do this
+#' automatically for you:
+
+summary(lm(Fertility ~ Education + Conf, data = swiss_plus))
+
+#' ### Exercises
+#'
+#' 1. Plot the bivariate relationship between `Agriculture` and `Fertility`.
+#'
+#' 2. Perform a bivariate linear regression.
+#'
+#' 3. Plot both the data and the regression line in a single graph.
+#'
+#' 4. Also add `Education` to the regression. How has the coefficient of
+#' `Agriculture` changed? Do you have an explanation for it?
+#'
+#' 5. Add a dummy variable `DCATH` that contains 0 if the share of Catholics is
+#' below 50, 1 otherwise. Verify that including a factor really leads to the
+#' same result.
+#'
+#'
+#' ## Numerical Optimization *(optional)*
+#'
+#' R offers a large collection of tools for numerical optimization. The built-in
+#' standard function is `optim()`, which is sufficient in most situations. The
+#' syntax of `optim()` is different from the functions we met so far, in that
+#' the second argument of the function is a function itself! Let's see how it
+#' works:
+#'
+#' Let's define a simple quadratic function as our *objective function*:
+
+quadratic_function <- function(x){
+  x^2
+}
+
+#' To see how it looks, let's evaluate it for a sequence of numbers:
+#'
+x <- seq(from = -5, to = 5, by = 0.1)
+tibble(x, quadratic_function_at_x = quadratic_function(x)) %>%
+  ggplot(mapping = aes(x = x, y = quadratic_function_at_x)) +
+  geom_point()
+
+#' Suppose you want to find the minimum value of this function. Visual
+#' inspection already told us that the minimum is at `x = 0`, where the function
+#' evaluates to 0. If you know calculus, you could have derived this result
+#' analytically. Often, however, the problem is too complicated, or there is no
+#' analytical solution at all. So you want to use numerical optimization
+#' instead.
+#'
+#' A simple way to perform numerical optimization is to evaluate the function
+#' over a relevant range of values, and simply pick the lowest. In our example,
+#' picking the minimum of `y` would have given you the correct result.
+
+x[which.min(y)]
+
+#' This was *grid-search* minimization, which works fine for small problems like
+#' this. A problem with grid search is that is quite inefficient. If you know
+#' the function is increasing at `x = 1` what is the point of checking for a
+#' minimum at `x = 1.1`?
+#'
+#' The `optim` function includes several methods that handle this problem in a
+#' more efficient way. Usually, for numerical optimization, you need to give the
+#' computer a hint where to start, by providing an initial value for each
+#' parameter. 0, would be an obvious starting point, but we don't want to make
+#' it too boring, so let's try something different.
+
+op <- optim(4, quadratic_function, method = "Brent", lower = -100, upper = 100)
+
+#' Here, we were using the "Brent" method, which is suited for the single
+#' parameter optimization that we have here. If you have more than one
+#' parameter, the default "Nelder-Mead" usually works fine.
+#'
+#' As we have seen before, complex functions in R often return a complex object.
+#' `optim` returns a list with 5 components, where the first, `par`, is the one
+#' we are mostly interested in:
+
+op$par
+
+#' For a more complex example, let's find the solution to the linear regression
+#' problem *numerically*. This is the result we want to replicate:
+
+m <- lm(Fertility ~ Education, data = swiss)
+coef(m)
+
+#' The OLS estimator is minimizing the sum of squared residuals. Let us write
+#' down our *objective function*:
+
+sum_of_squared_residuals <- function(b){
+  b0 <- b[1]
+  b1 <- b[2]
+  fitted.values <- b0 + b1 * swiss$Education
+  residuals <- swiss$Fertility - fitted.values
+  squared_residuals <- residuals^2
+  sum(squared_residuals)
+}
+
+#' The argument `b` is a vector of length 2, containing the coefficient for the
+#' intercept and for `Education`. Using the two coefficients and the data, we
+#' calculate  `fitted.values`, the value predicted by our model. The difference
+#' between the actual values (`swiss$Fertility`) are the residuals. In order to
+#' calculate the sum of squared residuals, we square the residual vector
+#' element- wise and sum up the elements, using the `sum()` function.
+#'
+#' For every two coefficients, the function returns the sum of squared
+#' residuals. E.g., an intercept of 0 and a slope of 1 lead to a pretty high sum
+#' of squared residuals:
+
+sum_of_squared_residuals(c(0, 1))
+
+#' Using the `optim` function, we can easily find the coefficients that minimize
+#' the function (the initial values are chosen arbitrarily):
+
+optim(c(0, 0), sum_of_squared_residuals)
+
+#' Indeed: At a value of `4015.238`, The OLS estimator `c(79.6077096,
+#' -0.8618092)` is minimizing the sum of squared residuals!
+#'
+#'
+#' ## Extended Exercises
+#'
+#' 1. It can be shown *analytically* that the OLS estimator can be calculated as
+#' follows, using matrix algebra:
+#'
+#'     b = (X'X)^(-1)X'y
+#'
+#'     See, e.g., here (the formula is on page 4):
+#'
+#'     [http://www.stat.purdue.edu/~jennings/stat514/stat512notes/topic3.pdf](http://www.stat.purdue.edu/~jennings/stat514/stat512notes/topic3.pdf)
+#'
+#'     where `X` is the data matrix, possibly including an intercept, and `y` is a
+#'     column vector containing the left-hand variable.
+#'
+#'     Let's consider our simple linear model from above:
+
+   m <- lm(Fertility ~ Education, data = swiss)
+   coef(m)
+
+#' Can you replicate the result of `coef(m)`, using pure matrix algebra?
+#' Hints: Construct `X` first, adding a vector of 1s as an intercept. Make
+#' sure X is of class "matrix", not "data.frame". It should look like this:
+
+
+#      Intercept Education
+# [1,]         1        12
+# [2,]         1         9
+# [3,]         1         5
+# [4,]         1         7
+# [5,]         1        15
+
+#' This is matrix algebra, so you will need to use matrix multiplication, not
+#' the usual element-wise multiplication. Also remember the inverse and the
+#' transpose function from above.
