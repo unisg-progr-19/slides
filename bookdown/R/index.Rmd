@@ -13,7 +13,6 @@ output:
 ---
 
 
-
 # Introduction
 
 Intro (Sept. 19): [Slides](01-intro.html)
@@ -22,6 +21,12 @@ Intro (Sept. 19): [Slides](01-intro.html)
 
 [GitHub Organization](https://github.com/unisg-progr-19/)
 
+## Using `left_join` to join data sets
+
+For those who are interested in using `left_join()` for combining data sets, see
+the
+[corresponding Section](https://r4ds.had.co.nz/relational-data.html#mutating-joins)
+in R for Data Science.
 
 
 # Visualization and Reporting
