@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Basics of R base | 7784 Skills: Programming in R</title>
   <meta name="description" content="5 Basics of R base | 7784 Skills: Programming in R" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Basics of R base | 7784 Skills: Programming in R" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-tranformation-ii.html">
-<link rel="next" href="math-and-statistics.html">
+<link rel="prev" href="data-tranformation-ii.html"/>
+<link rel="next" href="math-and-statistics.html"/>
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,9 @@
 <link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -161,6 +164,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="math-and-statistics.html"><a href="math-and-statistics.html#numerical-optimization-optional"><i class="fa fa-check"></i><b>6.3</b> Numerical Optimization <em>(optional)</em></a></li>
 <li class="chapter" data-level="6.4" data-path="math-and-statistics.html"><a href="math-and-statistics.html#extended-exercises"><i class="fa fa-check"></i><b>6.4</b> Extended Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="visualizing-statistical-output.html"><a href="visualizing-statistical-output.html"><i class="fa fa-check"></i><b>7</b> Visualizing statistical output</a><ul>
+<li class="chapter" data-level="7.1" data-path="visualizing-statistical-output.html"><a href="visualizing-statistical-output.html#the-broom-package"><i class="fa fa-check"></i><b>7.1</b> The broom package</a></li>
+<li class="chapter" data-level="7.2" data-path="visualizing-statistical-output.html"><a href="visualizing-statistical-output.html#texreg-and-friends"><i class="fa fa-check"></i><b>7.2</b> texreg and friends</a></li>
+<li class="chapter" data-level="7.3" data-path="visualizing-statistical-output.html"><a href="visualizing-statistical-output.html#from-data-frame-to-output-kable"><i class="fa fa-check"></i><b>7.3</b> From data frame to output: kable</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="more-on-linear-regression.html"><a href="more-on-linear-regression.html"><i class="fa fa-check"></i><b>8</b> More on linear regression</a><ul>
+<li class="chapter" data-level="8.0.1" data-path="more-on-linear-regression.html"><a href="more-on-linear-regression.html#relationship-between-class-size-and-test-score"><i class="fa fa-check"></i><b>8.0.1</b> Relationship between class size and test score</a></li>
+<li class="chapter" data-level="8.0.2" data-path="more-on-linear-regression.html"><a href="more-on-linear-regression.html#heteroskedasticity-consistent-standard-errors"><i class="fa fa-check"></i><b>8.0.2</b> Heteroskedasticity-consistent standard errors</a></li>
+<li class="chapter" data-level="8.0.3" data-path="more-on-linear-regression.html"><a href="more-on-linear-regression.html#omitted-variable-bias"><i class="fa fa-check"></i><b>8.0.3</b> Omitted variable bias</a></li>
+<li class="chapter" data-level="8.1" data-path="more-on-linear-regression.html"><a href="more-on-linear-regression.html#exercises-6"><i class="fa fa-check"></i><b>8.1</b> Exercises</a></li>
 </ul></li>
 </ul>
 
@@ -550,9 +564,17 @@ classes. Instead of a matrix, we use a data frame, or tibble. Technically, a
 data frame in R is a list, with each component of the list being a vector
 corresponding to a column in our data. You can create a data frame using
 <code>tibble</code> from tidyverse:</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb124-2" title="2">d &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">kids =</span> <span class="kw">c</span>(<span class="st">&quot;Jack&quot;</span>, <span class="st">&quot;Jill&quot;</span>), <span class="dt">ages =</span> <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb124-3" title="3">d</a></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<pre><code>## ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.2.1          ✔ purrr   0.3.3     
+## ✔ tibble  2.1.3          ✔ dplyr   0.8.3     
+## ✔ tidyr   1.0.0          ✔ stringr 1.4.0     
+## ✔ readr   1.3.1.9000     ✔ forcats 0.4.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1">d &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">kids =</span> <span class="kw">c</span>(<span class="st">&quot;Jack&quot;</span>, <span class="st">&quot;Jill&quot;</span>), <span class="dt">ages =</span> <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb128-2" title="2">d</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   kids   ages
 ##   &lt;chr&gt; &lt;dbl&gt;
@@ -563,18 +585,18 @@ base equivalent, <code>data.frame()</code>. The reason for this is that <code>da
 has some undesirable features, such as converting character vectors into
 factors. Because data frames are technically a list, we can access its
 vectors the same way as we access components of a list.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1">d<span class="op">$</span>ages</a></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1">d<span class="op">$</span>ages</a></code></pre></div>
 <pre><code>## [1] 12 10</code></pre>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1">d[[<span class="st">&#39;ages&#39;</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1">d[[<span class="st">&#39;ages&#39;</span>]]</a></code></pre></div>
 <pre><code>## [1] 12 10</code></pre>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1">d[[<span class="dv">2</span>]]  <span class="co"># usually not recommended</span></a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1">d[[<span class="dv">2</span>]]  <span class="co"># usually not recommended</span></a></code></pre></div>
 <pre><code>## [1] 12 10</code></pre>
 <p>Typically, though, data frames are created by reading in a data set from a
 file or a database, as we saw in the previous days of the workshop.</p>
 <p>Contrary to lists, data frames require their columns to be of the same
 length. If they are not, values will be recycled. That is why the following
 works:</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1"><span class="kw">tibble</span>(<span class="dt">kids =</span> <span class="kw">c</span>(<span class="st">&quot;Jack&quot;</span>, <span class="st">&quot;Jill&quot;</span>), <span class="dt">ages =</span> <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">10</span>), <span class="dt">type =</span> <span class="st">&quot;kid&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1"><span class="kw">tibble</span>(<span class="dt">kids =</span> <span class="kw">c</span>(<span class="st">&quot;Jack&quot;</span>, <span class="st">&quot;Jill&quot;</span>), <span class="dt">ages =</span> <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">10</span>), <span class="dt">type =</span> <span class="st">&quot;kid&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 3
 ##   kids   ages type 
 ##   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;
@@ -588,17 +610,17 @@ works:</p>
 writing functions. A function is a group of instructions that takes inputs,
 uses them to compute other values, and returns a result.</p>
 <p>Let’s write a function that divides all elements of a vector by 2:</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1">half &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb134-2" title="2">  x <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb134-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1">half &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb138-2" title="2">  x <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb138-3" title="3">}</a></code></pre></div>
 <p>This is a function named <code>half</code>, whose purpose is to divides every element of
 a vector by 2. It’s a pretty pointless function, as the operation itself is
 so simple. Arguments to a function are enclosed by parentheses (<code>()</code>); the
 body of the function is enclosed by braces (<code>{}</code>).</p>
 <p>Let’s see how it works:</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1"><span class="kw">half</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1"><span class="kw">half</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>))</a></code></pre></div>
 <pre><code>## [1] 1.5 1.0 0.5</code></pre>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1"><span class="kw">half</span>(AirPassengers)</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1"><span class="kw">half</span>(AirPassengers)</a></code></pre></div>
 <pre><code>##        Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov
 ## 1949  56.0  59.0  66.0  64.5  60.5  67.5  74.0  74.0  68.0  59.5  52.0
 ## 1950  57.5  63.0  70.5  67.5  62.5  74.5  85.0  85.0  79.0  66.5  57.0
@@ -626,43 +648,43 @@ body of the function is enclosed by braces (<code>{}</code>).</p>
 ## 1959 202.5
 ## 1960 216.0</code></pre>
 <p>here we are saving the output in a variable inside the function:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1">half &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb139-2" title="2">  z &lt;-<span class="st"> </span>x <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb139-3" title="3">  z</a>
-<a class="sourceLine" id="cb139-4" title="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1">half &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb143-2" title="2">  z &lt;-<span class="st"> </span>x <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb143-3" title="3">  z</a>
+<a class="sourceLine" id="cb143-4" title="4">}</a></code></pre></div>
 <p>An R functions will return the last value computed if there is no explicit
 <code>return()</code> call. We could have been more explicit, but it is usually not
 necessary:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1">half &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb140-2" title="2">  z &lt;-<span class="st"> </span>x <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb140-3" title="3">  <span class="kw">return</span>(z)</a>
-<a class="sourceLine" id="cb140-4" title="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1">half &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb144-2" title="2">  z &lt;-<span class="st"> </span>x <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb144-3" title="3">  <span class="kw">return</span>(z)</a>
+<a class="sourceLine" id="cb144-4" title="4">}</a></code></pre></div>
 <p>Let’s make it a bit more complex, by adding an additional argument:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1">fraction &lt;-<span class="st"> </span><span class="cf">function</span>(x, denominator){</a>
-<a class="sourceLine" id="cb141-2" title="2">  x <span class="op">/</span><span class="st"> </span>denominator</a>
-<a class="sourceLine" id="cb141-3" title="3">}</a>
-<a class="sourceLine" id="cb141-4" title="4"></a>
-<a class="sourceLine" id="cb141-5" title="5"><span class="kw">fraction</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1">fraction &lt;-<span class="st"> </span><span class="cf">function</span>(x, denominator){</a>
+<a class="sourceLine" id="cb145-2" title="2">  x <span class="op">/</span><span class="st"> </span>denominator</a>
+<a class="sourceLine" id="cb145-3" title="3">}</a>
+<a class="sourceLine" id="cb145-4" title="4"></a>
+<a class="sourceLine" id="cb145-5" title="5"><span class="kw">fraction</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dv">4</span>)</a></code></pre></div>
 <pre><code>## [1] 0.50 0.75 1.00</code></pre>
 <p>if you have more than one argument, it is a good practice to name the
 arguments</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="kw">fraction</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">denominator =</span> <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"><span class="kw">fraction</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">denominator =</span> <span class="dv">4</span>)</a></code></pre></div>
 <pre><code>## [1] 0.50 0.75 1.00</code></pre>
 <p>that way, they become independent of the order, which is a very useful if the
 number of argument becomes large.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1"><span class="kw">fraction</span>(<span class="dt">denominator =</span> <span class="dv">4</span>, <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1"><span class="kw">fraction</span>(<span class="dt">denominator =</span> <span class="dv">4</span>, <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))</a></code></pre></div>
 <pre><code>## [1] 0.50 0.75 1.00</code></pre>
 <div id="variable-scope" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> Variable Scope</h3>
 <p>A variable that is visible only within a function body is said to be local to
 that function. In <code>square()</code>, <code>x</code> is a local variable. In <code>fraction()</code>, <code>x</code>
 and <code>p</code> are local variables. They disappear after the function returns:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"><span class="kw">fraction</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">denominator =</span> <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1"><span class="kw">fraction</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">denominator =</span> <span class="dv">4</span>)</a></code></pre></div>
 <pre><code>## [1] 0.50 0.75 1.00</code></pre>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1"><span class="co"># denominator</span></a>
-<a class="sourceLine" id="cb149-2" title="2"><span class="co"># Error: object &#39;denominator&#39; not found</span></a>
-<a class="sourceLine" id="cb149-3" title="3"></a>
-<a class="sourceLine" id="cb149-4" title="4">x</a></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1"><span class="co"># denominator</span></a>
+<a class="sourceLine" id="cb153-2" title="2"><span class="co"># Error: object &#39;denominator&#39; not found</span></a>
+<a class="sourceLine" id="cb153-3" title="3"></a>
+<a class="sourceLine" id="cb153-4" title="4">x</a></code></pre></div>
 <pre><code>## $u
 ## [1] 2 3 4
 ## 
@@ -679,18 +701,18 @@ rarely recommended.</p>
 <h3><span class="header-section-number">5.2.2</span> Default Arguments</h3>
 <p>A nice feature of R functions is that you can set defaults to arguments.
 Let’s modify the <code>fraction</code> function from above:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1">fraction &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">denominator =</span> <span class="dv">2</span>) {</a>
-<a class="sourceLine" id="cb151-2" title="2">  x <span class="op">/</span><span class="st"> </span>denominator</a>
-<a class="sourceLine" id="cb151-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1">fraction &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">denominator =</span> <span class="dv">2</span>) {</a>
+<a class="sourceLine" id="cb155-2" title="2">  x <span class="op">/</span><span class="st"> </span>denominator</a>
+<a class="sourceLine" id="cb155-3" title="3">}</a></code></pre></div>
 <p>Here <code>denominator</code> will be initialized to 2 if the user does not
 specify <code>p</code> in the
 call. So we can use <code>fraction()</code> the same way as <code>half()</code>:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1"><span class="kw">fraction</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1"><span class="kw">fraction</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a></code></pre></div>
 <pre><code>## [1] 1 1</code></pre>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1"><span class="kw">half</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" title="1"><span class="kw">half</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a></code></pre></div>
 <pre><code>## [1] 1 1</code></pre>
 <p>or use its extended capabilities:</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1"><span class="kw">fraction</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" title="1"><span class="kw">fraction</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## [1] 0.6666667 0.6666667</code></pre>
 </div>
 <div id="exercises-3" class="section level3">
@@ -724,18 +746,18 @@ restrict ourself to <code>map</code>, the tidyverse equivalent of <code>lapply</
 <p>The <code>map</code> function ‘maps’ a function to each component of a list.
 Because lists are such a useful container for objects in R, very often, you
 want to map a function to each component of a list. Here is an example:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" title="1">ll &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">b =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="dt">c =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1">ll &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">b =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="dt">c =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">1</span>))</a></code></pre></div>
 <p>This is a list with three vectors, of which we want to calculate the means.
 Here’s an expression that does what we want (we will cover loops later on):</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" title="1">z &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb159-2" title="2"><span class="cf">for</span> (vi <span class="cf">in</span> ll){</a>
-<a class="sourceLine" id="cb159-3" title="3">  z &lt;-<span class="st"> </span><span class="kw">c</span>(z, <span class="kw">mean</span>(vi))</a>
-<a class="sourceLine" id="cb159-4" title="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" title="1">z &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb163-2" title="2"><span class="cf">for</span> (vi <span class="cf">in</span> ll){</a>
+<a class="sourceLine" id="cb163-3" title="3">  z &lt;-<span class="st"> </span><span class="kw">c</span>(z, <span class="kw">mean</span>(vi))</a>
+<a class="sourceLine" id="cb163-4" title="4">}</a></code></pre></div>
 <p>We loop through each component of the list, calculate the mean and add it to
 an output vector, <code>z</code>. With the <code>map</code> function, this can be written much
 more concise:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" title="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb160-2" title="2"><span class="kw">map</span>(ll, mean)</a></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb164-2" title="2"><span class="kw">map</span>(ll, mean)</a></code></pre></div>
 <pre><code>## $a
 ## [1] 3
 ## 
@@ -749,7 +771,7 @@ each element of which is the result of applying the second argument (a
 function) to the corresponding component of the list argument. If the input
 list is named (as in the example), so will be the output.</p>
 <p>Additional arguments to the <code>mean()</code> function can be included as well:</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1"><span class="kw">map</span>(ll, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1"><span class="kw">map</span>(ll, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## $a
 ## [1] 3
 ## 
@@ -760,16 +782,16 @@ list is named (as in the example), so will be the output.</p>
 ## [1] 2.666667</code></pre>
 <p>If you want to convert the list to a vector (as in the loop example), use
 <code>unlist</code> on the result:</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1"><span class="kw">unlist</span>(<span class="kw">map</span>(ll, mean))</a></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="kw">unlist</span>(<span class="kw">map</span>(ll, mean))</a></code></pre></div>
 <pre><code>##        a        b        c 
 ## 3.000000 2.000000 2.666667</code></pre>
 <p>Of course, you can use <code>map</code> with your own functions. Here we want to pick
 the second element of each vector in the list:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1">pick_second &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb166-2" title="2">  x[<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb166-3" title="3">}</a>
-<a class="sourceLine" id="cb166-4" title="4"></a>
-<a class="sourceLine" id="cb166-5" title="5"><span class="kw">map</span>(ll, pick_second)</a></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1">pick_second &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb170-2" title="2">  x[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb170-3" title="3">}</a>
+<a class="sourceLine" id="cb170-4" title="4"></a>
+<a class="sourceLine" id="cb170-5" title="5"><span class="kw">map</span>(ll, pick_second)</a></code></pre></div>
 <pre><code>## $a
 ## [1] 3
 ## 
@@ -781,7 +803,7 @@ the second element of each vector in the list:</p>
 <p>In cases like this, we may want to use the possibility of having <em>anonymous
 functions</em>, i.e. functions without a name. So we just substitute <code>pick_second</code>
 by its definition:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="kw">map</span>(ll, <span class="cf">function</span>(x) x[<span class="dv">2</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1"><span class="kw">map</span>(ll, <span class="cf">function</span>(x) x[<span class="dv">2</span>])</a></code></pre></div>
 <pre><code>## $a
 ## [1] 3
 ## 
@@ -815,9 +837,9 @@ a group of data. Third, there are higher order functions like <code>map</code> (
 the tidyverse equivalent: <code>purrr::map</code>) that save you from loops most of the
 time.</p>
 <p>Anyway, here is the loop:</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {</a>
-<a class="sourceLine" id="cb170-2" title="2">  <span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb170-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) {</a>
+<a class="sourceLine" id="cb174-2" title="2">  <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb174-3" title="3">}</a></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
 ## [1] 3
@@ -834,11 +856,11 @@ iteration, <code>i = (1:10)[1]</code>; in the second iteration, <code>i = (1:10)
 on.</p>
 <p>And we are not restricted to integer vectors, but can loop over any vector,
 even over lists:</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1">z &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb172-2" title="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">list</span>(swiss, mtcars)) {</a>
-<a class="sourceLine" id="cb172-3" title="3">  z &lt;-<span class="st"> </span><span class="kw">c</span>(z, <span class="kw">colnames</span>(i))</a>
-<a class="sourceLine" id="cb172-4" title="4">}</a>
-<a class="sourceLine" id="cb172-5" title="5">z</a></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" title="1">z &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb176-2" title="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">list</span>(swiss, mtcars)) {</a>
+<a class="sourceLine" id="cb176-3" title="3">  z &lt;-<span class="st"> </span><span class="kw">c</span>(z, <span class="kw">colnames</span>(i))</a>
+<a class="sourceLine" id="cb176-4" title="4">}</a>
+<a class="sourceLine" id="cb176-5" title="5">z</a></code></pre></div>
 <pre><code>##  [1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;     
 ##  [4] &quot;Education&quot;        &quot;Catholic&quot;         &quot;Infant.Mortality&quot;
 ##  [7] &quot;mpg&quot;              &quot;cyl&quot;              &quot;disp&quot;            
@@ -846,7 +868,7 @@ even over lists:</p>
 ## [13] &quot;qsec&quot;             &quot;vs&quot;               &quot;am&quot;              
 ## [16] &quot;gear&quot;             &quot;carb&quot;</code></pre>
 <p>But we saw a much clearer way of doing this above:</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1"><span class="kw">unlist</span>(<span class="kw">map</span>(<span class="kw">list</span>(swiss, mtcars), colnames))</a></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1"><span class="kw">unlist</span>(<span class="kw">map</span>(<span class="kw">list</span>(swiss, mtcars), colnames))</a></code></pre></div>
 <pre><code>##  [1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;     
 ##  [4] &quot;Education&quot;        &quot;Catholic&quot;         &quot;Infant.Mortality&quot;
 ##  [7] &quot;mpg&quot;              &quot;cyl&quot;              &quot;disp&quot;            
@@ -868,11 +890,13 @@ even over lists:</p>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
