@@ -351,4 +351,9 @@ htmlreg(
 #'
 #' 8. Can we improve the model (in terms of adjusted R2), by dropping a variable?
 #' Hint: the `glance` function makes it easy to directly access the adjusted R2.
+#'
+#'
+#' # Transformation 3
+#'
+#' [Intro Slides](08-transformation-3.html)
 

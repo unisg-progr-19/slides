@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7 Visualizing statistical output | 7784 Skills: Programming in R</title>
   <meta name="description" content="7 Visualizing statistical output | 7784 Skills: Programming in R" />
-  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7 Visualizing statistical output | 7784 Skills: Programming in R" />
   <meta property="og:type" content="book" />
@@ -176,6 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.0.3" data-path="more-on-linear-regression.html"><a href="more-on-linear-regression.html#omitted-variable-bias"><i class="fa fa-check"></i><b>8.0.3</b> Omitted variable bias</a></li>
 <li class="chapter" data-level="8.1" data-path="more-on-linear-regression.html"><a href="more-on-linear-regression.html#exercises-6"><i class="fa fa-check"></i><b>8.1</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="transformation-3.html"><a href="transformation-3.html"><i class="fa fa-check"></i><b>9</b> Transformation 3</a></li>
 </ul>
 
       </nav>
@@ -229,9 +230,9 @@ contains values such as R^2, adjusted R^2, and residual standard error that
 are computed once for the entire model.</p></li>
 </ul>
 <p>To see it in action, consider our simple linear regression from last lesson:</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" title="1">m &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</a></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" title="1">m &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</a></code></pre></div>
 <p>We saw that the <code>summary()</code> function prints an overview of the regression:</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" title="1"><span class="kw">summary</span>(m)</a></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" title="1"><span class="kw">summary</span>(m)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Fertility ~ Education, data = swiss)
@@ -253,8 +254,8 @@ are computed once for the entire model.</p></li>
 <p>But this is tedious to work with. It is much easier to have the regression
 output in a data frame. To extract the information on the <em>coefficients</em>, use
 <code>tidy()</code>:</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" title="1"><span class="kw">library</span>(broom)</a>
-<a class="sourceLine" id="cb283-2" title="2"><span class="kw">tidy</span>(m)</a></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" title="1"><span class="kw">library</span>(broom)</a>
+<a class="sourceLine" id="cb279-2" title="2"><span class="kw">tidy</span>(m)</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -262,25 +263,24 @@ output in a data frame. To extract the information on the <em>coefficients</em>,
 ## 2 Education     -0.862     0.145     -5.95 3.66e- 7</code></pre>
 <p><code>augment()</code> returns statistical information on the <em>observations</em>, such as
 resiudals and predicted values:</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" title="1"><span class="kw">augment</span>(m)</a></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" title="1"><span class="kw">augment</span>(m)</a></code></pre></div>
 <pre><code>## # A tibble: 47 x 10
-##    .rownames Fertility Education .fitted .se.fit .resid   .hat .sigma
-##    &lt;chr&gt;         &lt;dbl&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1 Courtela…      80.2        12    69.3    1.39  10.9  0.0215   9.41
-##  2 Delemont       83.1         9    71.8    1.41  11.3  0.0222   9.40
-##  3 Franches…      92.5         5    75.3    1.63  17.2  0.0297   9.18
-##  4 Moutier        85.8         7    73.6    1.49  12.2  0.0250   9.37
-##  5 Neuvevil…      76.9        15    66.7    1.50  10.2  0.0251   9.42
-##  6 Porrentr…      76.1         7    73.6    1.49   2.53 0.0250   9.54
-##  7 Broye          83.8         7    73.6    1.49  10.2  0.0250   9.42
-##  8 Glane          92.4         8    72.7    1.44  19.7  0.0234   9.07
-##  9 Gruyere        82.4         7    73.6    1.49   8.83 0.0250   9.46
-## 10 Sarine         82.9        13    68.4    1.41  14.5  0.0222   9.29
-## # … with 37 more rows, and 2 more variables: .cooksd &lt;dbl&gt;,
-## #   .std.resid &lt;dbl&gt;</code></pre>
+##    .rownames Fertility Education .fitted .se.fit .resid   .hat .sigma .cooksd
+##    &lt;chr&gt;         &lt;dbl&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Courtela…      80.2        12    69.3    1.39  10.9  0.0215   9.41 1.51e-2
+##  2 Delemont       83.1         9    71.8    1.41  11.3  0.0222   9.40 1.65e-2
+##  3 Franches…      92.5         5    75.3    1.63  17.2  0.0297   9.18 5.23e-2
+##  4 Moutier        85.8         7    73.6    1.49  12.2  0.0250   9.37 2.20e-2
+##  5 Neuvevil…      76.9        15    66.7    1.50  10.2  0.0251   9.42 1.55e-2
+##  6 Porrentr…      76.1         7    73.6    1.49   2.53 0.0250   9.54 9.41e-4
+##  7 Broye          83.8         7    73.6    1.49  10.2  0.0250   9.42 1.54e-2
+##  8 Glane          92.4         8    72.7    1.44  19.7  0.0234   9.07 5.32e-2
+##  9 Gruyere        82.4         7    73.6    1.49   8.83 0.0250   9.46 1.15e-2
+## 10 Sarine         82.9        13    68.4    1.41  14.5  0.0222   9.29 2.74e-2
+## # … with 37 more rows, and 1 more variable: .std.resid &lt;dbl&gt;</code></pre>
 <p>Finally <code>glance()</code> returns summary statistics that are valid for the
 regression model:</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" title="1"><span class="kw">glance</span>(m)</a></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" title="1"><span class="kw">glance</span>(m)</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 11
 ##   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -297,23 +297,13 @@ for publications out-of-the box.
 but its output has some flaws, especially when used in the PDF mode. E.g.,
 it does not support the LaTeX booktab package.)</p>
 <p>For a quick demonstration, consider two competing models:</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" title="1">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</a>
-<a class="sourceLine" id="cb289-2" title="2">m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education <span class="op">+</span><span class="st"> </span>Agriculture <span class="op">+</span><span class="st"> </span>Examination, <span class="dt">data =</span> swiss)</a>
-<a class="sourceLine" id="cb289-3" title="3">m3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Agriculture <span class="op">+</span><span class="st"> </span>Examination, <span class="dt">data =</span> swiss)</a></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" title="1">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education, <span class="dt">data =</span> swiss)</a>
+<a class="sourceLine" id="cb285-2" title="2">m2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Education <span class="op">+</span><span class="st"> </span>Agriculture <span class="op">+</span><span class="st"> </span>Examination, <span class="dt">data =</span> swiss)</a>
+<a class="sourceLine" id="cb285-3" title="3">m3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Fertility <span class="op">~</span><span class="st"> </span>Agriculture <span class="op">+</span><span class="st"> </span>Examination, <span class="dt">data =</span> swiss)</a></code></pre></div>
 <p>Wrap the model in a <code>list()</code> and pass them to <code>texreg()</code> (if you want to
 produces a PDF) or to <code>htmlreg()</code> (if you want to produces a HTML document).</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" title="1"><span class="kw">library</span>(texreg)</a></code></pre></div>
-<pre><code>## Version:  1.36.23
-## Date:     2017-03-03
-## Author:   Philip Leifeld (University of Glasgow)
-## 
-## Please cite the JSS article in your publications -- see citation(&quot;texreg&quot;).</code></pre>
-<pre><code>## 
-## Attaching package: &#39;texreg&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
-## 
-##     extract</code></pre>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" title="1"><span class="kw">htmlreg</span>(<span class="kw">list</span>(m1, m2, m3), <span class="dt">doctype =</span> <span class="ot">FALSE</span>, <span class="dt">star.symbol =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">*&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" title="1"><span class="kw">library</span>(texreg)</a>
+<a class="sourceLine" id="cb286-2" title="2"><span class="kw">htmlreg</span>(<span class="kw">list</span>(m1, m2, m3), <span class="dt">doctype =</span> <span class="ot">FALSE</span>, <span class="dt">star.symbol =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">*&quot;</span>)</a></code></pre></div>
 <table cellspacing="0" align="center" style="border: none;">
 <caption align="bottom" style="margin-top:0.3em;">
 Statistical models
@@ -502,7 +492,7 @@ is interpreted as it is, not not simply printed.
 content is used within RMarkdown.
 There is also a version than produces a text version of the output, which is
 useful for quick interactive exploration of the table:</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" title="1"><span class="kw">screenreg</span>(<span class="kw">list</span>(m1, m2, m3))</a></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" title="1"><span class="kw">screenreg</span>(<span class="kw">list</span>(m1, m2, m3))</a></code></pre></div>
 <pre><code>## 
 ## ============================================
 ##              Model 1    Model 2    Model 3  
@@ -523,10 +513,10 @@ useful for quick interactive exploration of the table:</p>
 ## ============================================
 ## *** p &lt; 0.001, ** p &lt; 0.01, * p &lt; 0.05</code></pre>
 <p>You can give the models a customized name:</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" title="1"><span class="kw">htmlreg</span>(</a>
-<a class="sourceLine" id="cb297-2" title="2">  <span class="kw">list</span>(<span class="st">`</span><span class="dt">(1)</span><span class="st">`</span> =<span class="st"> </span>m1, <span class="st">`</span><span class="dt">(2)</span><span class="st">`</span> =<span class="st"> </span>m2, <span class="st">`</span><span class="dt">(3)</span><span class="st">`</span> =<span class="st"> </span>m3),</a>
-<a class="sourceLine" id="cb297-3" title="3">  <span class="dt">doctype =</span> <span class="ot">FALSE</span>, <span class="dt">star.symbol =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">*&quot;</span></a>
-<a class="sourceLine" id="cb297-4" title="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" title="1"><span class="kw">htmlreg</span>(</a>
+<a class="sourceLine" id="cb289-2" title="2">  <span class="kw">list</span>(<span class="st">`</span><span class="dt">(1)</span><span class="st">`</span> =<span class="st"> </span>m1, <span class="st">`</span><span class="dt">(2)</span><span class="st">`</span> =<span class="st"> </span>m2, <span class="st">`</span><span class="dt">(3)</span><span class="st">`</span> =<span class="st"> </span>m3),</a>
+<a class="sourceLine" id="cb289-3" title="3">  <span class="dt">doctype =</span> <span class="ot">FALSE</span>, <span class="dt">star.symbol =</span> <span class="st">&quot;</span><span class="ch">\\</span><span class="st">*&quot;</span></a>
+<a class="sourceLine" id="cb289-4" title="4">)</a></code></pre></div>
 <table cellspacing="0" align="center" style="border: none;">
 <caption align="bottom" style="margin-top:0.3em;">
 Statistical models
@@ -711,17 +701,17 @@ RMSE
 </table>
 <p>texreg shines when it comes to LaTeX tables, which are often used in
 publications. The following line will produce the LaTeX table below</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" title="1"><span class="kw">texreg</span>(<span class="kw">list</span>(<span class="st">`</span><span class="dt">(1)</span><span class="st">`</span> =<span class="st"> </span>m1, <span class="st">`</span><span class="dt">(2)</span><span class="st">`</span> =<span class="st"> </span>m2, <span class="st">`</span><span class="dt">(3)</span><span class="st">`</span> =<span class="st"> </span>m3), <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">dcolumn =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" title="1"><span class="kw">texreg</span>(<span class="kw">list</span>(<span class="st">`</span><span class="dt">(1)</span><span class="st">`</span> =<span class="st"> </span>m1, <span class="st">`</span><span class="dt">(2)</span><span class="st">`</span> =<span class="st"> </span>m2, <span class="st">`</span><span class="dt">(3)</span><span class="st">`</span> =<span class="st"> </span>m3), <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">dcolumn =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="img/texreg-pdf.png" /></p>
 <p>However, because we are using the LaTeX packages <code>booktabs</code> (for nicer lines)
 and <code>dcolumn</code> (for aligned numbers), we need to load these first and adjust
 the YAML header as follows:</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb299-1" title="1"><span class="ot">---</span></a>
-<a class="sourceLine" id="cb299-2" title="2"><span class="fu">output:</span><span class="at"> pdf_document</span></a>
-<a class="sourceLine" id="cb299-3" title="3"><span class="fu">header-includes:</span></a>
-<a class="sourceLine" id="cb299-4" title="4">  <span class="kw">-</span> \usepackage<span class="kw">{</span>booktabs<span class="kw">}</span></a>
-<a class="sourceLine" id="cb299-5" title="5">  <span class="kw">-</span> \usepackage<span class="kw">{</span>dcolumn<span class="kw">}</span></a>
-<a class="sourceLine" id="cb299-6" title="6"><span class="ot">---</span></a></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb291-1" title="1"><span class="ot">---</span></a>
+<a class="sourceLine" id="cb291-2" title="2"><span class="fu">output:</span><span class="at"> pdf_document</span></a>
+<a class="sourceLine" id="cb291-3" title="3"><span class="fu">header-includes:</span></a>
+<a class="sourceLine" id="cb291-4" title="4">  <span class="kw">-</span> \usepackage<span class="kw">{</span>booktabs<span class="kw">}</span></a>
+<a class="sourceLine" id="cb291-5" title="5">  <span class="kw">-</span> \usepackage<span class="kw">{</span>dcolumn<span class="kw">}</span></a>
+<a class="sourceLine" id="cb291-6" title="6"><span class="ot">---</span></a></code></pre></div>
 </div>
 <div id="from-data-frame-to-output-kable" class="section level2">
 <h2><span class="header-section-number">7.3</span> From data frame to output: kable</h2>
@@ -731,7 +721,7 @@ cases, so there is rearely a need to switch to more extensive package like
 <code>gt</code> or <code>xtable</code>. Contrary to texreg, kable is smart enough to see if we want
 to produce a PDF or a HTML document. To produce a simple table, just write
 <code>kable()</code> around a data frame:</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" title="1"><span class="kw">kable</span>(iris[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,])</a></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" title="1"><span class="kw">kable</span>(iris[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,])</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
