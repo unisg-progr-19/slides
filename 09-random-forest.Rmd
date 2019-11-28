@@ -1,0 +1,135 @@
+---
+title: "7784 Skills: Programming in R"
+author: 'Kirill Müller, Christoph Sax'
+date: 'University of St. Gallen, 14.11.2019'        # 1\. to avoid itemizing
+output:
+  cynkradown::cynkra_slides:
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    selfcontained: true
+fontsize: 10pt
+lang: english                # ngerman, english, italian, french
+font: frutiger
+wide: false
+colorlinks: false
+logo: false
+header-includes:
+  - \usepackage{parskip}
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+set.seed(20191010)
+
+ggplot <- function(...) ggplot2::ggplot(...) + theme_bw(16)
+```
+
+class: middle, inverse
+
+# 28.11.: Decision Trees and Random Forest
+
+
+---
+
+
+# Course Syllabus
+
+- Part 1: Data Transformation ✓
+
+- Part 2: Modeling ✓
+
+- Part 3: Advanced Topics
+
+---
+
+# Part 3: Advanced Topics
+
+- 21.11.: Transforming data III [Due: assignment 2] ✓
+
+- 28.11.: **Random Forest**
+
+- 5.12.: Time Series
+
+- 12.12.: Transforming data IV  [Due: assignment 3]
+
+- 19.12.: Workflow review II [Due: report]
+
+---
+
+
+# Topics for today
+
+- Homework hw2
+
+- Two presentations
+
+- Decision Trees
+
+- Random Forest
+
+
+
+---
+
+# Project grading criteria
+
+Contributes 70% to the final grade
+
+- R skills (40%)
+
+- Originality (10%)
+
+- Scientific and presentational style (20%)
+
+The same grade is given to all members of the group.
+
+
+---
+
+# R skills 40/70
+
+   - show that you're in good command of the tools that we reviewed in the lecture
+
+   - the code repository should be in a state that allows us to re-run your analysis. The README should contain information on how to do this. If we need to acquire data that it is not stored in your code repository, the README should also describe this process.
+
+---
+
+# Originality 10/70
+
+   - Is your research question relevant and interesting?
+
+   - Is the approach to your question interesting?
+
+---
+
+# Scientific and presentation style 20/70
+
+   - The report should be set up like a scientific working paper.
+
+   - It should include a minimal overview of the literature (which may be simply things from the internet).
+
+   - Statistical modeling should be correct.
+
+
+---
+# Schedule
+
+  Date       | First Slot | Second Slot
+-------------|------------|------------
+  10/24/2019 | team04     | team10
+  11/14/2019 | team09     | team03
+  11/21/2019 | team12     | team01
+  11/28/2019 | team07     | team05
+  12/05/2019 | team06     | team11
+  12/12/2019 | team08     |
+  12/19/2019 |            |
+---
+
+
+
+
+
+
+

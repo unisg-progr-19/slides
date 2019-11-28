@@ -1,4 +1,4 @@
-# Visualizing statistical output
+# Regression and Visualization
 
 [Download as R script](07-stats-tables.R)
 
@@ -155,6 +155,7 @@ to produce a PDF or a HTML document. To produce a simple table, just write
 `kable()` around a data frame:
 
 ````{r }
+library(knitr)
 kable(iris[1:5,])
 ````
 
@@ -170,7 +171,7 @@ won't cover them here, but both are useful sources for documentation to style
 your tables according to your needs.
 
 
-# More on linear regression
+## More on linear regression
 
 We had a quick look at the `lm()` function and linear regressions in R. We
 will deepen our knowledge by having another look at these models. This time,

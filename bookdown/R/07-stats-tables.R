@@ -1,4 +1,4 @@
-#' # Visualizing statistical output
+#' # Regression and Visualization
 #'
 #' [Intro Slides](07-statistics-2.html)
 #'
@@ -138,6 +138,7 @@ texreg(list(`(1)` = m1, `(2)` = m2, `(3)` = m3), booktabs = TRUE, dcolumn = TRUE
 #' to produce a PDF or a HTML document. To produce a simple table, just write
 #' `kable()` around a data frame:
 
+library(knitr)
 kable(iris[1:5,])
 
 #' In a PDF, the output looks like the following:
@@ -152,7 +153,7 @@ kable(iris[1:5,])
 #' your tables according to your needs.
 #'
 #'
-#' # More on linear regression
+#' ## More on linear regression
 #'
 #' We had a quick look at the `lm()` function and linear regressions in R. We
 #' will deepen our knowledge by having another look at these models. This time,

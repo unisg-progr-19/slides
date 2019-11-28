@@ -28,19 +28,19 @@ ggplot <- function(...) ggplot2::ggplot(...) + theme_bw(16)
 
 class: middle, inverse
 
-# 14.11.: Visualizing statistical output
+# 28.11.: Decision Trees and Random Forest
 
 
 ---
 # Topics for today
 
-- Homework 5, 6
+- Homework hw2
 
 - Two presentations
 
-- Visualizing statistical output
+- Decision Trees
 
-- More on linear regression
+- Random Forest
 
 
 ---
@@ -55,141 +55,8 @@ class: middle, inverse
   12/05/2019 | team06     | team11
   12/12/2019 | team08     |
   12/19/2019 |            |
-
-
 ---
 
-
-class: middle, inverse
-
-# Homework (so far)
-
-
----
-
-# Do not leave interactive functions in your code
-
-- no `view()`, `View()`
-
-- no `install.packages()`
-
-
----
-
-
-# Ensure reproducibility
-
-- Restart R (Shift + Ctrl + F10)
-
-- Run script (Shift + Ctrl + Enter)
-
-- Make sure there are no errors
-
-
----
-
-
-# Style
-
-- https://style.tidyverse.org/
-
-- Use the [styler](https://cran.r-project.org/web/packages/styler/index.html) package
-
-
----
-
-# Style II
-Most infix operators (`==`, `+`, `-`, `<-`, etc.) should always be surrounded by spaces:
-
-
-```r
-# Good
-height <- (feet * 12) + inches
-mean(x, na.rm = 10)
-
-# Bad
-height<-feet*12+inches
-mean(x, na.rm=10)
-```
-
----
-# Style III
-
-
-```r
-# Good
-do_something_very_complicated(
-  something = "that",
-  requires = many,
-  arguments = "some of which may be long"
-)
-
-# Bad
-do_something_very_complicated("that", requires, many, arguments,
-                              "some of which may be long"
-                              )
-```
-
----
-# Style IV
-
-Use `TRUE` not `T`, because:
-
-```{r, error=TRUE}
-TRUE <- 1
-FALSE <- 0
-
-# But
-T <- F
-```
----
-
-
-# Style V
-
-The `c()` function is only needed to concatenate vectors. Do not write it otherwise.
-
-Needed:
-```r
-c(5, 5)
-```
-
-Not needed:
-```r
-c(rnorm(5))
-
-rnorm(5)  # better!
-```
-
----
-
-# `lesson05.R`, first exercise
-
-In the matrix section, questions 6 and 7 wrongly referred to questions 3 and
-4, rather than to questions 4 and 5, and made not much sense. They should
-have been stated as:
-
-- Compare the classes of the results in 4. and 5. to each other.
-
-- Modify 4., so that it returns the same class as 5.
-
----
-
-# `lesson06.R`, last exercise
-
-> Add a dummy variable, `DCATH`, that contains 0 if the share of Catholics
-is below 50, 1 otherwise. Verify that you get the same result as if you
-directly included a categorical variable.
-
-Dummy variable:
-```r
-c(1, 1, 1, 1, 0, 0)
-```
-
-Categorical variable
-```r
-c("catholic", "catholic", "catholic", "catholic", "protestant", "protestant")
-```
 
 
 
