@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 Time Series | 7784 Skills: Programming in R</title>
+  <meta name="description" content="10 Time Series | 7784 Skills: Programming in R" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 Time Series | 7784 Skills: Programming in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 Time Series | 7784 Skills: Programming in R" />
+  
+  
+  
+
+<meta name="author" content="Kirill Müller, Christoph Sax" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="random-forests.html"/>
+
+<script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="book_assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="visualization-and-reporting.html"><a href="visualization-and-reporting.html"><i class="fa fa-check"></i><b>2</b> Visualization and Reporting</a></li>
+<li class="chapter" data-level="3" data-path="data-tranformation-i.html"><a href="data-tranformation-i.html"><i class="fa fa-check"></i><b>3</b> Data Tranformation I</a></li>
+<li class="chapter" data-level="4" data-path="data-tranformation-ii.html"><a href="data-tranformation-ii.html"><i class="fa fa-check"></i><b>4</b> Data Tranformation II</a></li>
+<li class="chapter" data-level="5" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html"><i class="fa fa-check"></i><b>5</b> Basics of R base</a><ul>
+<li class="chapter" data-level="5.1" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#the-main-data-structures"><i class="fa fa-check"></i><b>5.1</b> The Main Data Structures</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#vectors-the-r-workhorse"><i class="fa fa-check"></i><b>5.1.1</b> Vectors, the R Workhorse</a></li>
+<li class="chapter" data-level="5.1.2" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#matrices"><i class="fa fa-check"></i><b>5.1.2</b> Matrices</a></li>
+<li class="chapter" data-level="5.1.3" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#lists"><i class="fa fa-check"></i><b>5.1.3</b> Lists</a></li>
+<li class="chapter" data-level="5.1.4" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#data-frames"><i class="fa fa-check"></i><b>5.1.4</b> Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#introduction-to-functions"><i class="fa fa-check"></i><b>5.2</b> Introduction to Functions</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#variable-scope"><i class="fa fa-check"></i><b>5.2.1</b> Variable Scope</a></li>
+<li class="chapter" data-level="5.2.2" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#default-arguments"><i class="fa fa-check"></i><b>5.2.2</b> Default Arguments</a></li>
+<li class="chapter" data-level="5.2.3" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#exercises-3"><i class="fa fa-check"></i><b>5.2.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#higher-order-functions"><i class="fa fa-check"></i><b>5.3</b> Higher-Order Functions</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#map"><i class="fa fa-check"></i><b>5.3.1</b> <code>map</code></a></li>
+<li class="chapter" data-level="5.3.2" data-path="basics-of-r-base.html"><a href="basics-of-r-base.html#loops"><i class="fa fa-check"></i><b>5.3.2</b> Loops</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="math-and-statistics.html"><a href="math-and-statistics.html"><i class="fa fa-check"></i><b>6</b> Math and Statistics</a><ul>
+<li class="chapter" data-level="6.1" data-path="math-and-statistics.html"><a href="math-and-statistics.html#math"><i class="fa fa-check"></i><b>6.1</b> Math</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="math-and-statistics.html"><a href="math-and-statistics.html#basic-math-functions"><i class="fa fa-check"></i><b>6.1.1</b> Basic Math Functions</a></li>
+<li class="chapter" data-level="6.1.2" data-path="math-and-statistics.html"><a href="math-and-statistics.html#linear-algebra-operations-on-vectors-and-matrices-optional"><i class="fa fa-check"></i><b>6.1.2</b> Linear Algebra Operations on Vectors and Matrices <em>(optional)</em></a></li>
+<li class="chapter" data-level="6.1.3" data-path="math-and-statistics.html"><a href="math-and-statistics.html#statistical-distributions-optional"><i class="fa fa-check"></i><b>6.1.3</b> Statistical Distributions <em>(optional)</em></a></li>
+<li class="chapter" data-level="6.1.4" data-path="math-and-statistics.html"><a href="math-and-statistics.html#set-operations-optional"><i class="fa fa-check"></i><b>6.1.4</b> Set Operations <em>(optional)</em></a></li>
+<li class="chapter" data-level="6.1.5" data-path="math-and-statistics.html"><a href="math-and-statistics.html#exercises-4"><i class="fa fa-check"></i><b>6.1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="math-and-statistics.html"><a href="math-and-statistics.html#linear-regression"><i class="fa fa-check"></i><b>6.2</b> Linear Regression</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="math-and-statistics.html"><a href="math-and-statistics.html#example-bootstrapping-standard-errors-optional"><i class="fa fa-check"></i><b>6.2.1</b> Example: Bootstrapping standard errors <em>(optional)</em></a></li>
+<li class="chapter" data-level="6.2.2" data-path="math-and-statistics.html"><a href="math-and-statistics.html#factors-in-regression-models"><i class="fa fa-check"></i><b>6.2.2</b> Factors in regression models</a></li>
+<li class="chapter" data-level="6.2.3" data-path="math-and-statistics.html"><a href="math-and-statistics.html#exercises-5"><i class="fa fa-check"></i><b>6.2.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="math-and-statistics.html"><a href="math-and-statistics.html#numerical-optimization-optional"><i class="fa fa-check"></i><b>6.3</b> Numerical Optimization <em>(optional)</em></a></li>
+<li class="chapter" data-level="6.4" data-path="math-and-statistics.html"><a href="math-and-statistics.html#extended-exercises"><i class="fa fa-check"></i><b>6.4</b> Extended Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="regression-and-visualization.html"><a href="regression-and-visualization.html"><i class="fa fa-check"></i><b>7</b> Regression and Visualization</a><ul>
+<li class="chapter" data-level="7.1" data-path="regression-and-visualization.html"><a href="regression-and-visualization.html#the-broom-package"><i class="fa fa-check"></i><b>7.1</b> The broom package</a></li>
+<li class="chapter" data-level="7.2" data-path="regression-and-visualization.html"><a href="regression-and-visualization.html#texreg-and-friends"><i class="fa fa-check"></i><b>7.2</b> texreg and friends</a></li>
+<li class="chapter" data-level="7.3" data-path="regression-and-visualization.html"><a href="regression-and-visualization.html#from-data-frame-to-output-kable"><i class="fa fa-check"></i><b>7.3</b> From data frame to output: kable</a></li>
+<li class="chapter" data-level="7.4" data-path="regression-and-visualization.html"><a href="regression-and-visualization.html#more-on-linear-regression"><i class="fa fa-check"></i><b>7.4</b> More on linear regression</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="regression-and-visualization.html"><a href="regression-and-visualization.html#relationship-between-class-size-and-test-score"><i class="fa fa-check"></i><b>7.4.1</b> Relationship between class size and test score</a></li>
+<li class="chapter" data-level="7.4.2" data-path="regression-and-visualization.html"><a href="regression-and-visualization.html#heteroskedasticity-consistent-standard-errors"><i class="fa fa-check"></i><b>7.4.2</b> Heteroskedasticity-consistent standard errors</a></li>
+<li class="chapter" data-level="7.4.3" data-path="regression-and-visualization.html"><a href="regression-and-visualization.html#omitted-variable-bias"><i class="fa fa-check"></i><b>7.4.3</b> Omitted variable bias</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="regression-and-visualization.html"><a href="regression-and-visualization.html#exercises-6"><i class="fa fa-check"></i><b>7.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="transformation-3.html"><a href="transformation-3.html"><i class="fa fa-check"></i><b>8</b> Transformation 3</a></li>
+<li class="chapter" data-level="9" data-path="random-forests.html"><a href="random-forests.html"><i class="fa fa-check"></i><b>9</b> Random Forests</a><ul>
+<li class="chapter" data-level="9.1" data-path="random-forests.html"><a href="random-forests.html#slang"><i class="fa fa-check"></i><b>9.1</b> Slang</a></li>
+<li class="chapter" data-level="9.2" data-path="random-forests.html"><a href="random-forests.html#the-boston-housing-data-set-again"><i class="fa fa-check"></i><b>9.2</b> The Boston housing data set, again</a></li>
+<li class="chapter" data-level="9.3" data-path="random-forests.html"><a href="random-forests.html#prediction-with-ols"><i class="fa fa-check"></i><b>9.3</b> Prediction with OLS</a></li>
+<li class="chapter" data-level="9.4" data-path="random-forests.html"><a href="random-forests.html#decision-trees"><i class="fa fa-check"></i><b>9.4</b> Decision Trees</a></li>
+<li class="chapter" data-level="9.5" data-path="random-forests.html"><a href="random-forests.html#random-forest"><i class="fa fa-check"></i><b>9.5</b> Random Forest</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="random-forests.html"><a href="random-forests.html#using-more-than-one-variable"><i class="fa fa-check"></i><b>9.5.1</b> Using more than one variable</a></li>
+<li class="chapter" data-level="9.5.2" data-path="random-forests.html"><a href="random-forests.html#variable-importance"><i class="fa fa-check"></i><b>9.5.2</b> Variable importance</a></li>
+<li class="chapter" data-level="9.5.3" data-path="random-forests.html"><a href="random-forests.html#exercises-7"><i class="fa fa-check"></i><b>9.5.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="random-forests.html"><a href="random-forests.html#classification"><i class="fa fa-check"></i><b>9.6</b> Classification</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>10</b> Time Series</a><ul>
+<li class="chapter" data-level="10.1" data-path="time-series.html"><a href="time-series.html#time-series-objects"><i class="fa fa-check"></i><b>10.1</b> Time Series Objects</a></li>
+<li class="chapter" data-level="10.2" data-path="time-series.html"><a href="time-series.html#economic-time-series"><i class="fa fa-check"></i><b>10.2</b> Economic Time Series</a></li>
+<li class="chapter" data-level="10.3" data-path="time-series.html"><a href="time-series.html#financial-time-series"><i class="fa fa-check"></i><b>10.3</b> Financial Time Series</a></li>
+<li class="chapter" data-level="10.4" data-path="time-series.html"><a href="time-series.html#automatic-arima-forecasting-with-the-forecast-package"><i class="fa fa-check"></i><b>10.4</b> Automatic ARIMA Forecasting with the ‘forecast’ package</a></li>
+<li class="chapter" data-level="10.5" data-path="time-series.html"><a href="time-series.html#seasonal-adjustment"><i class="fa fa-check"></i><b>10.5</b> Seasonal Adjustment</a></li>
+<li class="chapter" data-level="10.6" data-path="time-series.html"><a href="time-series.html#forecasting-daily-time-series"><i class="fa fa-check"></i><b>10.6</b> Forecasting daily time series</a></li>
+<li class="chapter" data-level="10.7" data-path="time-series.html"><a href="time-series.html#exercises-8"><i class="fa fa-check"></i><b>10.7</b> Exercises</a></li>
+<li class="chapter" data-level="10.8" data-path="time-series.html"><a href="time-series.html#from-ts-to-tibble-the-tsbox-package"><i class="fa fa-check"></i><b>10.8</b> From <code>ts</code> to <code>tibble</code>: The tsbox package</a><ul>
+<li class="chapter" data-level="10.8.1" data-path="time-series.html"><a href="time-series.html#convert-everything-to-everything"><i class="fa fa-check"></i><b>10.8.1</b> Convert everything to everything</a></li>
+<li class="chapter" data-level="10.8.2" data-path="time-series.html"><a href="time-series.html#use-same-functions-for-all-time-series-classes"><i class="fa fa-check"></i><b>10.8.2</b> Use same functions for all time series classes</a></li>
+<li class="chapter" data-level="10.8.3" data-path="time-series.html"><a href="time-series.html#combine-multiple-time-series"><i class="fa fa-check"></i><b>10.8.3</b> Combine multiple time series</a></li>
+<li class="chapter" data-level="10.8.4" data-path="time-series.html"><a href="time-series.html#frequency-conversion-and-alignment"><i class="fa fa-check"></i><b>10.8.4</b> Frequency conversion and alignment</a></li>
+<li class="chapter" data-level="10.8.5" data-path="time-series.html"><a href="time-series.html#shortcuts-for-pivot_wider-and-pivot_longer"><i class="fa fa-check"></i><b>10.8.5</b> Shortcuts for pivot_wider and pivot_longer</a></li>
+<li class="chapter" data-level="10.8.6" data-path="time-series.html"><a href="time-series.html#and-plot-just-about-everything"><i class="fa fa-check"></i><b>10.8.6</b> And plot just about everything</a></li>
+<li class="chapter" data-level="10.8.7" data-path="time-series.html"><a href="time-series.html#using-tsbox-in-a-dplyr-pipe-workflow"><i class="fa fa-check"></i><b>10.8.7</b> Using tsbox in a dplyr / pipe workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="10.9" data-path="time-series.html"><a href="time-series.html#exercises-9"><i class="fa fa-check"></i><b>10.9</b> Exercises</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">7784 Skills: Programming in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="time-series" class="section level1">
+<h1><span class="header-section-number">10</span> Time Series</h1>
+<p><a href="10-time-series.R">Download as R script</a></p>
+<p><a href="10-time-series.html">Intro Slides</a></p>
+<p>We will cover the basic handling of time series in R. We will meet quarterly
+and monthly time series as well as daily time series, and check out ways to
+forecast them. We will also cover the tsbox package, which allows you to
+convert between various time series classes.</p>
+<div id="time-series-objects" class="section level2">
+<h2><span class="header-section-number">10.1</span> Time Series Objects</h2>
+<p>R offers a build-in object class that facilitates working with time series
+data. Like matrices, time series objects (or <code>ts</code> objects) are basically a
+vector with an additional attribute. In order to create a <code>ts</code> object, use
+the <code>ts</code> function:</p>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" data-line-number="1">simple_ts &lt;-<span class="st"> </span><span class="kw">ts</span>(<span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">5</span>), <span class="dt">start =</span> <span class="kw">c</span>(<span class="dv">2015</span>, <span class="dv">4</span>), <span class="dt">frequency =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb384-2" data-line-number="2"><span class="kw">class</span>(simple_ts)</a></code></pre></div>
+<pre><code>## [1] &quot;ts&quot;</code></pre>
+<p>We will cover the <em>tsbox</em> package in a second. Among other, it gives you a
+convenient way to plot all kind of time series:</p>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" data-line-number="1"><span class="kw">library</span>(tsbox)</a>
+<a class="sourceLine" id="cb386-2" data-line-number="2"><span class="kw">ts_plot</span>(simple_ts)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p>The first argument is the data, a vector.</p>
+<p>The <code>start</code> argument describes the beginning of the time series. It is
+usually a vector of length 2; first the year, then the higher frequency
+period – the quarter, the month, the day.</p>
+<p>The <code>frequency</code> argument describes the frequency. It is 4 in our case,
+indicating quarterly data, but may be any other integer value.</p>
+<p>There are many build-in example time series R. A popular is <code>AirPassengers</code>,
+which shows monthly totals of international airline passengers, from 1949 to
+1960.</p>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" data-line-number="1">AirPassengers</a></code></pre></div>
+<pre><code>##      Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+## 1949 112 118 132 129 121 135 148 148 136 119 104 118
+## 1950 115 126 141 135 125 149 170 170 158 133 114 140
+## 1951 145 150 178 163 172 178 199 199 184 162 146 166
+## 1952 171 180 193 181 183 218 230 242 209 191 172 194
+## 1953 196 196 236 235 229 243 264 272 237 211 180 201
+## 1954 204 188 235 227 234 264 302 293 259 229 203 229
+## 1955 242 233 267 269 270 315 364 347 312 274 237 278
+## 1956 284 277 317 313 318 374 413 405 355 306 271 306
+## 1957 315 301 356 348 355 422 465 467 404 347 305 336
+## 1958 340 318 362 348 363 435 491 505 404 359 310 337
+## 1959 360 342 406 396 420 472 548 559 463 407 362 405
+## 1960 417 391 419 461 472 535 622 606 508 461 390 432</code></pre>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" data-line-number="1"><span class="kw">ts_plot</span>(AirPassengers)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
+</div>
+<div id="economic-time-series" class="section level2">
+<h2><span class="header-section-number">10.2</span> Economic Time Series</h2>
+<p>More often than constructing your own time series, you will get time series
+from other sources, e.g., from spreadsheets, from databases, or from the
+Internet.</p>
+<p>There is a vast number of on-line data sources for time series, as well as a
+plethora of R packages to access them. For economic data, the <a href="https://fred.stlouisfed.org">FRED
+database</a> is one of the best free on-line data
+source. However, it needs (free) registration and an API key, so we will use
+a different package in the following. A partial list with packages can be
+found [here](<a href="https://cengel.github.io/gearup2016/SULdataAccess.html" class="uri">https://cengel.github.io/gearup2016/SULdataAccess.html</a>().
+Another good website for economic data is
+<a href="https://db.nomics.world">dbnomics</a>.</p>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" data-line-number="1"><span class="co"># install.packages(&quot;rdbnomics&quot;)</span></a>
+<a class="sourceLine" id="cb390-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb390-3" data-line-number="3"><span class="kw">library</span>(rdbnomics)</a></code></pre></div>
+<pre><code>## Visit &lt;https://db.nomics.world&gt;.</code></pre>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1">swiss_gdp &lt;-</a>
+<a class="sourceLine" id="cb392-2" data-line-number="2"><span class="st">  </span><span class="kw">rdb</span>(<span class="dt">ids =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb392-3" data-line-number="3">    <span class="st">&quot;Eurostat/namq_10_gdp/Q.CLV05_MEUR.NSA.B1G.CH&quot;</span></a>
+<a class="sourceLine" id="cb392-4" data-line-number="4">  )) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb392-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(period, value) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb392-6" data-line-number="6"><span class="st">  </span><span class="kw">ts_ts</span>()</a></code></pre></div>
+<pre><code>## [time]: &#39;period&#39;</code></pre>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" data-line-number="1"><span class="kw">ts_plot</span>(swiss_gdp)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
+</div>
+<div id="financial-time-series" class="section level2">
+<h2><span class="header-section-number">10.3</span> Financial Time Series</h2>
+<p>For financial data, a popular package is quantmod, which allows you to access
+multiple data sources.</p>
+<p>Let’s get Apple stock data; Apple’s ticker symbol is <code>AAPL</code>. We use the
+quantmod function <code>getSymbols</code>, and pass a string as a first argument to
+identify the desired ticker symbol, pass <code>'yahoo'</code> to <code>src</code> for Yahoo!
+Finance. Always use <code>auto.assign = TRUE</code> in <code>getSymbols()</code>. The default
+behavior is confusing and should be avoided.</p>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" data-line-number="1"><span class="kw">library</span>(quantmod)</a></code></pre></div>
+<pre><code>## Loading required package: xts</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;xts&#39;:
+##   method     from
+##   as.zoo.xts zoo</code></pre>
+<pre><code>## 
+## Attaching package: &#39;xts&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     first, last</code></pre>
+<pre><code>## Loading required package: TTR</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;quantmod&#39;:
+##   method            from
+##   as.zoo.data.frame zoo</code></pre>
+<pre><code>## Version 0.4-0 included new data defaults. See ?getSymbols.</code></pre>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" data-line-number="1">apple &lt;-</a>
+<a class="sourceLine" id="cb403-2" data-line-number="2"><span class="st">  </span><span class="kw">getSymbols</span>(<span class="st">&quot;AAPL&quot;</span>, <span class="dt">src =</span> <span class="st">&quot;yahoo&quot;</span>, <span class="dt">auto.assign =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb403-3" data-line-number="3"><span class="st">  </span><span class="kw">ts_tbl</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb403-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> &quot;AAPL.Close&quot;</span>)</a></code></pre></div>
+<pre><code>## &#39;getSymbols&#39; currently uses auto.assign=TRUE by default, but will
+## use auto.assign=FALSE in 0.5-0. You will still be able to use
+## &#39;loadSymbols&#39; to automatically load data. getOption(&quot;getSymbols.env&quot;)
+## and getOption(&quot;getSymbols.auto.assign&quot;) will still be checked for
+## alternate defaults.
+## 
+## This message is shown once per session and may be disabled by setting 
+## options(&quot;getSymbols.warning4.0&quot;=FALSE). See ?getSymbols for details.</code></pre>
+<p><code>tsbox::ts_tbl</code> converts the output of <code>getSymbols</code> to a tibble data frame,
+which is much more useful. We will cover it later on. We use filter to focus
+on closing prices.</p>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" data-line-number="1"><span class="kw">ts_plot</span>(apple)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<p>This data covers business days only, so it is not regular. <code>ts</code> objects are
+not suitable to store data like this. Usually, data frames are a good
+alternative, but there are many other time series classes that deal with
+daily time series in R. We will meet some of them later on.</p>
+</div>
+<div id="automatic-arima-forecasting-with-the-forecast-package" class="section level2">
+<h2><span class="header-section-number">10.4</span> Automatic ARIMA Forecasting with the ‘forecast’ package</h2>
+<p>The <code>forecast</code> package offers many useful functions for working with regular
+time-series, such as <code>swiss_gdp</code>. We will just cover a single function that
+allows you to automatically build an ARIMA model.</p>
+<p>For more information on ARIMA based time series forecasting in R, please
+refer to the free online book, <em>Forecasting: principles and practice</em>, by Rob
+Hyndman:</p>
+<p><a href="https://otexts.com/fpp2/">https://otexts.com/fpp2/</a></p>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" data-line-number="1"><span class="kw">library</span>(forecast)</a></code></pre></div>
+<pre><code>## Registered S3 methods overwritten by &#39;forecast&#39;:
+##   method             from    
+##   fitted.fracdiff    fracdiff
+##   residuals.fracdiff fracdiff</code></pre>
+<p>If you don’t know much about a time series, but want to produce a simple
+forecast without external indicators, the <code>auto.arima</code> function is your
+friend. Let’s say we want to know what will happen to <code>AirPassengers</code> in
+1961.</p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" data-line-number="1">m_arima &lt;-<span class="st"> </span><span class="kw">auto.arima</span>(AirPassengers)</a>
+<a class="sourceLine" id="cb408-2" data-line-number="2">m_arima</a></code></pre></div>
+<pre><code>## Series: AirPassengers 
+## ARIMA(2,1,1)(0,1,0)[12] 
+## 
+## Coefficients:
+##          ar1     ar2      ma1
+##       0.5960  0.2143  -0.9819
+## s.e.  0.0888  0.0880   0.0292
+## 
+## sigma^2 estimated as 132.3:  log likelihood=-504.92
+## AIC=1017.85   AICc=1018.17   BIC=1029.35</code></pre>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" data-line-number="1">broom<span class="op">::</span><span class="kw">tidy</span>(m_arima)</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   term  estimate std.error
+##   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 ar1      0.596    0.0888
+## 2 ar2      0.214    0.0880
+## 3 ma1     -0.982    0.0292</code></pre>
+<p>As the ‘auto’ indicates, the function does everything on its own. First,
+it made the series stationary, by taking first differences and seasonal
+differences. Second, on the stationary series, it evaluates what it finds
+to be the best ARMA model. AR and MA models are just special cases of ARMA
+models.</p>
+<p>With these details you could also have fed the built-in <code>arima</code> function, to
+verify the result of the estimation:</p>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" data-line-number="1"><span class="kw">arima</span>(AirPassengers, <span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">seasonal =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>))</a></code></pre></div>
+<pre><code>## 
+## Call:
+## arima(x = AirPassengers, order = c(2, 1, 1), seasonal = c(0, 1, 0))
+## 
+## Coefficients:
+##          ar1     ar2      ma1
+##       0.5960  0.2143  -0.9819
+## s.e.  0.0888  0.0880   0.0292
+## 
+## sigma^2 estimated as 129.3:  log likelihood = -504.92,  aic = 1017.85</code></pre>
+<p>In order to produce a forecast, the <code>forecast</code> package has a function
+<code>forecast()</code>, which can be applied on the output of <code>auto.arima()</code>. The <code>h</code>
+argument indicates the number of periods to be forecasted:</p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" data-line-number="1">fct_arima &lt;-<span class="st"> </span><span class="kw">forecast</span>(m_arima, <span class="dt">h =</span> <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb414-2" data-line-number="2"><span class="kw">plot</span>(fct_arima)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
+<p>In order to access the point forecast, you can access the <code>mean</code> component of
+the <code>forecast()</code> output:</p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" data-line-number="1">fct_arima<span class="op">$</span>mean</a></code></pre></div>
+<pre><code>##           Jan      Feb      Mar      Apr      May      Jun      Jul      Aug
+## 1961 445.6349 420.3950 449.1983 491.8399 503.3944 566.8624 654.2601 638.5974
+##           Sep      Oct      Nov      Dec
+## 1961 540.8837 494.1266 423.3327 465.5075</code></pre>
+</div>
+<div id="seasonal-adjustment" class="section level2">
+<h2><span class="header-section-number">10.5</span> Seasonal Adjustment</h2>
+<p>Many time series exhibit a regular seasonal pattern over the year. US
+unemployment, for example, is usually higher from January to March, and again
+in June and July. Similarly, retail sales tend to peak with the Christmas
+season.</p>
+<p>To model the underlying structure of these series, any regular (seasonal)
+patterns are estimated and removed from the data. For example, to see if the
+economy is moving out of a recession during certain months, one wants the
+labor market data to be free from such seasonal effects. Seasonal adjustment
+decomposes a time series into a trend, a seasonal and an irregular component
+and removes the seasonal component from the data.</p>
+<p>The seasonal packages gives access to X-13ARIMA-SEATS, the seasonal
+adjustment software from the U.S. Census bureau. It is the standard software
+for seasonal adjustment of regular time series and takes care of seasonal
+effects, Easter effects and trading day adjustment.</p>
+<p>Basic usage is very simple and offers a good seasonal adjustment in most
+cases:</p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" data-line-number="1"><span class="kw">library</span>(seasonal)</a></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;seasonal&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:randomForest&#39;:
+## 
+##     outlier</code></pre>
+<pre><code>## The following object is masked from &#39;package:tibble&#39;:
+## 
+##     view</code></pre>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" data-line-number="1">m_seas &lt;-<span class="st"> </span><span class="kw">seas</span>(AirPassengers)</a>
+<a class="sourceLine" id="cb421-2" data-line-number="2"><span class="kw">plot</span>(m_seas)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" data-line-number="1"><span class="kw">ts_plot</span>(<span class="kw">final</span>(m_seas))</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-165-2.png" width="672" /></p>
+</div>
+<div id="forecasting-daily-time-series" class="section level2">
+<h2><span class="header-section-number">10.6</span> Forecasting daily time series</h2>
+<p>While <code>auto.arima()</code> and <code>seas()</code> work well with regular data, they are not
+suitable for daily data. An easy to use forecasting tool for daily (or even
+hourly) data is Facebook’s R package prophet. Note that such a forecast is
+purely based on historical information, and may have close to zero value for
+for financial data. Let’s try it nevertheless.</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" data-line-number="1"><span class="co"># install.packages(&quot;prophet&quot;)</span></a>
+<a class="sourceLine" id="cb423-2" data-line-number="2"><span class="kw">library</span>(prophet)</a></code></pre></div>
+<pre><code>## Loading required package: Rcpp</code></pre>
+<pre><code>## Loading required package: rlang</code></pre>
+<pre><code>## 
+## Attaching package: &#39;rlang&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:purrr&#39;:
+## 
+##     %@%, as_function, flatten, flatten_chr, flatten_dbl, flatten_int,
+##     flatten_lgl, flatten_raw, invoke, list_along, modify, prepend,
+##     splice</code></pre>
+<p>We call the prophet function to fit the model. The first argument is the
+historical data frame. It must have columns <code>ds</code>, for the time stamp, and <code>y</code>,
+the value of the series.</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" data-line-number="1">df &lt;-<span class="st"> </span>apple <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb428-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="dt">ds =</span> time, <span class="dt">y =</span> value)</a>
+<a class="sourceLine" id="cb428-3" data-line-number="3">m_prophet &lt;-<span class="st"> </span><span class="kw">prophet</span>(df)</a></code></pre></div>
+<pre><code>## Disabling daily seasonality. Run prophet with daily.seasonality=TRUE to override this.</code></pre>
+<p>prophet checks for daily, weekly, and yearly seasonality, as well as for
+holiday effects. Because our data is daily, there is no daily seasonality.
+This would only appear, e.g., in hourly data.</p>
+<p>Predictions are made on a data frame with a column ds containing the dates
+for which predictions are to be made. <code>make_future_dataframe()</code> takes the
+model object and a number of periods to forecast and produces a suitable data
+frame.</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" data-line-number="1">df_future &lt;-</a>
+<a class="sourceLine" id="cb430-2" data-line-number="2"><span class="st">  </span><span class="kw">make_future_dataframe</span>(m_prophet, <span class="dt">periods =</span> <span class="dv">365</span>)</a>
+<a class="sourceLine" id="cb430-3" data-line-number="3"><span class="kw">tail</span>(df_future)</a></code></pre></div>
+<pre><code>##              ds
+## 3614 2020-11-28
+## 3615 2020-11-29
+## 3616 2020-11-30
+## 3617 2020-12-01
+## 3618 2020-12-02
+## 3619 2020-12-03</code></pre>
+<p>As with most modeling procedures in R, we use the generic predict function to
+get our forecast. The forecast object is a data frame with a column <code>yhat</code>
+containing the forecast. It has additional columns for uncertainty intervals
+and seasonal components.</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" data-line-number="1">fct_prophet &lt;-</a>
+<a class="sourceLine" id="cb432-2" data-line-number="2"><span class="st">  </span><span class="kw">predict</span>(m_prophet, df_future) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb432-3" data-line-number="3"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb432-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb432-5" data-line-number="5">fct_prophet <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb432-6" data-line-number="6"><span class="st">  </span><span class="kw">select</span>(ds, yhat) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb432-7" data-line-number="7"><span class="st">  </span><span class="kw">tail</span>()</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##   ds                   yhat
+##   &lt;dttm&gt;              &lt;dbl&gt;
+## 1 2020-11-28 00:00:00  251.
+## 2 2020-11-29 00:00:00  251.
+## 3 2020-11-30 00:00:00  253.
+## 4 2020-12-01 00:00:00  253.
+## 5 2020-12-02 00:00:00  253.
+## 6 2020-12-03 00:00:00  252.</code></pre>
+<p>You can use the generic plot function to plot the forecast, by passing in the
+model and the forecast data frame.</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" data-line-number="1"><span class="kw">plot</span>(m_prophet, fct_prophet)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
+<p>You can use `prophet_plot_components() to see the forecast broken down into
+trend, weekly seasonality, and yearly seasonality:</p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" data-line-number="1"><span class="kw">prophet_plot_components</span>(m_prophet, fct_prophet)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+</div>
+<div id="exercises-8" class="section level2">
+<h2><span class="header-section-number">10.7</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>Estimate an automated ARIMA model of Swiss GDP.</p></li>
+<li><p>Inspect the model: What is the degree of seasonal and non-seasonal
+differentiation, what are the seasonal and non-seasonal AR and MA orders?</p></li>
+<li><p>Re-estimate 1, using R base <code>arima()</code> function</p></li>
+<li><p>Seasonally adjust Swiss GDP. Compare the ARIMA model with the one from
+<code>auto.arima</code>.</p></li>
+<li><p>Download your stock title of choice. Use prophet to forecast the series.</p></li>
+</ol>
+</div>
+<div id="from-ts-to-tibble-the-tsbox-package" class="section level2">
+<h2><span class="header-section-number">10.8</span> From <code>ts</code> to <code>tibble</code>: The tsbox package</h2>
+<p>The R ecosystem knows a vast number of time series classes: ts, xts, zoo,
+tsibble, tibbletime or timeSeries. The plethora of standards causes
+confusion. As different packages rely on different classes, it is hard to use
+them in the same analysis. tsbox provides a set of tools that make it easy to
+switch between these classes. It also allows the user to treat time series as
+plain data frames, facilitating the use with tools that assume rectangular
+data. It has it’s own <a href="https://www.tsbox.help/">website</a>.</p>
+<p>tsbox is built around a set of converters, which convert time series stored
+as <strong>ts</strong>, <strong>xts</strong>, <strong>data.frame</strong>, <strong>data.table</strong>, <strong>tibble</strong>, <strong>zoo</strong>,
+<strong>tsibble</strong>, <strong>tibbletime</strong> or <strong>timeSeries</strong> to each other.</p>
+<p>Because this works reliably, we can easily write functions that work for all
+classes. So whether we want to smooth, scale, differentiate, chain, forecast,
+regularize or seasonally adjust a time series, we can use the same commands
+to whatever time series class at hand. And, most conveniently, we get a time
+series plot function that works for all classes and frequencies.</p>
+<div id="convert-everything-to-everything" class="section level3">
+<h3><span class="header-section-number">10.8.1</span> Convert everything to everything</h3>
+<p>tsbox can convert time series stored as <strong>ts</strong>, <strong>xts</strong>, <strong>data.frame</strong>,
+<strong>data.table</strong>, <strong>tibble</strong>, <strong>zoo</strong>, <strong>tsibble</strong>, <strong>tibbletime</strong> or
+<strong>timeSeries</strong> to each other:</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" data-line-number="1"><span class="kw">library</span>(tsbox)</a>
+<a class="sourceLine" id="cb436-2" data-line-number="2">x_ts &lt;-<span class="st"> </span><span class="kw">ts_c</span>(fdeaths, mdeaths)</a>
+<a class="sourceLine" id="cb436-3" data-line-number="3">x_xts &lt;-<span class="st"> </span><span class="kw">ts_xts</span>(x_ts)</a>
+<a class="sourceLine" id="cb436-4" data-line-number="4">x_df &lt;-<span class="st"> </span><span class="kw">ts_df</span>(x_xts)</a>
+<a class="sourceLine" id="cb436-5" data-line-number="5">x_dt &lt;-<span class="st"> </span><span class="kw">ts_df</span>(x_df)</a>
+<a class="sourceLine" id="cb436-6" data-line-number="6">x_tbl &lt;-<span class="st"> </span><span class="kw">ts_tbl</span>(x_dt)</a>
+<a class="sourceLine" id="cb436-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb436-8" data-line-number="8"><span class="co"># and more exotic stuff</span></a>
+<a class="sourceLine" id="cb436-9" data-line-number="9">x_zoo &lt;-<span class="st"> </span><span class="kw">ts_zoo</span>(x_tbl)</a>
+<a class="sourceLine" id="cb436-10" data-line-number="10">x_tsibble &lt;-<span class="st"> </span><span class="kw">ts_tsibble</span>(x_zoo)</a></code></pre></div>
+<pre><code>## Loading required namespace: tsibble</code></pre>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" data-line-number="1"><span class="kw">all.equal</span>(<span class="kw">ts_ts</span>(x_tsibble), x_ts)</a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="use-same-functions-for-all-time-series-classes" class="section level3">
+<h3><span class="header-section-number">10.8.2</span> Use same functions for all time series classes</h3>
+<p>tsbox provides a basic toolkit for handling time series. These functions
+start with <code>ts_</code>, so you use them with auto complete (press Tab). These
+functions work with any <em>ts-boxable</em> time series, ts, xts, data.frame,
+data.table tibble, zoo, tsibble or timeSeries and <strong>return the class of their
+inputs</strong>.</p>
+<p>For example, the <code>ts_scale</code> function performs <em>normalization</em> - it subtracts
+the mean and divides by the standard deviation of series. Like almost all ts-
+functions, it can be used with on any ts-boxable object, with single or
+multiple time series. Because <code>ts_scale</code> normalizes time series, it is useful
+to make different time series comparable. All of the following operations
+perform the same task, but return the same object class as the input:</p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb440-1" data-line-number="1">x_scale &lt;-<span class="st"> </span><span class="kw">ts_scale</span>(x_ts)</a>
+<a class="sourceLine" id="cb440-2" data-line-number="2"><span class="kw">ts_scale</span>(x_xts)</a></code></pre></div>
+<pre><code>##                fdeaths      mdeaths
+## 1974-01-01  1.89360883  1.473056003
+## 1974-02-01  0.71399633  0.847408011
+## 1974-03-01  1.48185729  0.879729310
+## 1974-04-01  0.64722581  0.879729310
+## 1974-05-01 -0.21522673 -0.009106398
+## 1974-06-01 -0.86067508 -0.570111792
+## 1974-07-01 -0.66592773 -0.498543203
+## 1974-08-01 -0.93300981 -0.842534165
+## 1974-09-01 -0.96639507 -0.662458359
+## 1974-10-01  0.11862586 -0.009106398
+## 1974-11-01  0.09636902  0.288711281
+## 1974-12-01  0.58601950  0.808160720
+## 1975-01-01  1.49854992  1.401487414
+## 1975-02-01  1.06454155  1.479981995
+## 1975-03-01  1.24816048  1.516920622
+## 1975-04-01  0.57489108  0.778148086
+## 1975-05-01 -0.52125828 -0.214577509
+## 1975-06-01 -0.68262036 -0.480073889
+## 1975-07-01 -0.77721193 -0.715557635
+## 1975-08-01 -0.82728982 -0.837916837
+## 1975-09-01 -1.21122031 -1.022609971
+## 1975-10-01 -0.67149194 -0.343862703
+## 1975-11-01 -0.16514884  0.113252804
+## 1975-12-01  1.17026154  1.316066839
+## 1976-01-01  1.14800470  1.209868287
+## 1976-02-01  3.22901921  2.895193135
+## 1976-03-01  1.86578778  1.817046965
+## 1976-04-01 -0.15958463 -0.039119032
+## 1976-05-01 -0.63254247 -0.708631643
+## 1976-06-01 -0.78277614 -0.775582904
+## 1976-07-01 -1.02760138 -0.884090120
+## 1976-08-01 -1.28355504 -1.214229097
+## 1976-09-01 -1.13332137 -1.147277836
+## 1976-10-01 -0.64367089 -0.664767023
+## 1976-11-01 -0.08168569 -0.066823002
+## 1976-12-01  1.13131207  1.299906190
+## 1977-01-01  1.67660464  1.717774406
+## 1977-02-01  0.55263424  0.318723915
+## 1977-03-01  0.56932687  0.521886363
+## 1977-04-01  0.45804267  0.704270833
+## 1977-05-01 -0.32651093 -0.577037785
+## 1977-06-01 -0.93857402 -0.770965575
+## 1977-07-01 -0.83285403 -0.944115389
+## 1977-08-01 -1.18339926 -1.114956538
+## 1977-09-01 -0.96639507 -1.239624403
+## 1977-10-01 -0.97752349 -0.731718284
+## 1977-11-01 -0.83285403 -0.616285076
+## 1977-12-01  0.43022162  0.367205863
+## 1978-01-01  1.30936679  1.207559623
+## 1978-02-01  1.62652675  1.819355629
+## 1978-03-01  0.98107840  1.029792481
+## 1978-04-01 -0.08168569 -0.168404226
+## 1978-05-01 -0.17071305 -0.360023352
+## 1978-06-01 -0.63810668 -0.713248971
+## 1978-07-01 -0.72156983 -0.918720083
+## 1978-08-01 -1.10550032 -1.135734515
+## 1978-09-01 -0.96639507 -1.214229097
+## 1978-10-01 -0.72713404 -0.821756187
+## 1978-11-01 -0.75495509 -0.891016113
+## 1978-12-01  0.65835423  0.729666139
+## 1979-01-01  1.44847204  1.770873682
+## 1979-02-01  1.24816048  0.748135452
+## 1979-03-01  0.92543630  0.808160720
+## 1979-04-01  0.28555216  0.080931505
+## 1979-05-01 -0.46005197 -0.648606374
+## 1979-06-01 -0.73269825 -0.971819359
+## 1979-07-01 -0.86623929 -1.015683978
+## 1979-08-01 -1.01090875 -1.202685776
+## 1979-09-01 -0.93300981 -1.283489022
+## 1979-10-01 -0.83285403 -0.957967374
+## 1979-11-01 -0.40997408 -0.466221904
+## 1979-12-01  0.07411218 -0.357714688</code></pre>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" data-line-number="1"><span class="kw">ts_scale</span>(x_df)</a></code></pre></div>
+<pre><code>##          id       time        value
+## 1   fdeaths 1974-01-01  1.893608829
+## 2   fdeaths 1974-02-01  0.713996326
+## 3   fdeaths 1974-03-01  1.481857295
+## 4   fdeaths 1974-04-01  0.647225807
+## 5   fdeaths 1974-05-01 -0.215226731
+## 6   fdeaths 1974-06-01 -0.860675082
+## 7   fdeaths 1974-07-01 -0.665927734
+## 8   fdeaths 1974-08-01 -0.933009811
+## 9   fdeaths 1974-09-01 -0.966395070
+## 10  fdeaths 1974-10-01  0.118625864
+## 11  fdeaths 1974-11-01  0.096369025
+## 12  fdeaths 1974-12-01  0.586019497
+## 13  fdeaths 1975-01-01  1.498549924
+## 14  fdeaths 1975-02-01  1.064541551
+## 15  fdeaths 1975-03-01  1.248160478
+## 16  fdeaths 1975-04-01  0.574891078
+## 17  fdeaths 1975-05-01 -0.521258276
+## 18  fdeaths 1975-06-01 -0.682620364
+## 19  fdeaths 1975-07-01 -0.777211933
+## 20  fdeaths 1975-08-01 -0.827289822
+## 21  fdeaths 1975-09-01 -1.211220307
+## 22  fdeaths 1975-10-01 -0.671491944
+## 23  fdeaths 1975-11-01 -0.165148842
+## 24  fdeaths 1975-12-01  1.170261539
+## 25  fdeaths 1976-01-01  1.148004699
+## 26  fdeaths 1976-02-01  3.229019209
+## 27  fdeaths 1976-03-01  1.865787779
+## 28  fdeaths 1976-04-01 -0.159584632
+## 29  fdeaths 1976-05-01 -0.632542475
+## 30  fdeaths 1976-06-01 -0.782776143
+## 31  fdeaths 1976-07-01 -1.027601379
+## 32  fdeaths 1976-08-01 -1.283555035
+## 33  fdeaths 1976-09-01 -1.133321368
+## 34  fdeaths 1976-10-01 -0.643670895
+## 35  fdeaths 1976-11-01 -0.081685693
+## 36  fdeaths 1976-12-01  1.131312070
+## 37  fdeaths 1977-01-01  1.676604642
+## 38  fdeaths 1977-02-01  0.552634238
+## 39  fdeaths 1977-03-01  0.569326868
+## 40  fdeaths 1977-04-01  0.458042669
+## 41  fdeaths 1977-05-01 -0.326510929
+## 42  fdeaths 1977-06-01 -0.938574020
+## 43  fdeaths 1977-07-01 -0.832854032
+## 44  fdeaths 1977-08-01 -1.183399257
+## 45  fdeaths 1977-09-01 -0.966395070
+## 46  fdeaths 1977-10-01 -0.977523490
+## 47  fdeaths 1977-11-01 -0.832854032
+## 48  fdeaths 1977-12-01  0.430221620
+## 49  fdeaths 1978-01-01  1.309366787
+## 50  fdeaths 1978-02-01  1.626526752
+## 51  fdeaths 1978-03-01  0.981078402
+## 52  fdeaths 1978-04-01 -0.081685693
+## 53  fdeaths 1978-05-01 -0.170713052
+## 54  fdeaths 1978-06-01 -0.638106685
+## 55  fdeaths 1978-07-01 -0.721569834
+## 56  fdeaths 1978-08-01 -1.105500318
+## 57  fdeaths 1978-09-01 -0.966395070
+## 58  fdeaths 1978-10-01 -0.727134044
+## 59  fdeaths 1978-11-01 -0.754955093
+## 60  fdeaths 1978-12-01  0.658354226
+## 61  fdeaths 1979-01-01  1.448472035
+## 62  fdeaths 1979-02-01  1.248160478
+## 63  fdeaths 1979-03-01  0.925436303
+## 64  fdeaths 1979-04-01  0.285552162
+## 65  fdeaths 1979-05-01 -0.460051967
+## 66  fdeaths 1979-06-01 -0.732698253
+## 67  fdeaths 1979-07-01 -0.866239292
+## 68  fdeaths 1979-08-01 -1.010908749
+## 69  fdeaths 1979-09-01 -0.933009811
+## 70  fdeaths 1979-10-01 -0.832854032
+## 71  fdeaths 1979-11-01 -0.409974078
+## 72  fdeaths 1979-12-01  0.074112185
+## 73  mdeaths 1974-01-01  1.473056003
+## 74  mdeaths 1974-02-01  0.847408011
+## 75  mdeaths 1974-03-01  0.879729310
+## 76  mdeaths 1974-04-01  0.879729310
+## 77  mdeaths 1974-05-01 -0.009106398
+## 78  mdeaths 1974-06-01 -0.570111792
+## 79  mdeaths 1974-07-01 -0.498543203
+## 80  mdeaths 1974-08-01 -0.842534165
+## 81  mdeaths 1974-09-01 -0.662458359
+## 82  mdeaths 1974-10-01 -0.009106398
+## 83  mdeaths 1974-11-01  0.288711281
+## 84  mdeaths 1974-12-01  0.808160720
+## 85  mdeaths 1975-01-01  1.401487414
+## 86  mdeaths 1975-02-01  1.479981995
+## 87  mdeaths 1975-03-01  1.516920622
+## 88  mdeaths 1975-04-01  0.778148086
+## 89  mdeaths 1975-05-01 -0.214577509
+## 90  mdeaths 1975-06-01 -0.480073889
+## 91  mdeaths 1975-07-01 -0.715557635
+## 92  mdeaths 1975-08-01 -0.837916837
+## 93  mdeaths 1975-09-01 -1.022609971
+## 94  mdeaths 1975-10-01 -0.343862703
+## 95  mdeaths 1975-11-01  0.113252804
+## 96  mdeaths 1975-12-01  1.316066839
+## 97  mdeaths 1976-01-01  1.209868287
+## 98  mdeaths 1976-02-01  2.895193135
+## 99  mdeaths 1976-03-01  1.817046965
+## 100 mdeaths 1976-04-01 -0.039119032
+## 101 mdeaths 1976-05-01 -0.708631643
+## 102 mdeaths 1976-06-01 -0.775582904
+## 103 mdeaths 1976-07-01 -0.884090120
+## 104 mdeaths 1976-08-01 -1.214229097
+## 105 mdeaths 1976-09-01 -1.147277836
+## 106 mdeaths 1976-10-01 -0.664767023
+## 107 mdeaths 1976-11-01 -0.066823002
+## 108 mdeaths 1976-12-01  1.299906190
+## 109 mdeaths 1977-01-01  1.717774406
+## 110 mdeaths 1977-02-01  0.318723915
+## 111 mdeaths 1977-03-01  0.521886363
+## 112 mdeaths 1977-04-01  0.704270833
+## 113 mdeaths 1977-05-01 -0.577037785
+## 114 mdeaths 1977-06-01 -0.770965575
+## 115 mdeaths 1977-07-01 -0.944115389
+## 116 mdeaths 1977-08-01 -1.114956538
+## 117 mdeaths 1977-09-01 -1.239624403
+## 118 mdeaths 1977-10-01 -0.731718284
+## 119 mdeaths 1977-11-01 -0.616285076
+## 120 mdeaths 1977-12-01  0.367205863
+## 121 mdeaths 1978-01-01  1.207559623
+## 122 mdeaths 1978-02-01  1.819355629
+## 123 mdeaths 1978-03-01  1.029792481
+## 124 mdeaths 1978-04-01 -0.168404226
+## 125 mdeaths 1978-05-01 -0.360023352
+## 126 mdeaths 1978-06-01 -0.713248971
+## 127 mdeaths 1978-07-01 -0.918720083
+## 128 mdeaths 1978-08-01 -1.135734515
+## 129 mdeaths 1978-09-01 -1.214229097
+## 130 mdeaths 1978-10-01 -0.821756187
+## 131 mdeaths 1978-11-01 -0.891016113
+## 132 mdeaths 1978-12-01  0.729666139
+## 133 mdeaths 1979-01-01  1.770873682
+## 134 mdeaths 1979-02-01  0.748135452
+## 135 mdeaths 1979-03-01  0.808160720
+## 136 mdeaths 1979-04-01  0.080931505
+## 137 mdeaths 1979-05-01 -0.648606374
+## 138 mdeaths 1979-06-01 -0.971819359
+## 139 mdeaths 1979-07-01 -1.015683978
+## 140 mdeaths 1979-08-01 -1.202685776
+## 141 mdeaths 1979-09-01 -1.283489022
+## 142 mdeaths 1979-10-01 -0.957967374
+## 143 mdeaths 1979-11-01 -0.466221904
+## 144 mdeaths 1979-12-01 -0.357714688</code></pre>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" data-line-number="1"><span class="kw">ts_scale</span>(x_dt)</a></code></pre></div>
+<pre><code>##          id       time        value
+## 1   fdeaths 1974-01-01  1.893608829
+## 2   fdeaths 1974-02-01  0.713996326
+## 3   fdeaths 1974-03-01  1.481857295
+## 4   fdeaths 1974-04-01  0.647225807
+## 5   fdeaths 1974-05-01 -0.215226731
+## 6   fdeaths 1974-06-01 -0.860675082
+## 7   fdeaths 1974-07-01 -0.665927734
+## 8   fdeaths 1974-08-01 -0.933009811
+## 9   fdeaths 1974-09-01 -0.966395070
+## 10  fdeaths 1974-10-01  0.118625864
+## 11  fdeaths 1974-11-01  0.096369025
+## 12  fdeaths 1974-12-01  0.586019497
+## 13  fdeaths 1975-01-01  1.498549924
+## 14  fdeaths 1975-02-01  1.064541551
+## 15  fdeaths 1975-03-01  1.248160478
+## 16  fdeaths 1975-04-01  0.574891078
+## 17  fdeaths 1975-05-01 -0.521258276
+## 18  fdeaths 1975-06-01 -0.682620364
+## 19  fdeaths 1975-07-01 -0.777211933
+## 20  fdeaths 1975-08-01 -0.827289822
+## 21  fdeaths 1975-09-01 -1.211220307
+## 22  fdeaths 1975-10-01 -0.671491944
+## 23  fdeaths 1975-11-01 -0.165148842
+## 24  fdeaths 1975-12-01  1.170261539
+## 25  fdeaths 1976-01-01  1.148004699
+## 26  fdeaths 1976-02-01  3.229019209
+## 27  fdeaths 1976-03-01  1.865787779
+## 28  fdeaths 1976-04-01 -0.159584632
+## 29  fdeaths 1976-05-01 -0.632542475
+## 30  fdeaths 1976-06-01 -0.782776143
+## 31  fdeaths 1976-07-01 -1.027601379
+## 32  fdeaths 1976-08-01 -1.283555035
+## 33  fdeaths 1976-09-01 -1.133321368
+## 34  fdeaths 1976-10-01 -0.643670895
+## 35  fdeaths 1976-11-01 -0.081685693
+## 36  fdeaths 1976-12-01  1.131312070
+## 37  fdeaths 1977-01-01  1.676604642
+## 38  fdeaths 1977-02-01  0.552634238
+## 39  fdeaths 1977-03-01  0.569326868
+## 40  fdeaths 1977-04-01  0.458042669
+## 41  fdeaths 1977-05-01 -0.326510929
+## 42  fdeaths 1977-06-01 -0.938574020
+## 43  fdeaths 1977-07-01 -0.832854032
+## 44  fdeaths 1977-08-01 -1.183399257
+## 45  fdeaths 1977-09-01 -0.966395070
+## 46  fdeaths 1977-10-01 -0.977523490
+## 47  fdeaths 1977-11-01 -0.832854032
+## 48  fdeaths 1977-12-01  0.430221620
+## 49  fdeaths 1978-01-01  1.309366787
+## 50  fdeaths 1978-02-01  1.626526752
+## 51  fdeaths 1978-03-01  0.981078402
+## 52  fdeaths 1978-04-01 -0.081685693
+## 53  fdeaths 1978-05-01 -0.170713052
+## 54  fdeaths 1978-06-01 -0.638106685
+## 55  fdeaths 1978-07-01 -0.721569834
+## 56  fdeaths 1978-08-01 -1.105500318
+## 57  fdeaths 1978-09-01 -0.966395070
+## 58  fdeaths 1978-10-01 -0.727134044
+## 59  fdeaths 1978-11-01 -0.754955093
+## 60  fdeaths 1978-12-01  0.658354226
+## 61  fdeaths 1979-01-01  1.448472035
+## 62  fdeaths 1979-02-01  1.248160478
+## 63  fdeaths 1979-03-01  0.925436303
+## 64  fdeaths 1979-04-01  0.285552162
+## 65  fdeaths 1979-05-01 -0.460051967
+## 66  fdeaths 1979-06-01 -0.732698253
+## 67  fdeaths 1979-07-01 -0.866239292
+## 68  fdeaths 1979-08-01 -1.010908749
+## 69  fdeaths 1979-09-01 -0.933009811
+## 70  fdeaths 1979-10-01 -0.832854032
+## 71  fdeaths 1979-11-01 -0.409974078
+## 72  fdeaths 1979-12-01  0.074112185
+## 73  mdeaths 1974-01-01  1.473056003
+## 74  mdeaths 1974-02-01  0.847408011
+## 75  mdeaths 1974-03-01  0.879729310
+## 76  mdeaths 1974-04-01  0.879729310
+## 77  mdeaths 1974-05-01 -0.009106398
+## 78  mdeaths 1974-06-01 -0.570111792
+## 79  mdeaths 1974-07-01 -0.498543203
+## 80  mdeaths 1974-08-01 -0.842534165
+## 81  mdeaths 1974-09-01 -0.662458359
+## 82  mdeaths 1974-10-01 -0.009106398
+## 83  mdeaths 1974-11-01  0.288711281
+## 84  mdeaths 1974-12-01  0.808160720
+## 85  mdeaths 1975-01-01  1.401487414
+## 86  mdeaths 1975-02-01  1.479981995
+## 87  mdeaths 1975-03-01  1.516920622
+## 88  mdeaths 1975-04-01  0.778148086
+## 89  mdeaths 1975-05-01 -0.214577509
+## 90  mdeaths 1975-06-01 -0.480073889
+## 91  mdeaths 1975-07-01 -0.715557635
+## 92  mdeaths 1975-08-01 -0.837916837
+## 93  mdeaths 1975-09-01 -1.022609971
+## 94  mdeaths 1975-10-01 -0.343862703
+## 95  mdeaths 1975-11-01  0.113252804
+## 96  mdeaths 1975-12-01  1.316066839
+## 97  mdeaths 1976-01-01  1.209868287
+## 98  mdeaths 1976-02-01  2.895193135
+## 99  mdeaths 1976-03-01  1.817046965
+## 100 mdeaths 1976-04-01 -0.039119032
+## 101 mdeaths 1976-05-01 -0.708631643
+## 102 mdeaths 1976-06-01 -0.775582904
+## 103 mdeaths 1976-07-01 -0.884090120
+## 104 mdeaths 1976-08-01 -1.214229097
+## 105 mdeaths 1976-09-01 -1.147277836
+## 106 mdeaths 1976-10-01 -0.664767023
+## 107 mdeaths 1976-11-01 -0.066823002
+## 108 mdeaths 1976-12-01  1.299906190
+## 109 mdeaths 1977-01-01  1.717774406
+## 110 mdeaths 1977-02-01  0.318723915
+## 111 mdeaths 1977-03-01  0.521886363
+## 112 mdeaths 1977-04-01  0.704270833
+## 113 mdeaths 1977-05-01 -0.577037785
+## 114 mdeaths 1977-06-01 -0.770965575
+## 115 mdeaths 1977-07-01 -0.944115389
+## 116 mdeaths 1977-08-01 -1.114956538
+## 117 mdeaths 1977-09-01 -1.239624403
+## 118 mdeaths 1977-10-01 -0.731718284
+## 119 mdeaths 1977-11-01 -0.616285076
+## 120 mdeaths 1977-12-01  0.367205863
+## 121 mdeaths 1978-01-01  1.207559623
+## 122 mdeaths 1978-02-01  1.819355629
+## 123 mdeaths 1978-03-01  1.029792481
+## 124 mdeaths 1978-04-01 -0.168404226
+## 125 mdeaths 1978-05-01 -0.360023352
+## 126 mdeaths 1978-06-01 -0.713248971
+## 127 mdeaths 1978-07-01 -0.918720083
+## 128 mdeaths 1978-08-01 -1.135734515
+## 129 mdeaths 1978-09-01 -1.214229097
+## 130 mdeaths 1978-10-01 -0.821756187
+## 131 mdeaths 1978-11-01 -0.891016113
+## 132 mdeaths 1978-12-01  0.729666139
+## 133 mdeaths 1979-01-01  1.770873682
+## 134 mdeaths 1979-02-01  0.748135452
+## 135 mdeaths 1979-03-01  0.808160720
+## 136 mdeaths 1979-04-01  0.080931505
+## 137 mdeaths 1979-05-01 -0.648606374
+## 138 mdeaths 1979-06-01 -0.971819359
+## 139 mdeaths 1979-07-01 -1.015683978
+## 140 mdeaths 1979-08-01 -1.202685776
+## 141 mdeaths 1979-09-01 -1.283489022
+## 142 mdeaths 1979-10-01 -0.957967374
+## 143 mdeaths 1979-11-01 -0.466221904
+## 144 mdeaths 1979-12-01 -0.357714688</code></pre>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" data-line-number="1"><span class="kw">ts_scale</span>(x_tbl)</a></code></pre></div>
+<pre><code>## # A tibble: 144 x 3
+##    id      time        value
+##    &lt;chr&gt;   &lt;date&gt;      &lt;dbl&gt;
+##  1 fdeaths 1974-01-01  1.89 
+##  2 fdeaths 1974-02-01  0.714
+##  3 fdeaths 1974-03-01  1.48 
+##  4 fdeaths 1974-04-01  0.647
+##  5 fdeaths 1974-05-01 -0.215
+##  6 fdeaths 1974-06-01 -0.861
+##  7 fdeaths 1974-07-01 -0.666
+##  8 fdeaths 1974-08-01 -0.933
+##  9 fdeaths 1974-09-01 -0.966
+## 10 fdeaths 1974-10-01  0.119
+## # … with 134 more rows</code></pre>
+<p>There is a bunch of other transformation functions: <code>ts_trend</code>, which
+estimates a trend; functions to calculate differences, <code>ts_pc</code>, <code>ts_pcy</code>,
+<code>ts_diff</code>, <code>ts_diffy</code>; a function to shift series, <code>ts_lag</code>; functions to
+construct indices, both from levels and percentage change rates: <code>ts_index</code>
+and <code>ts_compound</code>. For a full list of functions, check out the reference.</p>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" data-line-number="1"><span class="kw">ts_plot</span>(AirPassengers)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" data-line-number="1"><span class="kw">ts_plot</span>(<span class="kw">ts_trend</span>(AirPassengers))</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-174-2.png" width="672" /></p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" data-line-number="1"><span class="kw">ts_plot</span>(<span class="kw">ts_pc</span>(AirPassengers))</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-174-3.png" width="672" /></p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" data-line-number="1"><span class="kw">ts_plot</span>(<span class="kw">ts_pcy</span>(AirPassengers))</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-174-4.png" width="672" /></p>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" data-line-number="1"><span class="kw">ts_plot</span>(<span class="kw">ts_index</span>(AirPassengers))</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-174-5.png" width="672" /></p>
+</div>
+<div id="combine-multiple-time-series" class="section level3">
+<h3><span class="header-section-number">10.8.3</span> Combine multiple time series</h3>
+<p>A set of helper functions makes it easy to combine multiple time series, even
+if their classes are different. The basic workhorse is <code>ts_c</code>, which simply
+collect time series. Again, this works with single or multiple series of any
+ts-boxable class:</p>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" data-line-number="1"><span class="kw">ts_c</span>(<span class="kw">ts_tbl</span>(EuStockMarkets), AirPassengers, <span class="kw">ts_xts</span>(mdeaths))</a></code></pre></div>
+<pre><code>## # A tibble: 7,656 x 3
+##    id    time                value
+##    &lt;chr&gt; &lt;dttm&gt;              &lt;dbl&gt;
+##  1 DAX   1991-07-01 03:18:27 1629.
+##  2 DAX   1991-07-02 13:01:32 1614.
+##  3 DAX   1991-07-03 22:44:38 1607.
+##  4 DAX   1991-07-05 08:27:43 1621.
+##  5 DAX   1991-07-06 18:10:48 1618.
+##  6 DAX   1991-07-08 03:53:53 1611.
+##  7 DAX   1991-07-09 13:36:59 1631.
+##  8 DAX   1991-07-10 23:20:04 1640.
+##  9 DAX   1991-07-12 09:03:09 1635.
+## 10 DAX   1991-07-13 18:46:15 1646.
+## # … with 7,646 more rows</code></pre>
+<p>If you want to choose a different name for single series, name the arguments:</p>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" data-line-number="1"><span class="kw">ts_c</span>(<span class="kw">ts_tbl</span>(EuStockMarkets), <span class="st">`</span><span class="dt">Airline Passengers</span><span class="st">`</span> =<span class="st"> </span>AirPassengers)</a></code></pre></div>
+<pre><code>## # A tibble: 7,584 x 3
+##    id    time                value
+##    &lt;chr&gt; &lt;dttm&gt;              &lt;dbl&gt;
+##  1 DAX   1991-07-01 03:18:27 1629.
+##  2 DAX   1991-07-02 13:01:32 1614.
+##  3 DAX   1991-07-03 22:44:38 1607.
+##  4 DAX   1991-07-05 08:27:43 1621.
+##  5 DAX   1991-07-06 18:10:48 1618.
+##  6 DAX   1991-07-08 03:53:53 1611.
+##  7 DAX   1991-07-09 13:36:59 1631.
+##  8 DAX   1991-07-10 23:20:04 1640.
+##  9 DAX   1991-07-12 09:03:09 1635.
+## 10 DAX   1991-07-13 18:46:15 1646.
+## # … with 7,574 more rows</code></pre>
+<p>Multiple series can be also combined to a single series:</p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" data-line-number="1"><span class="kw">ts_bind</span>(<span class="kw">ts_tbl</span>(mdeaths), AirPassengers)</a></code></pre></div>
+<pre><code>## # A tibble: 216 x 2
+##    time       value
+##    &lt;date&gt;     &lt;dbl&gt;
+##  1 1949-01-01   112
+##  2 1949-02-01   118
+##  3 1949-03-01   132
+##  4 1949-04-01   129
+##  5 1949-05-01   121
+##  6 1949-06-01   135
+##  7 1949-07-01   148
+##  8 1949-08-01   148
+##  9 1949-09-01   136
+## 10 1949-10-01   119
+## # … with 206 more rows</code></pre>
+<p><code>ts_chain</code> offers an alternative way to combine time series, by <em>chain-
+linking</em> them. The following prolongs a short time series with percentage
+change rates of a longer one:</p>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" data-line-number="1">mdeaths_short &lt;-<span class="st"> </span><span class="kw">ts_span</span>(mdeaths, <span class="dt">end =</span> <span class="st">&quot;1976-12-01&quot;</span>)</a>
+<a class="sourceLine" id="cb459-2" data-line-number="2">mdeaths_extrapol &lt;-<span class="st"> </span><span class="kw">ts_chain</span>(mdeaths_short, fdeaths)</a></code></pre></div>
+</div>
+<div id="frequency-conversion-and-alignment" class="section level3">
+<h3><span class="header-section-number">10.8.4</span> Frequency conversion and alignment</h3>
+<p>There are functions to convert the frequency of time series and to regularize
+irregular time series. The following changes the frequency of two series to
+annual:</p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" data-line-number="1"><span class="kw">ts_frequency</span>(<span class="kw">ts_c</span>(AirPassengers, austres), <span class="st">&quot;year&quot;</span>, sum) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a></code></pre></div>
+<pre><code>## Time Series:
+## Start = 1949 
+## End = 1954 
+## Frequency = 1 
+##      AirPassengers austres
+## 1949          1520      NA
+## 1950          1676      NA
+## 1951          2042      NA
+## 1952          2364      NA
+## 1953          2700      NA
+## 1954          2867      NA</code></pre>
+<p>We already met <code>ts_span</code>, which can be used to limit the time span of a
+series. <code>ts_regular</code> makes irregular time series regular, by turning implicit
+missing values into explicit <code>NA</code>s.</p>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb462-1" data-line-number="1"><span class="kw">ts_span</span>(AirPassengers, <span class="dv">-1</span>)</a></code></pre></div>
+<pre><code>##      Dec
+## 1960 432</code></pre>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb464-1" data-line-number="1"><span class="kw">ts_span</span>(AirPassengers, <span class="dt">start =</span> <span class="st">&quot;-3 months&quot;</span>)</a></code></pre></div>
+<pre><code>##      Oct Nov Dec
+## 1960 461 390 432</code></pre>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb466-1" data-line-number="1"><span class="kw">ts_span</span>(AirPassengers, <span class="dt">start =</span> <span class="st">&quot;-200 days&quot;</span>)</a></code></pre></div>
+<pre><code>##      Jul Aug Sep Oct Nov Dec
+## 1960 622 606 508 461 390 432</code></pre>
+</div>
+<div id="shortcuts-for-pivot_wider-and-pivot_longer" class="section level3">
+<h3><span class="header-section-number">10.8.5</span> Shortcuts for pivot_wider and pivot_longer</h3>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb468-1" data-line-number="1">x_ts &lt;-<span class="st"> </span><span class="kw">ts_c</span>(mdeaths, fdeaths)</a>
+<a class="sourceLine" id="cb468-2" data-line-number="2">x_tbl &lt;-<span class="st"> </span><span class="kw">ts_tbl</span>(x_ts)</a>
+<a class="sourceLine" id="cb468-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb468-4" data-line-number="4">x_wide &lt;-<span class="st"> </span><span class="kw">ts_wide</span>(x_tbl)</a>
+<a class="sourceLine" id="cb468-5" data-line-number="5"><span class="kw">ts_long</span>(x_wide)</a></code></pre></div>
+<pre><code>## # A tibble: 144 x 3
+##    id      time       value
+##    &lt;chr&gt;   &lt;date&gt;     &lt;dbl&gt;
+##  1 mdeaths 1974-01-01  2134
+##  2 mdeaths 1974-02-01  1863
+##  3 mdeaths 1974-03-01  1877
+##  4 mdeaths 1974-04-01  1877
+##  5 mdeaths 1974-05-01  1492
+##  6 mdeaths 1974-06-01  1249
+##  7 mdeaths 1974-07-01  1280
+##  8 mdeaths 1974-08-01  1131
+##  9 mdeaths 1974-09-01  1209
+## 10 mdeaths 1974-10-01  1492
+## # … with 134 more rows</code></pre>
+</div>
+<div id="and-plot-just-about-everything" class="section level3">
+<h3><span class="header-section-number">10.8.6</span> And plot just about everything</h3>
+<p>Of course, this works for plotting, too. The basic function is <code>ts_plot</code>,
+which can be used with any ts-boxable time series, single or multiple, of any
+frequency:</p>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb470-1" data-line-number="1"><span class="kw">ts_plot</span>(AirPassengers, <span class="kw">ts_df</span>(lynx), <span class="kw">ts_xts</span>(fdeaths))</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
+<p>If you want to use different names than the object names, just name the
+arguments (and optionally set a title):</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb471-1" data-line-number="1"><span class="kw">ts_plot</span>(</a>
+<a class="sourceLine" id="cb471-2" data-line-number="2">  <span class="st">`</span><span class="dt">Airline Passengers</span><span class="st">`</span> =<span class="st"> </span>AirPassengers,</a>
+<a class="sourceLine" id="cb471-3" data-line-number="3">  <span class="st">`</span><span class="dt">Lynx trappings</span><span class="st">`</span> =<span class="st"> </span><span class="kw">ts_df</span>(lynx),</a>
+<a class="sourceLine" id="cb471-4" data-line-number="4">  <span class="st">`</span><span class="dt">Deaths from Lung Diseases</span><span class="st">`</span> =<span class="st"> </span><span class="kw">ts_xts</span>(fdeaths),</a>
+<a class="sourceLine" id="cb471-5" data-line-number="5">  <span class="dt">title =</span> <span class="st">&quot;Airlines, trappings, and deaths&quot;</span>,</a>
+<a class="sourceLine" id="cb471-6" data-line-number="6">  <span class="dt">subtitle =</span> <span class="st">&quot;Monthly passengers, annual trappings, monthly deaths&quot;</span></a>
+<a class="sourceLine" id="cb471-7" data-line-number="7">)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+<p>There is also a version that uses
+<a href="https://CRAN.R-project.org/package=ggplot2">ggplot2</a> that uses the same
+syntax. With <code>theme_tsbox()</code> and <code>scale_color_tsbox()</code>, the output of
+<code>ts_ggplot</code> is very similar to <code>ts_plot</code>.</p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb472-1" data-line-number="1"><span class="kw">ts_ggplot</span>(</a>
+<a class="sourceLine" id="cb472-2" data-line-number="2">  <span class="kw">ts_scale</span>(</a>
+<a class="sourceLine" id="cb472-3" data-line-number="3">    <span class="kw">ts_c</span>(</a>
+<a class="sourceLine" id="cb472-4" data-line-number="4">      mdeaths,</a>
+<a class="sourceLine" id="cb472-5" data-line-number="5">      austres,</a>
+<a class="sourceLine" id="cb472-6" data-line-number="6">      AirPassengers,</a>
+<a class="sourceLine" id="cb472-7" data-line-number="7">      <span class="dt">DAX =</span> EuStockMarkets[ ,<span class="st">&#39;DAX&#39;</span>]</a>
+<a class="sourceLine" id="cb472-8" data-line-number="8">    )</a>
+<a class="sourceLine" id="cb472-9" data-line-number="9">  )</a>
+<a class="sourceLine" id="cb472-10" data-line-number="10">) <span class="op">+</span></a>
+<a class="sourceLine" id="cb472-11" data-line-number="11"><span class="kw">theme_tsbox</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb472-12" data-line-number="12"><span class="kw">scale_color_tsbox</span>()</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
+</div>
+<div id="using-tsbox-in-a-dplyr-pipe-workflow" class="section level3">
+<h3><span class="header-section-number">10.8.7</span> Using tsbox in a dplyr / pipe workflow</h3>
+<p>tsbox works well with tibbles and with <code>%&gt;%</code>, so it can be nicely integrated
+into a tidyverse workflow:</p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb473-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb473-2" data-line-number="2"><span class="kw">library</span>(nycflights13)</a>
+<a class="sourceLine" id="cb473-3" data-line-number="3">dta &lt;-<span class="st"> </span>weather <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb473-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(origin, <span class="dt">time =</span> time_hour, temp, humid, precip) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb473-5" data-line-number="5"><span class="st">  </span><span class="kw">ts_long</span>()</a></code></pre></div>
+<pre><code>## [id] (columns left of [time] column): &#39;origin&#39;</code></pre>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb475-1" data-line-number="1">dta <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb475-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> &quot;temp&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb475-3" data-line-number="3"><span class="st">  </span><span class="kw">ts_plot</span>()</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+</div>
+</div>
+<div id="exercises-9" class="section level2">
+<h2><span class="header-section-number">10.9</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>Combine <code>fdeaths</code> and <code>mdeaths</code> to a multiple time series. Call it
+<code>tdeaths</code></p></li>
+<li><p>Convert them first to a long tibble, then to a wide tibble.</p></li>
+<li><p>Plot <code>fdeaths</code> and <code>mdeaths</code>, using <code>ts_plot()</code>. Make sure to use some
+nice labels for the series in the legend.</p></li>
+<li><p>Use <code>ts_trend()</code> to estimate a trend line of the two series. Include it
+in the same graph.</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="random-forests.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="book_assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
