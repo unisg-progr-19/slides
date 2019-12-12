@@ -27,3 +27,7 @@ Visualization and Reporting (Sept. 26): [Slides](02-visualization.html)
 Data Tranformation I (Oct. 3): [Slides](03-transformation-1.html)
 
 Data Tranformation II (Oct. 10): [Slides](04-transformation-2.html)
+
+Data Tranformation III (Nov. 21): [Slides](08-transformation-3.html)
+
+Data Tranformation IV (Dec. 12): [Slides](11-transformation-4.html)
