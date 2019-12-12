@@ -1,0 +1,140 @@
+---
+title: "7784 Skills: Programming in R"
+author: 'Kirill Müller, Christoph Sax'
+date: 'University of St. Gallen, 12.12.2019'        # 1\. to avoid itemizing
+output:
+  cynkradown::cynkra_slides:
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    selfcontained: true
+fontsize: 10pt
+lang: english                # ngerman, english, italian, french
+font: frutiger
+wide: false
+colorlinks: false
+logo: false
+header-includes:
+  - \usepackage{parskip}
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+set.seed(20191212)
+
+ggplot <- function(...) ggplot2::ggplot(...) + theme_bw(16)
+```
+
+class: middle, inverse
+
+# 12.12.: Transformation 4
+
+---
+# Topics for today
+
+1. Presentations
+
+1. reprex
+
+1. Recap: joins with {dplyr}
+
+1. Pivoting and tidying with {tidyr}
+
+---
+
+
+# Presentations
+
+## team08
+
+---
+
+# Ensure repeatability
+
+All code should be **self-contained** and **reproducible**
+
+- Run in a clean R session
+- Set random seed with `set.seed()` **at the start of the script**
+- Contains all data required (or instructions how to obtain)
+
+## How to ask for help?
+
+Create a reprex (**repr**oducible **ex**ample): All of the above, plus
+
+- Ensure that code and data are minimal and demonstrate the problem you're struggling with
+
+---
+
+# reprex
+
+- Runs code in a clean session outside your working directory
+
+- Ensures that the code will run on other people's machines
+
+> 80% of the time you will solve your own problem in the course of writing an excellent reprex. YMMV.
+
+- https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html
+
+- https://reprex.tidyverse.org/
+
+---
+
+# reprex usage
+
+1. Copy code to clipboard
+
+2. Run `reprex::reprex(venue = "r")`
+
+3. Review output in "Viewer" pane in RStudio
+
+4. Paste output into an e-mail
+
+Options for the `venue` argument:
+
+- StackOverflow: `venue = "so"`
+
+- GitHub issue: `venue = "gh"` (or leave it out)
+
+---
+
+class: inverse, middle, center
+
+# Joins
+
+---
+
+# Material
+
+- https://krlmlr.github.io/vistransrep/2019-04-zhr/support.html#19
+
+- https://github.com/krlmlr/vistransrep-proj/
+    - `script/601-join.R`
+
+- r4ds, chapter 13: https://r4ds.had.co.nz/relational-data.html
+
+- https://krlmlr.github.io/dm
+
+---
+
+class: inverse, middle, center
+
+# Tidy data
+
+---
+
+# Material
+
+- https://krlmlr.github.io/vistransrep/2019-04-zhr/support.html#6
+
+- https://github.com/krlmlr/vistransrep-proj/
+    - `script/401-pivot.R`
+    - `script/402-separate.R`
+
+- https://tidyr.tidyverse.org/
+
+- https://tidyr.tidyverse.org/articles/tidy-data.html
+
+- https://tidyr.tidyverse.org/articles/pivot.html
+
+---
