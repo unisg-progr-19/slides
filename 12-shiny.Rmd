@@ -61,10 +61,19 @@ class: middle, inverse
 
 # Topics for today
 
-- R-Packages / best practices
+- Project structure / best practices
 
 - Shiny (Showcase)
 
 - Questions
+
+
+---
+
+# Project structure
+
+https://krlmlr.github.io/vistransrep/appendix-best-practices.html
+
+https://krlmlr.github.io/vistransrep/vis-basics.html#extensions
 
 
