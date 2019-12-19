@@ -429,4 +429,7 @@ dta %>%
 #' 4. Use `ts_trend()` to estimate a trend line of the two series. Include it
 #'    in the same graph.
 #'
+#' # Data Transformation 4
+#'
+#' [Intro Slides](11-transformation-4.html)
 

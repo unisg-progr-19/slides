@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Data Tranformation II | 7784 Skills: Programming in R</title>
-  <meta name="description" content="4 Data Tranformation II | 7784 Skills: Programming in R" />
+  <title>12 Shiny | 7784 Skills: Programming in R</title>
+  <meta name="description" content="12 Shiny | 7784 Skills: Programming in R" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Data Tranformation II | 7784 Skills: Programming in R" />
+  <meta property="og:title" content="12 Shiny | 7784 Skills: Programming in R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Data Tranformation II | 7784 Skills: Programming in R" />
+  <meta name="twitter:title" content="12 Shiny | 7784 Skills: Programming in R" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-tranformation-i.html"/>
-<link rel="next" href="basics-of-r-base.html"/>
+<link rel="prev" href="data-transformation-4.html"/>
+
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -239,18 +239,226 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-tranformation-ii" class="section level1">
-<h1><span class="header-section-number">4</span> Data Tranformation II</h1>
-<p>Data Tranformation II (Oct. 10): <a href="04-transformation-2.html">Slides</a></p>
+<div id="shiny" class="section level1">
+<h1><span class="header-section-number">12</span> Shiny</h1>
+<p><a href="12-shiny.R">Download as R script</a></p>
+<p><a href="11-shiny.html">Intro Slides</a></p>
+<div id="introduction-1" class="section level2">
+<h2><span class="header-section-number">12.1</span> Introduction</h2>
+<p>Shiny is an R package that makes it easy to build interactive web apps
+straight from R.</p>
+<p><a href="www.rstudio.com/products/shiny/shiny-user-showcase/">Shiny Showcase</a></p>
+<p><a href="https://gallery.shinyapps.io/simple_regression/" class="uri">https://gallery.shinyapps.io/simple_regression/</a></p>
+<p><a href="https://gallery.shinyapps.io/premierLeague/" class="uri">https://gallery.shinyapps.io/premierLeague/</a></p>
+<p><a href="http://www.dataseries.org" class="uri">http://www.dataseries.org</a></p>
+</div>
+<div id="a-first-shiny-app" class="section level2">
+<h2><span class="header-section-number">12.2</span> A First Shiny App</h2>
+<p>Because Shiny is written by the same company as RStudio, it is closely
+integrated into the IDE. To start a fresh Shiny app, simply click on the new
+document icon and select ‘Shiny Web App’.</p>
+<p>You will be greeted by a dialog that allows you to specify a name and a
+location. The ‘Application name’ is the name of the directory that will be
+created within the specified location. You can also choose if you want to use
+multiple files or a single file. Choose ‘Multiple Files’.</p>
+<p>RStudio will add a small template application to the specified folder. Click
+‘run App’ to see what it does: It plots a histogram of <code>faithful$eruptions</code>,
+and allows the user to control the number of bins in the histogram.</p>
+<div id="user-interface-ui.r" class="section level3">
+<h3><span class="header-section-number">12.2.1</span> User Interface <code>ui.R</code></h3>
+<p>Let’s see how it works. The Shiny app consists of two R files, <code>ui.R</code> and
+<code>server.R</code>. <code>ui.R</code> describes the user interface. Basically, it contains R
+functions that write HTML. You can verify by running the code of <code>ui.R</code> in
+the console: It writes the HTML that describes the user interface.</p>
+<p>Let’s focus on the only input element, <code>sliderInput</code>. It describes the slider
+you saw in the app. The first argument, <code>inputId</code>, is the most important one.
+Through this ID, the shiny server recognizes the elements in the user
+interface, so it is important that the ID matches the corresponding ID in
+<code>server.R</code>. We will discuss that in a second.</p>
+<p>The other arguments of <code>sliderInput</code> are straightforward: A label, two values
+specifying the range of the slider, and a default value which is shown on
+startup. Try modifying these values to see what happens in the app.</p>
+<p>There is a single output element, <code>plotOutput</code>, which draws the histogram
+plot. Again, the first argument is an ID, <code>outputId</code>, which must match the
+corresponding value in <code>server.R</code>. There are a bunch of additional arguments
+to <code>plotOutput</code>, but we will not discuss them here. See <code>?plotOutput</code>.</p>
+</div>
+<div id="server-logic-server.r" class="section level3">
+<h3><span class="header-section-number">12.2.2</span> Server Logic <code>server.R</code></h3>
+<p>The second file, <code>server.R</code>, tells the server how inputs should be translated
+into R calculations, and how the result of R calculations should be
+translated into outputs.</p>
+<p>Check out the <code>input$bins</code> element, which is part of the <code>input</code> list, which
+is one of the two required objects in the server function, <code>shinyServer</code>.
+<code>input$bins</code> contains the value that the user has entered in the user
+interface, using the same ID, <code>bins</code>, which we have specified in <code>ui.R</code>.</p>
+<p>The input is used to perform some R calculations. Here, we are using it to
+calculate the ‘breaks’ of the bins in the histogram. As this is normal R
+code, you can also run it in the R console, e.g.,</p>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb476-1" data-line-number="1">x &lt;-<span class="st"> </span>faithful[, <span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb476-2" data-line-number="2">bins &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="dt">length.out =</span> <span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<p>Having calculated the bin breaks, we are using these values to produce a
+histogram, using the <code>breaks</code> argument of the <code>hist()</code> function. In pure R:</p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" data-line-number="1"><span class="kw">hist</span>(x, <span class="dt">breaks =</span> bins, <span class="dt">col =</span> <span class="st">&#39;darkgray&#39;</span>, <span class="dt">border =</span> <span class="st">&#39;white&#39;</span>)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<p>The Shiny function <code>renderPlot</code> captures the plot and prepares it fo display
+in the user interface. Note that the result of <code>renderPlot</code> is assigned to
+the <code>output$distPlot</code> element of the <code>output</code> list, which is the second
+required argument of the <code>shinyServer</code> function. As for the input, the name
+of the element needs to match the name of the ID in <code>ui.R</code>.</p>
+<p>A central concept in shiny Apps is the concept of reactivity. If <code>input$bins</code>
+is changed by the user, all the calculations that depend on it are
+recalculated.</p>
+<p>To recap, the main steps of building the server logic are:</p>
+<ol style="list-style-type: decimal">
+<li><p>Save objects to display to output$</p></li>
+<li><p>Build objects to display with render*()</p></li>
+<li><p>Access input values with input$</p></li>
+</ol>
+</div>
+<div id="debugging" class="section level3">
+<h3><span class="header-section-number">12.2.3</span> Debugging</h3>
+<p>As you will see in the next exercise, debugging is one of the main challenges
+when we write shiny applications. There are two simple ways to figure out
+what is going on when things do not behave as we want. The most useful is
+simply to add <code>print</code> statements to <code>server.R</code>. This way, the value of
+variable will be printed to the R console after each evaluation.</p>
+<p>Another useful command is the <code>browser()</code> statement, which works as in
+standard R. It stops the execution of the program at the statement, so can
+investigate the values of the variables.</p>
+<p>As a preliminary exercise, add a print statement to <code>server.R</code> of the demo
+app that prints the value of <code>bins</code> to the console. Run the app and see how
+it reacts on changes in the input.</p>
+</div>
+</div>
+<div id="excercises" class="section level2">
+<h2><span class="header-section-number">12.3</span> Excercises</h2>
+<ol style="list-style-type: decimal">
+<li>Modify the shiny example app to include the following scatterplot:</li>
+</ol>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb478-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb478-2" data-line-number="2">boston &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(MASS<span class="op">::</span>Boston)</a>
+<a class="sourceLine" id="cb478-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb478-4" data-line-number="4">boston <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb478-5" data-line-number="5"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> lstat, <span class="dt">y =</span> medv)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb478-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Add a selector to <code>ui.R</code>, where you can select the column names. Store the selected column name under id <code>cname</code>.</li>
+</ol>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" data-line-number="1"><span class="kw">names</span>(boston)</a></code></pre></div>
+<pre><code>##  [1] &quot;crim&quot;    &quot;zn&quot;      &quot;indus&quot;   &quot;chas&quot;    &quot;nox&quot;     &quot;rm&quot;      &quot;age&quot;    
+##  [8] &quot;dis&quot;     &quot;rad&quot;     &quot;tax&quot;     &quot;ptratio&quot; &quot;black&quot;   &quot;lstat&quot;   &quot;medv&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Use <code>input$cname</code> to select the column name from the ui.</li>
+</ol>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" data-line-number="1">myvar &lt;-<span class="st"> &quot;medv&quot;</span></a>
+<a class="sourceLine" id="cb481-2" data-line-number="2">boston <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb481-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> lstat, <span class="dt">y =</span> <span class="op">!!</span><span class="st"> </span><span class="kw">sym</span>(myvar))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb481-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+</div>
+<div id="where-to-go-from-here" class="section level2">
+<h2><span class="header-section-number">12.4</span> Where to Go From Here</h2>
+<div id="more-input-elements" class="section level3">
+<h3><span class="header-section-number">12.4.1</span> More Input Elements</h3>
+<p>There are a couple of additional input elements in Shiny, see the
+corresponding help pages to see how they work.</p>
+<ul>
+<li><code>actionButton</code></li>
+<li><code>checkboxGroupInput</code></li>
+<li><code>dateInput</code></li>
+<li><code>dateRangeInput</code></li>
+<li><code>fileInput</code></li>
+<li><code>numericInput</code></li>
+<li><code>passwordInput</code></li>
+<li><code>radioButtons</code></li>
+<li><code>selectInput</code></li>
+<li><code>sliderInput</code></li>
+<li><code>submitButton</code></li>
+<li><code>textAreaInput</code></li>
+<li><code>textInput</code></li>
+</ul>
+</div>
+<div id="more-output-elements" class="section level3">
+<h3><span class="header-section-number">12.4.2</span> More Output Elements</h3>
+<p>Each <code>render</code> function has a corresponding <code>Output</code> function.</p>
+<table>
+<thead>
+<tr class="header">
+<th><code>server.R</code></th>
+<th><code>ui.R</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>renderDataTable</code></td>
+<td><code>dataTableOutput</code></td>
+</tr>
+<tr class="even">
+<td><code>renderImage</code></td>
+<td><code>imageOutput</code></td>
+</tr>
+<tr class="odd">
+<td><code>renderPlot</code></td>
+<td><code>plotOutput</code></td>
+</tr>
+<tr class="even">
+<td><code>renderPrint</code></td>
+<td><code>verbatimTextOutput</code></td>
+</tr>
+<tr class="odd">
+<td><code>renderTable</code></td>
+<td><code>tableOutput</code></td>
+</tr>
+<tr class="even">
+<td><code>renderText</code></td>
+<td><code>textOutput</code></td>
+</tr>
+<tr class="odd">
+<td><code>renderText</code></td>
+<td><code>textOutput</code></td>
+</tr>
+<tr class="even">
+<td><code>renderUI</code></td>
+<td><code>uiOuptut, htmlOutput</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="more-on-reactivity" class="section level3">
+<h3><span class="header-section-number">12.4.3</span> More on Reactivity</h3>
+<ul>
+<li><p>The <code>reactive()</code> function allow you to define reactive expressions. These
+are useful if you need the result of your calculations for several outputs.</p></li>
+<li><p>The <code>observe()</code> function, together with ‘reactiveValues’ serves a similar
+purpose, but it is recommended to use <code>reactive()</code> unless you have good
+reason not to.</p></li>
+<li><p><code>isolate()</code> allows you to read an input value without triggering a reaction.</p></li>
+<li><p>which is often useful with <code>actionButton</code>. If you have time consuming
+calculations, you don’t want to run them each time a user is changing
+inputs. So you can add an <code>actionButton</code> to <code>ui.R</code>, and put all the other
+inputs in an <code>isolate()</code>. That way, only clicking the button will trigger
+the calculation.</p></li>
+</ul>
+</div>
+</div>
+<div id="getting-help" class="section level2">
+<h2><span class="header-section-number">12.5</span> Getting Help</h2>
+<ul>
+<li><p><a href="http://shiny.rstudio.com/images/shiny-cheatsheet.pdf">Shiny Cheat Sheet</a></p></li>
+<li><p><a href="http://shiny.rstudio.com/tutorial/">Shiny Video Tutorials</a></p></li>
+</ul>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="data-tranformation-i.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="basics-of-r-base.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-transformation-4.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>

@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="random-forests.html"/>
-
+<link rel="next" href="data-transformation-4.html"/>
 <script src="book_assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="book_assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -205,6 +205,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.8.7" data-path="time-series.html"><a href="time-series.html#using-tsbox-in-a-dplyr-pipe-workflow"><i class="fa fa-check"></i><b>10.8.7</b> Using tsbox in a dplyr / pipe workflow</a></li>
 </ul></li>
 <li class="chapter" data-level="10.9" data-path="time-series.html"><a href="time-series.html#exercises-9"><i class="fa fa-check"></i><b>10.9</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="data-transformation-4.html"><a href="data-transformation-4.html"><i class="fa fa-check"></i><b>11</b> Data Transformation 4</a></li>
+<li class="chapter" data-level="12" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>12</b> Shiny</a><ul>
+<li class="chapter" data-level="12.1" data-path="shiny.html"><a href="shiny.html#introduction-1"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="shiny.html"><a href="shiny.html#a-first-shiny-app"><i class="fa fa-check"></i><b>12.2</b> A First Shiny App</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="shiny.html"><a href="shiny.html#user-interface-ui.r"><i class="fa fa-check"></i><b>12.2.1</b> User Interface <code>ui.R</code></a></li>
+<li class="chapter" data-level="12.2.2" data-path="shiny.html"><a href="shiny.html#server-logic-server.r"><i class="fa fa-check"></i><b>12.2.2</b> Server Logic <code>server.R</code></a></li>
+<li class="chapter" data-level="12.2.3" data-path="shiny.html"><a href="shiny.html#debugging"><i class="fa fa-check"></i><b>12.2.3</b> Debugging</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="shiny.html"><a href="shiny.html#excercises"><i class="fa fa-check"></i><b>12.3</b> Excercises</a></li>
+<li class="chapter" data-level="12.4" data-path="shiny.html"><a href="shiny.html#where-to-go-from-here"><i class="fa fa-check"></i><b>12.4</b> Where to Go From Here</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="shiny.html"><a href="shiny.html#more-input-elements"><i class="fa fa-check"></i><b>12.4.1</b> More Input Elements</a></li>
+<li class="chapter" data-level="12.4.2" data-path="shiny.html"><a href="shiny.html#more-output-elements"><i class="fa fa-check"></i><b>12.4.2</b> More Output Elements</a></li>
+<li class="chapter" data-level="12.4.3" data-path="shiny.html"><a href="shiny.html#more-on-reactivity"><i class="fa fa-check"></i><b>12.4.3</b> More on Reactivity</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="shiny.html"><a href="shiny.html#getting-help"><i class="fa fa-check"></i><b>12.5</b> Getting Help</a></li>
 </ul></li>
 </ul>
 
@@ -482,12 +498,12 @@ frame.</p>
 <a class="sourceLine" id="cb430-2" data-line-number="2"><span class="st">  </span><span class="kw">make_future_dataframe</span>(m_prophet, <span class="dt">periods =</span> <span class="dv">365</span>)</a>
 <a class="sourceLine" id="cb430-3" data-line-number="3"><span class="kw">tail</span>(df_future)</a></code></pre></div>
 <pre><code>##              ds
-## 3614 2020-11-28
-## 3615 2020-11-29
-## 3616 2020-11-30
-## 3617 2020-12-01
-## 3618 2020-12-02
-## 3619 2020-12-03</code></pre>
+## 3624 2020-12-12
+## 3625 2020-12-13
+## 3626 2020-12-14
+## 3627 2020-12-15
+## 3628 2020-12-16
+## 3629 2020-12-17</code></pre>
 <p>As with most modeling procedures in R, we use the generic predict function to
 get our forecast. The forecast object is a data frame with a column <code>yhat</code>
 containing the forecast. It has additional columns for uncertainty intervals
@@ -502,12 +518,12 @@ and seasonal components.</p>
 <pre><code>## # A tibble: 6 x 2
 ##   ds                   yhat
 ##   &lt;dttm&gt;              &lt;dbl&gt;
-## 1 2020-11-28 00:00:00  251.
-## 2 2020-11-29 00:00:00  251.
-## 3 2020-11-30 00:00:00  253.
-## 4 2020-12-01 00:00:00  253.
-## 5 2020-12-02 00:00:00  253.
-## 6 2020-12-03 00:00:00  252.</code></pre>
+## 1 2020-12-12 00:00:00  255.
+## 2 2020-12-13 00:00:00  255.
+## 3 2020-12-14 00:00:00  256.
+## 4 2020-12-15 00:00:00  256.
+## 5 2020-12-16 00:00:00  256.
+## 6 2020-12-17 00:00:00  256.</code></pre>
 <p>You can use the generic plot function to plot the forecast, by passing in the
 model and the forecast data frame.</p>
 <div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" data-line-number="1"><span class="kw">plot</span>(m_prophet, fct_prophet)</a></code></pre></div>
@@ -1149,7 +1165,6 @@ nice labels for the series in the legend.</p></li>
 <li><p>Use <code>ts_trend()</code> to estimate a trend line of the two series. Include it
 in the same graph.</p></li>
 </ol>
-
 </div>
 </div>
             </section>
@@ -1157,8 +1172,8 @@ in the same graph.</p></li>
           </div>
         </div>
       </div>
-<a href="random-forests.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="random-forests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-transformation-4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
